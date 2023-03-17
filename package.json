@@ -9,5 +9,12 @@
   },
   "devDependencies": {
     "nuxt": "^3.2.3"
+  },
+  "dependencies": {
+    "@nuxtjs/tailwindcss": "^6.6.0",
+    "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
+    "@pinia/nuxt": "^0.4.7",
+    "@sidebase/nuxt-auth": "^0.4.4",
+    "nuxt-vitest": "^0.6.8"
   }
 }
