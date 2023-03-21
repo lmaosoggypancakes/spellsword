@@ -1,6 +1,7 @@
 {
   "name": "Spellsword",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -10,7 +11,11 @@
   },
   "devDependencies": {
     "@sidebase/nuxt-auth": "^0.4.4",
-    "nuxt": "^3.2.3"
+    "@tresjs/cientos": "^1.8.0",
+    "@tresjs/core": "^1.8.1",
+    "@types/three": "^0.149.0",
+    "nuxt": "^3.2.3",
+    "three": "^0.150.1"
   },
   "overrides": {
     "vue": "latest"
