@@ -1,5 +1,8 @@
 <template>
-  <div class="h-screen bg-primary"><Navbar /></div>
+  <div class="h-screen bg-space overflow-hidden">
+    <Navbar />
+    Game
+  </div>
 </template>
 
 <script setup lang="ts">

@@ -7,3 +7,9 @@ export interface User {
   following: string[];
   followedBy: string[];
 }
+
+export interface AppNavLink {
+  href: string;
+  name: string;
+  icon: any; // TODO: get icon component type
+}
