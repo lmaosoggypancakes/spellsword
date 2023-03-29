@@ -5,6 +5,5 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
     "nuxt-vitest",
-    // "@sidebase/nuxt-auth",
   ],
 });
