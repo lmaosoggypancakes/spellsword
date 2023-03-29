@@ -15,15 +15,13 @@ export const useAuth = defineStore("auth", {
   },
   actions: {
     async authenticate(jwt: string) {
+      const config = useRuntimeConfig();
       this.token = jwt;
-      const response = await axios.get(
-        "https://spellsword.up.railway.app/api/hello",
-        {
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-          },
-        }
-      );
+      const response = await axios.get(`${config.public.apiUrl}/api/hello`, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
       const user: User = response.data;
       userStore.set(user);
     },

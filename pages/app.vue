@@ -1,5 +1,6 @@
-<template>App</template>
+<template>Hello, {{ user.user.username }}</template>
 <script setup lang="ts">
+const user = useUser();
 definePageMeta({
   middleware: ["auth"],
 });
