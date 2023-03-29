@@ -3,5 +3,6 @@
 const user = useUser();
 definePageMeta({
   middleware: ["auth"],
+  layout: "app",
 });
 </script>
