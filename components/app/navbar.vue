@@ -22,6 +22,8 @@ import {
   MagnifyingGlassCircleIcon,
   PencilIcon,
 } from "@heroicons/vue/24/outline";
+
+const auth = useAuth();
 const navLinks = ref<AppNavLink[]>([
   {
     href: "/app/account",

@@ -22,6 +22,6 @@ export const useUser = defineStore("user", {
     },
   },
   persist: {
-    storage: persistedState.sessionStorage,
+    storage: persistedState.cookies,
   },
 });
