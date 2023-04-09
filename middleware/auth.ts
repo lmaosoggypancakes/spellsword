@@ -5,6 +5,6 @@ export default defineNuxtRouteMiddleware((to, from) => {
     return navigateTo("/");
   }
   if (to.path == "/" && auth.authenticated) {
-    return navigateTo("/app");
+    return navigateTo("/app/play");
   }
 });

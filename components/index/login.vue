@@ -42,7 +42,7 @@ const login = async () => {
     const jwt = response.data.access_token;
     await auth.authenticate(jwt);
     status.value = "normal";
-    router.push("/app");
+    router.push("/app/play");
   } catch (error: any) {
     if (error.response.status == 401) {
       errorText.value = "Username/password combination is invalid";
