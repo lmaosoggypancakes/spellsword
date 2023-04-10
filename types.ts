@@ -13,3 +13,10 @@ export interface AppNavLink {
   name: string;
   icon: any; // TODO: get icon component type
 }
+
+export interface Letter {
+  value: string;
+  id: number;
+  active: boolean;
+  inQueue?: boolean;
+}

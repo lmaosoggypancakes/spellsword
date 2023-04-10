@@ -21,5 +21,4 @@ const props = defineProps<{
 const emits = defineEmits<{
   "update:modelValue": string;
 }>();
-emits["update:modelValue"];
 </script>

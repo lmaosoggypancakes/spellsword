@@ -6,6 +6,7 @@ const colors = {
   raisin: "#161727",
   space: "#1D1F34",
   tea_green: "#C2FFDA",
+  apricot: "#FFD6BA",
 };
 /** @type {import('tailwindcss').Config} */
 module.exports = {
