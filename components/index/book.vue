@@ -3,10 +3,8 @@
     <TresCanvas clear-color="#0E0F19" shadows alpha>
       <TresPerspectiveCamera :position="[15, 15, 15]" />
       <OrbitControls />
-      <Suspense>
-        <GLTFModel path="/scene.gltf" cast-shadow ref="bookRef" />
-      </Suspense>
-      <TresPointLight :intensity="15" :position="[25, 25, 25]" />
+      <Suspense> <GLTFModel path="/book f.glb" /> </Suspense>
+      <TresAmbientLight :intensity="15" :position="[-100, 25, 90]" />
     </TresCanvas>
   </ClientOnly>
 </template>
