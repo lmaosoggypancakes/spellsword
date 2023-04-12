@@ -20,3 +20,8 @@ export interface Letter {
   active: boolean;
   inQueue?: boolean;
 }
+
+export interface Word {
+  letters: string;
+  definition: string;
+}

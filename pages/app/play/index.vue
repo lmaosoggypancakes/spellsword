@@ -2,30 +2,71 @@
   <div
     class="h-full w-full sm:px-8 lg:px-32 py-32 grid grid-cols-3 grid-flow-row col-auto gap-8 text-seasalt"
   >
-    <div
-      class="col-span-2 outline outline-offset-2 outline-red-400 rounded-md bg-red-400 bg-opacity-30 flex items-center justify-center"
-    >
+    <PlayButton primary class="outline-red-400 bg-red-400" :disabled="disabled">
       Play a friend
-    </div>
-    <div
-      class="bg-blue-200 outline outline-offset-2 outline-blue-200 rounded-md bg-opacity-30 flex items-center justify-center"
-    >
+    </PlayButton>
+    <PlayButton class="bg-blue-200 outline-blue-200" :disabled="disabled">
       Find Random Player
-    </div>
-    <div
-      class="bg-green-300 outline outline-offset-2 outline-green-300 rounded-md bg-opacity-30 flex items-center justify-center"
+    </PlayButton>
+    <PlayButton
+      @click="matchmake()"
+      class="bg-green-300 outline-green-300"
+      :disabled="disabled"
     >
       Play Computer
-    </div>
-    <div
-      class="bg-yellow-200 outline outline-offset-2 outline-yellow-200 rounded-md bg-opacity-30 flex items-center justify-center col-span-2"
-    ></div>
+    </PlayButton>
+    <PlayButton
+      primary
+      class="bg-yellow-200 outline-yellow-200"
+      :disabled="disabled"
+    ></PlayButton>
   </div>
+  <MatchmakingToast v-if="status.matchmaking" />
+  <ConnectingToast v-if="status.connecting" />
+  <ErrorToast v-if="status.error" />
 </template>
 
 <script setup lang="ts">
+import { io } from "socket.io-client";
+import PlayButton from "@/components/app/play/playButton.vue";
+import MatchmakingToast from "@/components/toasts/matchmaking.vue";
+import ConnectingToast from "@/components/toasts/connecting.vue";
+import ErrorToast from "@/components/toasts/error.vue";
 definePageMeta({
   layout: "app",
   middleware: "auth",
 });
+
+const router = useRouter();
+const auth = useAuth();
+const status = reactive({
+  matchmaking: false,
+  connecting: false,
+  matchFound: false,
+  error: false,
+});
+const disabled = computed(() => Object.values(status).some((a) => !!a));
+const matchmake = () => {
+  status.connecting = true;
+  const socket = io("http://localhost:8001/matchmake", {
+    auth: {
+      token: auth.token,
+    },
+  });
+  socket.on("error", (error) => {
+    alert(error);
+    status.matchmaking = false;
+    status.connecting = false;
+    status.error = true;
+    socket.disconnect();
+  });
+  socket.on("welcome", ({ message }, ...args) => {
+    status.connecting = false;
+    status.matchmaking = true;
+  });
+
+  socket.on("match", ({ id }) => {
+    router.push(`/app/play/${id}`);
+  });
+};
 </script>

@@ -1,4 +1,5 @@
-import { Letter } from "@/types";
+import { Letter, Word } from "@/types";
+import axios from "axios";
 
 export const consonants = "BCDFGHJKLMNPQRSTVWXYZ";
 export const vowels = "AEIOU";
@@ -21,7 +22,17 @@ export const generateRandomSequence = (): Letter[] => {
   }));
 };
 
-export const verifyWord = async (word: string): Promise<boolean> => {
+export const verifyWord = async (word: string): Promise<Word | null> => {
   // TODO: use dictionary API to verify word
-  return false;
+  const response = await axios.get(
+    `https://dictionaryapi.dev/api/v2/entries/end/${word}`
+  );
+  if (response.status == 404) {
+    return null;
+  } else {
+    return <Word>{
+      definition: response.data[0].meanings[0].definitions[0].definition,
+      letters: word,
+    };
+  }
 };

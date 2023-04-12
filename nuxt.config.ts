@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
     "nuxt-vitest",
+    "@vueuse/motion/nuxt",
   ],
   runtimeConfig: {
     public: {
