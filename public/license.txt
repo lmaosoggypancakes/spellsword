@@ -1,0 +1,11 @@
+Model Information:
+* title:	Magic Book
+* source:	https://sketchfab.com/3d-models/magic-book-17901f0e9323435cb3d8092b3a808618
+* author:	Irene Kurbel (https://sketchfab.com/irekur)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Magic Book" (https://sketchfab.com/3d-models/magic-book-17901f0e9323435cb3d8092b3a808618) by Irene Kurbel (https://sketchfab.com/irekur) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
