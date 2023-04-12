@@ -32,11 +32,13 @@ import PlayButton from "@/components/app/play/playButton.vue";
 import MatchmakingToast from "@/components/toasts/matchmaking.vue";
 import ConnectingToast from "@/components/toasts/connecting.vue";
 import ErrorToast from "@/components/toasts/error.vue";
+
 definePageMeta({
   layout: "app",
   middleware: "auth",
 });
 
+const config = useRuntimeConfig();
 const router = useRouter();
 const auth = useAuth();
 const status = reactive({
@@ -48,7 +50,7 @@ const status = reactive({
 const disabled = computed(() => Object.values(status).some((a) => !!a));
 const matchmake = () => {
   status.connecting = true;
-  const socket = io("http://localhost:8001/matchmake", {
+  const socket = io(`http://${config.public.apiUrl}/matchmake`, {
     auth: {
       token: auth.token,
     },
