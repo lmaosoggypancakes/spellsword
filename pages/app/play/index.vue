@@ -50,7 +50,7 @@ const status = reactive({
 const disabled = computed(() => Object.values(status).some((a) => !!a));
 const matchmake = () => {
   status.connecting = true;
-  const socket = io(`http://${config.public.apiUrl}/matchmake`, {
+  const socket = io(`${config.public.apiUrl}/matchmake`, {
     auth: {
       token: auth.token,
     },
