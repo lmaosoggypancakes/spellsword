@@ -22,7 +22,6 @@
 import LetterBlock from "@/components/app/play/letterBlock.vue";
 import { Letter } from "@/types";
 import { Game } from "@/types";
-import { convertSequence } from "@/util/words";
 definePageMeta({
   layout: "lobby",
   middleware: ["auth"],

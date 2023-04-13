@@ -23,9 +23,9 @@ export const generateRandomSequence = (): Letter[] => {
 };
 
 export const verifyWord = async (word: string): Promise<Word | null> => {
-  // TODO: use dictionary API to verify word
+  word = word.toUpperCase();
   const response = await axios.get(
-    `https://dictionaryapi.dev/api/v2/entries/end/${word}`
+    `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
   );
   if (response.status == 404) {
     return null;
@@ -37,6 +37,17 @@ export const verifyWord = async (word: string): Promise<Word | null> => {
   }
 };
 
+export const getPoints = (word: string) => {
+  // points = len(word) + round(consonants/vowels)
+  // NOTE: assumes verifyWord(word) !== null (to avoid duplicate api requests and thus get rate limited easy)
+  const chars = Array.from(word.toUpperCase());
+  const numConsonants = chars.filter((char) =>
+    consonants.includes(char)
+  ).length;
+  const numVowels = chars.filter((char) => vowels.includes(char)).length;
+  console.log(chars.length, numConsonants, numVowels);
+  return chars.length + Math.round(numConsonants / numVowels);
+};
 export const convertSequence = (seq: string): Letter[] => {
   return Array.from(seq).map((char, index) => {
     return {
