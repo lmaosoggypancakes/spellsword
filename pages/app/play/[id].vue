@@ -21,19 +21,28 @@
 <script setup lang="ts">
 import LetterBlock from "@/components/app/play/letterBlock.vue";
 import { Letter } from "@/types";
-import { generateRandomSequence } from "@/util/words";
+import { Game } from "@/types";
+import { convertSequence } from "@/util/words";
 definePageMeta({
   layout: "lobby",
   middleware: ["auth"],
   scrollToTop: true,
 });
-const letters = ref<Letter[]>(generateRandomSequence());
-const queue = ref<Letter[]>([]);
+
 useKeydownEvent((event) => {
   if (event.key == "Backspace") {
     popFromQueue();
   }
 });
+
+const config = useRuntimeConfig();
+const route = useRoute();
+const gameReq = await useFetch(
+  `${config.public.apiUrl}/api/games/${route.params.id}`
+);
+const gameMetadata = <Game>gameReq.data.value;
+const letters = ref<Letter[]>(convertSequence(gameMetadata.characters));
+const queue = ref<Letter[]>([]);
 const toggleLetter = (letter: Letter) => {
   letter.active = !letter.active;
   if (letter.inQueue) {

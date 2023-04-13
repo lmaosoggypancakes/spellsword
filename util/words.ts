@@ -36,3 +36,13 @@ export const verifyWord = async (word: string): Promise<Word | null> => {
     };
   }
 };
+
+export const convertSequence = (seq: string): Letter[] => {
+  return Array.from(seq).map((char, index) => {
+    return {
+      value: char,
+      id: index,
+      active: false,
+    };
+  });
+};

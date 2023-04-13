@@ -25,3 +25,14 @@ export interface Word {
   letters: string;
   definition: string;
 }
+
+export type Game = {
+  id: string;
+  characters: string;
+  status: string;
+  winnerId: string;
+  players: {
+    username: string;
+    picture: string;
+  }[];
+};
