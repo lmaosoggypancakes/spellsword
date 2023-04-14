@@ -8,6 +8,12 @@ export interface User {
   followedBy: string[];
 }
 
+export interface GameUser {
+  id: string;
+  picture: string;
+  username: string;
+}
+
 export interface AppNavLink {
   href: string;
   name: string;
@@ -31,8 +37,15 @@ export type Game = {
   characters: string;
   status: string;
   winnerId: string;
-  players: {
-    username: string;
-    picture: string;
-  }[];
+  players: GameUser[];
+};
+
+export type Move = {
+  id: string;
+  guess: string; // string if bad quess, Word if correct (has definition)
+  valid: boolean;
+  points: number;
+  user: User | GameUser;
+  game: Game;
+  definition?: string;
 };

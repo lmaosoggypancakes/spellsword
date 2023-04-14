@@ -24,16 +24,18 @@ export const generateRandomSequence = (): Letter[] => {
 
 export const verifyWord = async (word: string): Promise<Word | null> => {
   word = word.toUpperCase();
-  const response = await axios.get(
-    `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
-  );
-  if (response.status == 404) {
-    return null;
-  } else {
+  try {
+    const response = await axios.get(
+      `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+    );
+    const definition = response.data[0].meanings[0].definitions[0].definition;
+    console.log(definition);
     return <Word>{
-      definition: response.data[0].meanings[0].definitions[0].definition,
+      definition,
       letters: word,
     };
+  } catch (err) {
+    return null;
   }
 };
 
@@ -45,7 +47,6 @@ export const getPoints = (word: string) => {
     consonants.includes(char)
   ).length;
   const numVowels = chars.filter((char) => vowels.includes(char)).length;
-  console.log(chars.length, numConsonants, numVowels);
   return chars.length + Math.round(numConsonants / numVowels);
 };
 export const convertSequence = (seq: string): Letter[] => {

@@ -29,6 +29,7 @@
     "jose": "^4.13.1",
     "nuxt-vitest": "^0.6.8",
     "pinia": "^2.0.33",
-    "socket.io-client": "^4.6.1"
+    "socket.io-client": "^4.6.1",
+    "vue-tippy": "^6.0.0"
   }
 }
