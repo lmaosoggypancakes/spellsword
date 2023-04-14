@@ -1,20 +1,20 @@
 <template>
-  <div class="h-screen w-screen">
-    <ul class="flex space-x-4">
-      <LetterBlock
-        v-for="letter in letters"
-        :letter="letter"
-        @toggle="toggleLetter"
-        :id="letter.id"
-      />
-    </ul>
-    <ul class="flex space-x-4 fixed bottom-0">
-      <LetterBlock
-        v-for="letter in queue"
-        :letter="letter"
-        @toggle="toggleLetter"
-      />
-    </ul>
+  <div class="h-screen w-screen flex flex-col">
+    <div class="grow grid grid-cols-5 h-full">
+      <div class="col-span-2"></div>
+      <div class="border-x-2 border-secondary"></div>
+      <div class="col-span-2"></div>
+    </div>
+    <div class="w-full flex justify-center mt-auto border-t-2 border-secondary">
+      <ul class="space-x-4 my-4">
+        <LetterBlock
+          v-for="letter in letters"
+          :letter="letter"
+          @toggle="toggleLetter"
+          :id="letter.id"
+        />
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -39,7 +39,9 @@ const route = useRoute();
 const gameReq = await useFetch(
   `${config.public.apiUrl}/api/games/${route.params.id}`
 );
+console.log(gameReq.error);
 const gameMetadata = <Game>gameReq.data.value;
+console.log(gameMetadata);
 const letters = ref<Letter[]>(convertSequence(gameMetadata.characters));
 const queue = ref<Letter[]>([]);
 const toggleLetter = (letter: Letter) => {
