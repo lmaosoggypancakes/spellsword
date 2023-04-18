@@ -33,13 +33,26 @@
       </ul>
     </div>
   </div>
+  <WaitingToast v-if="status == GameConnectionStatus.WAITING" />
+  <ConnectingToast v-if="status == GameConnectionStatus.CONNECTING" />
 </template>
 
 <script setup lang="ts">
 import LetterBlock from "@/components/app/play/letterBlock.vue";
 import MoveCard from "@/components/app/play/moveCard.vue";
 import { Letter, Move } from "@/types";
-import { Game } from "@/types";
+import { Game, GameConnectionStatus } from "@/types";
+import { io } from "socket.io-client";
+import ConnectingToast from "@/components/toasts/connecting.vue";
+import WaitingToast from "@/components/toasts/waiting.vue";
+
+const auth = useAuth();
+const config = useRuntimeConfig();
+const route = useRoute();
+const userStore = useUser();
+const gameReq = await useFetch(
+  `${config.public.apiUrl}/api/games/${route.params.id}`
+);
 definePageMeta({
   layout: "lobby",
   middleware: ["auth"],
@@ -56,12 +69,23 @@ useKeydownEvent((event) => {
   }
 });
 
-const config = useRuntimeConfig();
-const route = useRoute();
-const userStore = useUser();
-const gameReq = await useFetch(
-  `${config.public.apiUrl}/api/games/${route.params.id}`
-);
+const status = ref<GameConnectionStatus>(GameConnectionStatus.CONNECTING);
+let socket;
+onMounted(() => {
+  console.log(route.params.id);
+  socket = io(`${config.public.apiUrl}/play?id=${route.params.id}`, {
+    auth: {
+      token: auth.token,
+    },
+  });
+  socket.on("welcome", console.log);
+  socket.on("player-joined", console.log);
+  socket.on("ready", () => {
+    console.log("ready!");
+    status.value = GameConnectionStatus.CONNECTED;
+  });
+  status.value = GameConnectionStatus.WAITING;
+});
 const gameMetadata = <Game>gameReq.data.value;
 const letters = reactive<Letter[]>(convertSequence(gameMetadata.characters));
 const queue = reactive<Letter[]>([]);
@@ -91,7 +115,9 @@ const popFromQueue = () => {
   }
 };
 
+const appendMove = async () => {};
 const addMove = async () => {
+  if (queue.length == 0) return;
   const guess = queue.map((l) => l.value).join("");
   const word = await verifyWord(guess);
   const valid = !!word;

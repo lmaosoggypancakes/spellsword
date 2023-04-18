@@ -49,3 +49,9 @@ export type Move = {
   game: Game;
   definition?: string;
 };
+
+export enum GameConnectionStatus {
+  CONNECTING,
+  WAITING,
+  CONNECTED,
+}

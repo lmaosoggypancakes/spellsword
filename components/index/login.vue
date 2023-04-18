@@ -39,12 +39,13 @@ const login = async () => {
       username: username.value,
       password: password.value,
     });
+    console.log(response.status);
     const jwt = response.data.access_token;
     await auth.authenticate(jwt);
     status.value = "normal";
     router.push("/app/play");
   } catch (error: any) {
-    if (error.response.status == 401) {
+    if (error.response.status != 201) {
       errorText.value = "Username/password combination is invalid";
       status.value = "normal";
     }

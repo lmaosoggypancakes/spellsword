@@ -17,7 +17,7 @@ export const useAuth = defineStore("auth", {
     async authenticate(jwt: string) {
       const config = useRuntimeConfig();
       this.token = jwt;
-      const response = await axios.get(`${config.public.apiUrl}/api/hello`, {
+      const response = await axios.get(`${config.public.apiUrl}/auth/hello`, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
