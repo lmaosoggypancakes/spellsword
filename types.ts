@@ -40,12 +40,12 @@ export type Game = {
 };
 
 export type Move = {
-  id: string;
+  id?: string;
   guess: string; // string if bad quess, Word if correct (has definition)
   valid: boolean;
   points: number;
-  user: User | GameUser;
-  game: Game;
+  userId: string;
+  gameId: string;
   definition?: string;
 };
 

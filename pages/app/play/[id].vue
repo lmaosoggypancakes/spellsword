@@ -1,7 +1,16 @@
 <template>
   <div class="h-screen w-screen flex flex-col max-h-screen">
     <div class="grow grid grid-cols-7 h-full max-h-screen overflow-y-auto">
-      <div class="col-span-3">
+      <div
+        class="col-span-3 p-8 flex items-center flex-col space-y-4"
+        :class="{
+          'shadow-[inset_40pxpx_0px_0px_rgba(169,255,203,1)]': isMyTurn,
+        }"
+      >
+        <span class="text-4xl block text-seasalt">{{
+          userStore.username
+        }}</span>
+        <Avatar :src="userStore.picture" />
         <ul class="space-x-4 my-4">
           <LetterBlock
             v-for="letter in queue"
@@ -11,16 +20,26 @@
           />
         </ul>
       </div>
-      <div class="border-x-2 border-secondary overflow-y-scroll">
-        <u class="">
+      <div class="border-x-2 border-secondary overflow-y-auto">
+        <ul>
           <MoveCard
             :move="move"
             v-for="move in moves"
-            :opponent="move.user !== userStore.user"
+            :opponent="move.userId !== userStore.user.id"
           />
-        </u>
+        </ul>
       </div>
-      <div class="col-span-3"></div>
+      <div
+        class="col-span-3 p-8 flex items-center flex-col space-y-4"
+        :class="{
+          'shadow-[inset_0px_0px_10px_5px_rgba(169,255,203,1)]': !isMyTurn,
+        }"
+      >
+        <span class="text-4xl text-center block text-seasalt">{{
+          opponent?.username
+        }}</span>
+        <Avatar :src="opponent?.picture || ''" />
+      </div>
     </div>
     <div class="w-full flex justify-center mt-auto border-t-2 border-secondary">
       <ul class="space-x-4 my-4">
@@ -38,11 +57,12 @@
 </template>
 
 <script setup lang="ts">
+import Avatar from "@/components/app/play/avatar.vue";
 import LetterBlock from "@/components/app/play/letterBlock.vue";
 import MoveCard from "@/components/app/play/moveCard.vue";
 import { Letter, Move } from "@/types";
 import { Game, GameConnectionStatus } from "@/types";
-import { io } from "socket.io-client";
+import { io, Socket } from "socket.io-client";
 import ConnectingToast from "@/components/toasts/connecting.vue";
 import WaitingToast from "@/components/toasts/waiting.vue";
 
@@ -50,6 +70,14 @@ const auth = useAuth();
 const config = useRuntimeConfig();
 const route = useRoute();
 const userStore = useUser();
+const isMyTurn = ref(false);
+const opponent = computed(() =>
+  gameMetadata.players.find((user) => user.id != userStore.id)
+);
+console.log(`${config.public.apiUrl}/api/games/${route.params.id}`);
+if (!route.params.id) {
+  console.log("ERROR: no ID");
+}
 const gameReq = await useFetch(
   `${config.public.apiUrl}/api/games/${route.params.id}`
 );
@@ -60,7 +88,7 @@ definePageMeta({
 });
 
 const status = ref<GameConnectionStatus>(GameConnectionStatus.CONNECTING);
-let socket;
+let socket: Socket;
 onMounted(() => {
   console.log(route.params.id);
   socket = io(`${config.public.apiUrl}/play?id=${route.params.id}`, {
@@ -73,6 +101,19 @@ onMounted(() => {
   socket.on("ready", () => {
     console.log("ready!");
     status.value = GameConnectionStatus.CONNECTED;
+  });
+  socket.on("new-move", ({ data }) => {
+    console.log("new move!");
+    if ((data as Move).userId !== userStore.id) {
+      // latest move is from opponent, and so it's our turn
+      isMyTurn.value = true;
+    } else {
+      isMyTurn.value = false;
+    }
+    moves.value.push(data);
+  });
+  socket.on("your-turn", () => {
+    isMyTurn.value = true;
   });
   status.value = GameConnectionStatus.WAITING;
 });
@@ -90,7 +131,7 @@ useKeydownEvent((event) => {
     popFromQueue();
   }
   if (event.key == "Enter") {
-    addMove();
+    appendMove();
   }
   if (sequence.includes(event.key.toLowerCase())) {
     const possibleLetter = letters.find(
@@ -127,39 +168,44 @@ const popFromQueue = () => {
   toggleLetter(lastLetter);
 };
 
-const appendMove = async () => {};
-const addMove = async () => {
-  console.log("asdf");
-  if (queue.length == 0) return;
-  if (queue.length == 0) return;
+const appendMove = async (data: Move | undefined = undefined) => {
+  if (data) {
+    moves.value.push(data);
+    return;
+  }
+  const move = await getMove();
+  if (move) {
+    socket.emit("moves", move);
+    return;
+  }
+};
+const getMove = async (): Promise<Move | null> => {
+  if (queue.length == 0) return null;
   const guess = queue.map((l) => l.value).join("");
-  if (moves.value.map((move) => move.guess).includes(guess)) return;
+  if (moves.value.map((move) => move.guess).includes(guess)) return null;
   const word = await verifyWord(guess);
   const valid = !!word;
   const points = valid ? getPoints(guess) : 0;
+  resetLetters();
   if (!valid) {
-    const newMove: Move = {
-      id: "4",
-      game: gameMetadata,
+    return {
+      gameId: gameMetadata.id,
       guess,
       points,
       valid,
-      user: userStore.user,
+      userId: userStore.user.id,
     };
-    moves.value.push(newMove);
   } else {
-    const newMove: Move = {
-      id: "4",
-      game: gameMetadata,
+    console.log("valid word!");
+    return {
+      gameId: gameMetadata.id,
       guess,
       points,
       valid,
-      user: userStore.user,
+      userId: userStore.user.id,
       definition: word.definition,
     };
-    moves.value.push(newMove);
   }
-  resetLetters();
 };
 
 const resetLetters = () => {

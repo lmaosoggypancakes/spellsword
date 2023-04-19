@@ -68,6 +68,7 @@ const matchmake = () => {
   });
 
   socket.on("match", ({ id }) => {
+    console.log("id! " + id);
     router.push(`/app/play/${id}`);
   });
 };
