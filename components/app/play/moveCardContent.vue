@@ -4,7 +4,9 @@
       'float-right': opponent,
     }"
   >
-    <span class="block font-semibold">{{ move.guess.toUpperCase() }}</span>
+    <span class="block font-semibold no-underline">{{
+      move.guess.toUpperCase()
+    }}</span>
     <span
       class="inline-flex items-center font-bold text-sm px-2 py-1 bg-raisin rounded-md"
       :class="{

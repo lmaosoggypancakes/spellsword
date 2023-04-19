@@ -24,7 +24,6 @@ export interface Letter {
   value: string;
   id: number;
   active: boolean;
-  inQueue?: boolean;
 }
 
 export interface Word {

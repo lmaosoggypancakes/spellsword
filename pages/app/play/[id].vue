@@ -1,6 +1,6 @@
 <template>
-  <div class="h-screen w-screen flex flex-col">
-    <div class="grow grid grid-cols-7 h-full">
+  <div class="h-screen w-screen flex flex-col max-h-screen">
+    <div class="grow grid grid-cols-7 h-full max-h-screen overflow-y-auto">
       <div class="col-span-3">
         <ul class="space-x-4 my-4">
           <LetterBlock
@@ -11,14 +11,14 @@
           />
         </ul>
       </div>
-      <div class="border-x-2 border-secondary">
-        <ul>
+      <div class="border-x-2 border-secondary overflow-y-scroll">
+        <u class="">
           <MoveCard
             :move="move"
             v-for="move in moves"
             :opponent="move.user !== userStore.user"
           />
-        </ul>
+        </u>
       </div>
       <div class="col-span-3"></div>
     </div>
@@ -59,16 +59,6 @@ definePageMeta({
   scrollToTop: true,
 });
 
-useKeydownEvent((event) => {
-  if (event.key == "Backspace") {
-    popFromQueue();
-  }
-  if (event.key == "Enter") {
-    console.log("adding move");
-    addMove();
-  }
-});
-
 const status = ref<GameConnectionStatus>(GameConnectionStatus.CONNECTING);
 let socket;
 onMounted(() => {
@@ -88,37 +78,62 @@ onMounted(() => {
 });
 const gameMetadata = <Game>gameReq.data.value;
 const letters = reactive<Letter[]>(convertSequence(gameMetadata.characters));
+const sequence = letters
+  .map((letter) => letter.value)
+  .join("")
+  .toLowerCase();
 const queue = reactive<Letter[]>([]);
 const moves = ref<Move[]>([]);
-const toggleLetter = (letter: Letter) => {
-  letter.active = !letter.active;
-  if (letter.inQueue) {
+
+useKeydownEvent((event) => {
+  if (event.key == "Backspace") {
+    popFromQueue();
+  }
+  if (event.key == "Enter") {
+    addMove();
+  }
+  if (sequence.includes(event.key.toLowerCase())) {
+    const possibleLetter = letters.find(
+      (letter) =>
+        !letter.active && letter.value.toLowerCase() == event.key.toLowerCase()
+    );
+    if (possibleLetter) {
+      toggleLetter(possibleLetter, true);
+    }
+  }
+});
+
+const toggleLetter = (letter: Letter, active = false) => {
+  if (letter.active || active) {
+    // if the letter is active (in queue), remove it from the queue
     // activate corresponding letter in the global letters
     const l = letters.find((l) => l.id == letter.id);
     if (l) {
+      // set the letter as clickable again
       l.active = false;
     }
+    // queue.splice(queue.indexOf(letter), 1);
   }
-  if (letter.active) {
-    queue.push({ ...letter, inQueue: true });
-  } else {
-    queue.splice(queue.indexOf(letter), 1);
+  if (!letter.active) {
+    queue.push({ ...letter, active: true });
   }
+  letter.active = !letter.active;
 };
 
 const popFromQueue = () => {
   const lastLetter = queue.pop();
+  // assumes lastLetter.active is true
   if (!lastLetter) return;
-  const l = letters.find((l) => l.id == lastLetter.id);
-  if (l) {
-    l.active = false;
-  }
+  toggleLetter(lastLetter);
 };
 
 const appendMove = async () => {};
 const addMove = async () => {
+  console.log("asdf");
+  if (queue.length == 0) return;
   if (queue.length == 0) return;
   const guess = queue.map((l) => l.value).join("");
+  if (moves.value.map((move) => move.guess).includes(guess)) return;
   const word = await verifyWord(guess);
   const valid = !!word;
   const points = valid ? getPoints(guess) : 0;
@@ -154,7 +169,6 @@ const resetLetters = () => {
       if (l) {
         l.active = false;
       }
-      letter.inQueue = false;
       letter.active = false;
     }
   }

@@ -4,8 +4,8 @@ import axios from "axios";
 export const consonants = "BCDFGHJKLMNPQRSTVWXYZ";
 export const vowels = "AEIOU";
 export const alphabet = consonants + vowels;
-export const numVowels = 3;
-export const numConsonants = 5;
+export const numVowels = 5;
+export const numConsonants = 8;
 export const generateRandomSequence = (): Letter[] => {
   const randomVowels = [...Array(numVowels)].map(
     (e) => vowels[Math.floor(Math.random() * vowels.length)]
@@ -13,7 +13,6 @@ export const generateRandomSequence = (): Letter[] => {
   const randomConsonants = [...Array(numConsonants)].map(
     (e) => consonants[Math.floor(Math.random() * consonants.length)]
   );
-  console.log(randomVowels);
   const seq = randomVowels.concat(randomConsonants);
   return seq.map((letter, index) => ({
     value: letter,
@@ -29,7 +28,6 @@ export const verifyWord = async (word: string): Promise<Word | null> => {
       `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
     );
     const definition = response.data[0].meanings[0].definitions[0].definition;
-    console.log(definition);
     return <Word>{
       definition,
       letters: word,
