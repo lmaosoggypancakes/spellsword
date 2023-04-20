@@ -39,7 +39,7 @@ const login = async () => {
       username: username.value,
       password: password.value,
     });
-    console.log(response.status);
+    response.status;
     const jwt = response.data.access_token;
     await auth.authenticate(jwt);
     status.value = "normal";

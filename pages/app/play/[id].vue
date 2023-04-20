@@ -4,7 +4,7 @@
       <div
         class="col-span-3 p-8 flex items-center flex-col space-y-4"
         :class="{
-          'shadow-[inset_40pxpx_0px_0px_rgba(169,255,203,1)]': isMyTurn,
+          'shadow-[inset_0px_0px_10px_5px_rgba(169,255,203,1)]': isMyTurn,
         }"
       >
         <span class="text-4xl block text-seasalt">{{
@@ -71,39 +71,39 @@ const config = useRuntimeConfig();
 const route = useRoute();
 const userStore = useUser();
 const isMyTurn = ref(false);
-const opponent = computed(() =>
-  gameMetadata.players.find((user) => user.id != userStore.id)
-);
-console.log(`${config.public.apiUrl}/api/games/${route.params.id}`);
-if (!route.params.id) {
-  console.log("ERROR: no ID");
-}
 const gameReq = await useFetch(
   `${config.public.apiUrl}/api/games/${route.params.id}`
+);
+const gameMetadata = reactive<Game>(<Game>gameReq.data.value);
+const opponent = gameMetadata.players.find(
+  (user) => user.username != userStore.username
 );
 definePageMeta({
   layout: "lobby",
   middleware: ["auth"],
   scrollToTop: true,
 });
-
 const status = ref<GameConnectionStatus>(GameConnectionStatus.CONNECTING);
 let socket: Socket;
 onMounted(() => {
-  console.log(route.params.id);
-  socket = io(`${config.public.apiUrl}/play?id=${route.params.id}`, {
+  socket = io(`${config.public.apiUrl}/play`, {
+    transports: ["websocket"],
+    autoConnect: false,
+    query: {
+      id: route.params.id,
+    },
     auth: {
+      id: route.params.id,
       token: auth.token,
     },
   });
+  socket.on("connect", console.log);
   socket.on("welcome", console.log);
   socket.on("player-joined", console.log);
   socket.on("ready", () => {
-    console.log("ready!");
     status.value = GameConnectionStatus.CONNECTED;
   });
   socket.on("new-move", ({ data }) => {
-    console.log("new move!");
     if ((data as Move).userId !== userStore.id) {
       // latest move is from opponent, and so it's our turn
       isMyTurn.value = true;
@@ -117,7 +117,6 @@ onMounted(() => {
   });
   status.value = GameConnectionStatus.WAITING;
 });
-const gameMetadata = <Game>gameReq.data.value;
 const letters = reactive<Letter[]>(convertSequence(gameMetadata.characters));
 const sequence = letters
   .map((letter) => letter.value)
@@ -196,7 +195,6 @@ const getMove = async (): Promise<Move | null> => {
       userId: userStore.user.id,
     };
   } else {
-    console.log("valid word!");
     return {
       gameId: gameMetadata.id,
       guess,
