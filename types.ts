@@ -8,6 +8,10 @@ export interface User {
   followedBy: string[];
 }
 
+export interface UserEdit {
+  email: string;
+  picture: string;
+}
 export interface GameUser {
   id: string;
   picture: string;
