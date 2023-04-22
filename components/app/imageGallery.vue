@@ -19,7 +19,6 @@
 <script setup lang="ts">
 const config = useRuntimeConfig();
 const props = defineProps<{ modelValue: string }>();
-console.log(props.modelValue);
 const loadedImages = ref(Array(8).fill(false));
 const avatarUrls = Array(8)
   .fill(0)
