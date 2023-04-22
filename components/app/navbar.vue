@@ -1,17 +1,17 @@
 <template>
   <nav
-    class="md:h-screen md:border-r-2 border-b-2 md:border-b-0 border-seasalt text-accent flex md:flex-col justify-center font-bold bg-raisin md:col-span-2"
+    class="md:h-screen md:border-r-2 border-b-2 md:border-b-0 border-seasalt text-accent flex md:flex-col justify-center font-bold bg-raisin md:col-span-2 overflow-hidden"
   >
-    <li
+    <NuxtLink
       v-for="link in navLinks"
+      :href="link.href"
       :key="link.name"
+      active-class="bg-primary"
       class="inline flex items-center hover:text-tea_green hover:bg-primary py-4 px-2"
     >
       <component :is="link.icon" class="h-8 w-8 md:h-6 md:w-6 mx-4"></component>
-      <NuxtLink :href="link.href"
-        ><span class="hidden md:inline">{{ link.name }}</span></NuxtLink
-      >
-    </li>
+      <span class="hidden md:inline">{{ link.name }}</span>
+    </NuxtLink>
   </nav>
 </template>
 

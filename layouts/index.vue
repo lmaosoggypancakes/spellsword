@@ -11,7 +11,7 @@ import { NuxtLink } from '~~/.nuxt/components';
         <NuxtLink href="/" class="max-w-md">Spellsword</NuxtLink>
         <div class="flex justify-end space-x-2">
           <Login />
-          <Button type="primary">
+          <Button type="primary" :loading="false">
             <NuxtLink href="/register">Register</NuxtLink>
           </Button>
         </div>

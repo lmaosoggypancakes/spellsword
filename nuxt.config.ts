@@ -8,9 +8,13 @@ export default defineNuxtConfig({
     "nuxt-vitest",
     "@vueuse/motion/nuxt",
   ],
+  piniaPersistedstate: {
+    cookieOptions: { sameSite: "strict" },
+    debug: true,
+  },
   runtimeConfig: {
     public: {
-      apiUrl: "https://spellsword.up.railway.app",
+      apiUrl: "http://localhost:8000",
     },
   },
 });

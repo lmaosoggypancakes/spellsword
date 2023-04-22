@@ -11,11 +11,25 @@ export interface User {
 export interface UserEdit {
   email: string;
   picture: string;
+  username: string;
 }
 export interface GameUser {
   id: string;
   picture: string;
   username: string;
+}
+
+export interface PlayerGame {
+  timestamp: Date;
+  moves: Move[];
+  id: string;
+  characters: string;
+  winner: {
+    username: string;
+  };
+  players: {
+    username: string;
+  }[];
 }
 
 export interface AppNavLink {
@@ -43,15 +57,20 @@ export type Game = {
   players: GameUser[];
 };
 
-export type Move = {
-  id?: string;
-  guess: string; // string if bad quess, Word if correct (has definition)
-  valid: boolean;
-  points: number;
-  userId: string;
-  gameId: string;
-  definition?: string;
-};
+export type Move =
+  | {
+      id?: string;
+      guess: string; // string if bad quess, Word if correct (has definition)
+      valid: boolean;
+      points: number;
+      userId: string;
+      gameId: string;
+      definition?: string;
+    }
+  | {
+      points: number;
+      userId: string;
+    };
 
 export enum GameConnectionStatus {
   CONNECTING,

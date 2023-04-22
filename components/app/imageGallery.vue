@@ -23,5 +23,8 @@ console.log(props.modelValue);
 const loadedImages = ref(Array(8).fill(false));
 const avatarUrls = Array(8)
   .fill(0)
-  .map((x, i) => `${config.public.apiUrl}/static/images/avatars/${i + 1}.png`);
+  .map(
+    (x, i) =>
+      `https://spellsword.up.railway.app/static/images/avatars/${i + 1}.png`
+  );
 </script>

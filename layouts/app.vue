@@ -1,9 +1,9 @@
 <template>
   <div
-    class="h-screen bg-space overflow-hidden md:grid grid-flow-row grid-rows-12 md:grid-flow-col md:grid-cols-12"
+    class="max-h-screen bg-space md:grid grid-flow-row grid-rows-12 md:grid-flow-col md:grid-cols-12 relative min-h-screen grow-0 overflow-y-hidden"
   >
-    <Navbar class="row-span-2" />
-    <div class="md:col-span-10 h-screen"><slot /></div>
+    <Navbar class="row-span-2 sticky left-0 top-0" />
+    <div class="md:col-span-10 min-h-screen"><slot /></div>
   </div>
 </template>
 
