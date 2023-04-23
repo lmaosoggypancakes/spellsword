@@ -45,7 +45,11 @@ export const getPoints = (word: string) => {
     consonants.includes(char)
   ).length;
   const numVowels = chars.filter((char) => vowels.includes(char)).length;
-  return chars.length + Math.round(numConsonants / numVowels);
+  const cvr = Math.round(numConsonants / numVowels);
+  if (cvr == 0 || cvr === Infinity) {
+    return chars.length;
+  }
+  return chars.length + cvr;
 };
 export const convertSequence = (seq: string): Letter[] => {
   return Array.from(seq).map((char, index) => {

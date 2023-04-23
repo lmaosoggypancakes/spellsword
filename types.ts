@@ -70,10 +70,20 @@ export type Move =
   | {
       points: number;
       userId: string;
+      guess: string;
     };
 
 export enum GameConnectionStatus {
   CONNECTING,
   WAITING,
   CONNECTED,
+}
+
+export enum GameStatus {
+  PLAYING,
+  PLAYER_SUDDEN_DEATH,
+  OPPONENT_SUDDEN_DEATH,
+  LOSS,
+  WIN,
+  DRAW,
 }

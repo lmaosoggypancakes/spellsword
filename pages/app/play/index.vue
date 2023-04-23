@@ -2,24 +2,25 @@
   <div
     class="h-full w-full sm:px-8 lg:px-32 py-32 grid grid-cols-3 grid-flow-row col-auto gap-8 text-seasalt"
   >
-    <PlayButton primary class="outline-red-400 bg-red-400" :disabled="disabled">
+    <!-- <PlayButton primary class="outline-red-400 bg-red-400" :disabled="disabled">
       Play a friend
-    </PlayButton>
-    <PlayButton class="bg-blue-200 outline-blue-200" :disabled="disabled">
-      Find Random Player
-    </PlayButton>
+    </PlayButton> -->
     <PlayButton
-      @click="matchmake()"
-      class="bg-green-300 outline-green-300"
+      primary
+      class="bg-blue-200 outline-blue-200"
       :disabled="disabled"
+      @click="matchmake()"
     >
+      Matchmake
+    </PlayButton>
+    <PlayButton class="bg-green-300 outline-green-300" :disabled="disabled">
       Play Computer
     </PlayButton>
-    <PlayButton
+    <!-- <PlayButton
       primary
       class="bg-yellow-200 outline-yellow-200"
       :disabled="disabled"
-    ></PlayButton>
+    ></PlayButton> -->
   </div>
   <MatchmakingToast v-if="status.matchmaking" />
   <ConnectingToast v-if="status.connecting" />
