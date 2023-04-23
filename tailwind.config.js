@@ -10,6 +10,7 @@ const colors = {
 };
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  plugins: [require("@tailwindcss/typography")],
   content: [],
   theme: {
     extend: {
