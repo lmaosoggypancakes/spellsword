@@ -18,6 +18,7 @@ export const useUser = defineStore(
       created.value = newUser.created;
       username.value = newUser.username;
       email.value = newUser.email;
+      consol.log(picture.value);
     };
     return {
       id,

@@ -3,7 +3,6 @@ import axios from "axios";
 import { User } from "~~/types";
 import { useUser } from "./useUser";
 
-const userStore = useUser();
 export const useAuth = defineStore("auth", {
   state: () => {
     return {
@@ -15,6 +14,7 @@ export const useAuth = defineStore("auth", {
   },
   actions: {
     async authenticate(jwt: string) {
+      const userStore = useUser();
       const config = useRuntimeConfig();
       this.token = jwt;
       const response = await axios.get(`${config.public.apiUrl}/auth/hello`, {
@@ -26,6 +26,7 @@ export const useAuth = defineStore("auth", {
       userStore.set(user);
     },
   },
+
   persist: {
     storage: persistedState.cookies,
   },

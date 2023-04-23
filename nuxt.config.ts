@@ -9,8 +9,8 @@ export default defineNuxtConfig({
     "@vueuse/motion/nuxt",
   ],
   piniaPersistedstate: {
-    cookieOptions: { sameSite: "strict" },
     debug: true,
+    storage: "cookies",
   },
   runtimeConfig: {
     public: {

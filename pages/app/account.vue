@@ -82,18 +82,18 @@ definePageMeta({
 });
 
 const config = useRuntimeConfig();
-const user = useUser();
 const auth = useAuth();
-const editSaving = ref(false);
-const userGames = <PlayerGame[]>(
-  (await useFetch(`${config.public.apiUrl}/api/users/${user.username}/games`))
-    .data.value
-);
+const user = useUser();
 const edits = reactive<UserEdit>({
   email: user.email,
   username: user.username,
   picture: user.picture,
 });
+const editSaving = ref(false);
+const userGames = <PlayerGame[]>(
+  (await useFetch(`${config.public.apiUrl}/api/users/${user.id}/games`)).data
+    .value
+);
 const editsMade = computed(() => {
   return (
     edits.email != user.email ||
@@ -105,11 +105,11 @@ const editsMade = computed(() => {
 const save = async () => {
   editSaving.value = true;
   const response = await axios.put(
-    `${config.public.apiUrl}/api/users/${user.username}/`,
+    `${config.public.apiUrl}/api/users/${user.id}/`,
     edits,
     {
       headers: {
-        Authorization: `Bearer ${auth.token}`,
+        Authorization: `Bearer `,
       },
     }
   );
