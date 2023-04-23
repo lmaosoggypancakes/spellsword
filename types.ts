@@ -32,6 +32,12 @@ export interface PlayerGame {
   }[];
 }
 
+export interface GameStatistics {
+  playerAccuracy: number;
+  opponentAccuracy: number;
+  status: GameStatus;
+}
+
 export interface AppNavLink {
   href: string;
   name: string;
