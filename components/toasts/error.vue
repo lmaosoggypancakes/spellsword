@@ -12,6 +12,7 @@
       },
     }"
   >
-    An error occured while matchmaking. Please try again later.
+    <p>An error occured. Please try again later.</p>
+    <slot />
   </div>
 </template>

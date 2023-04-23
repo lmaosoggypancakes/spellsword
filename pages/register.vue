@@ -5,7 +5,6 @@
 </template>
 
 <script setup lang="ts">
-import RegisterForm from "@/components/register/register_form.vue";
 definePageMeta({
   layout: "index",
 });
