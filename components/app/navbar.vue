@@ -36,11 +36,9 @@ const navLinks = ref<AppNavLink[]>([
     icon: MagnifyingGlassCircleIcon,
   },
   {
-    href: "/app/learn",
+    href: "/app/learn/basics",
     name: "Learn to Play",
     icon: PencilIcon,
   },
 ]);
-const userStore = useUser();
-const user: User = userStore.user;
 </script>

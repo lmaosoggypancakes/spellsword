@@ -20,9 +20,8 @@
 
 <script setup lang="ts">
 import axios, { AxiosError } from "axios";
-import TextInput from "../form/text_input.vue";
 import Button from "@/components/button.vue";
-import Popover from "@/components/popover";
+import Popover from "@/components/popover.vue";
 
 const router = useRouter();
 const config = useRuntimeConfig();

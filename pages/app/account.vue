@@ -74,7 +74,7 @@ import { UserEdit, PlayerGame, User } from "@/types";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import SaveChanges from "@/components/toasts/saveChanges.vue";
 import ImageGallery from "@/components/app/imageGallery.vue";
-import TextInput from "@/components/form/text_input.vue";
+import TextInput from "@/components/text_input.vue";
 import axios from "axios";
 definePageMeta({
   middleware: ["auth"],

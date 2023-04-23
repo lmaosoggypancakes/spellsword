@@ -15,5 +15,5 @@
 </template>
 
 <script setup lang="ts">
-import TextInput from "@/components/form/text_input.vue";
+import TextInput from "@/components/text_input.vue";
 </script>

@@ -12,7 +12,8 @@
             Spellsword is an online, multiplayer game played between two players. Users
             race against the clock to create a word from a predefined (but random) set of characters
             that both teams must conform to. Here are some general rules:
-    <ul>
+            </p>
+    <ol>
         <li>In order for your word to be considered valid, it must be a part of the English language and have an agreed-upon definition. As such, slang is often not considered a valid word in Spellsword.</li>
         <li>
             <p>
@@ -47,9 +48,10 @@
                 </ul>
             </p>
         </li>
-    </ul>
-</p>
-<p></p>
+    </ol>
+    <ButtonGroup>
+        <Next href="scoring">Scoring</Next>
+    </ButtonGroup>
 </template>
 <script setup lang="ts">
 definePageMeta({
