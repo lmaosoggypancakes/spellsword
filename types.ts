@@ -33,10 +33,10 @@ export interface PlayerGame {
 }
 
 export interface GameStatistics {
-  playerAccuracy: number;
+  playerAccuracy: string;
   playerPoints: number;
   opponentPoints: number;
-  opponentAccuracy: number;
+  opponentAccuracy: string;
   status: GameStatus;
 }
 

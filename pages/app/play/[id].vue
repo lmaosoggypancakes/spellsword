@@ -1,5 +1,14 @@
 <template>
-  <div class="h-screen w-screen flex flex-col max-h-screen">
+  <div
+    class="h-screen w-screen flex flex-col max-h-screen"
+    :class="
+      gameStatus == GameStatus.DRAW ||
+      gameStatus == GameStatus.LOSS ||
+      gameStatus == GameStatus.WIN
+        ? 'blur-sm'
+        : ''
+    "
+  >
     <div class="grow grid grid-cols-7 h-full max-h-screen overflow-y-auto">
       <div
         class="col-span-3 p-8 flex items-center flex-col space-y-4 relative"
@@ -106,30 +115,74 @@
             leave-to="opacity-0 scale-95"
           >
             <DialogPanel
-              class="w-full max-w-md transform overflow-hidden rounded-2xl bg-apricot text-primary p-6 text-left align-middle shadow-xl transition-all"
+              class="w-full max-w-md transform overflow-hidden bg-apricot text-primary p-6 text-left align-middle shadow-xl transition-all border-4 border-raisin"
             >
               <DialogTitle
                 as="h3"
-                class="text-lg font-medium leading-6 text-gray-900"
+                class="text-2xl font-medium leading-6 text-gray-900 text-center"
+                v-if="gameStatus == GameStatus.WIN"
               >
-                Game Over!
+                {{ userStore.username }} wins!
               </DialogTitle>
-              <div class="mt-2">
-                <p class="text-sm text-gray-500">
-                  Your payment has been successfully submitted. We’ve sent you
-                  an email with all of the details of your order.
-                </p>
-              </div>
-
-              <div class="mt-4">
+              <DialogTitle
+                as="h3"
+                class="text-2xl font-medium leading-6 text-gray-900 text-center"
+                v-else-if="gameStatus == GameStatus.LOSS"
+              >
+                {{ opponent?.username }} wins!
+              </DialogTitle>
+              <DialogTitle
+                as="h3"
+                class="text-2xl font-medium leading-6 text-gray-900 text-center"
+                v-else-if="gameStatus == GameStatus.DRAW"
+              >
+                Draw
+              </DialogTitle>
+              <DialogDescription>
+                <table class="mx-auto mt-8">
+                  <thead>
+                    <tr>
+                      <th
+                        class="border border-slate-600 p-4 bg-orange-200"
+                      ></th>
+                      <th class="border border-slate-600 p-4 bg-orange-200">
+                        {{ userStore.username }}
+                      </th>
+                      <th class="border border-slate-600 p-4 bg-orange-200">
+                        {{ opponent?.username }}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tr>
+                    <td class="border border-slate-700 p-4 bg-orange-200">
+                      Points
+                    </td>
+                    <td class="border border-slate-700 p-4 text-center">
+                      {{ gameStatistics.playerPoints }}
+                    </td>
+                    <td class="border border-slate-700 p-4 text-center">
+                      {{ gameStatistics.opponentPoints }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="border border-slate-700 p-4 bg-orange-200">
+                      Word Accuracy
+                    </td>
+                    <td class="border border-slate-700 p-4 text-center">
+                      {{ gameStatistics.playerAccuracy }}%
+                    </td>
+                    <td class="border border-slate-700 p-4 text-center">
+                      {{ gameStatistics.opponentAccuracy }}%
+                    </td>
+                  </tr>
+                </table>
                 <button
-                  type="button"
-                  class="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                  @click="closeModal"
+                  class="w-full p-4 bg-primary text-seasalt mt-4 hover:bg-raisin"
+                  @click="$router.push('/')"
                 >
-                  Got it, thanks!
+                  Go Home
                 </button>
-              </div>
+              </DialogDescription>
             </DialogPanel>
           </TransitionChild>
         </div>
@@ -153,6 +206,7 @@ import {
   Dialog,
   DialogPanel,
   DialogTitle,
+  DialogDescription,
 } from "@headlessui/vue";
 
 const MAX_SCORE = 10;
@@ -168,6 +222,15 @@ const gameMetadata = reactive<Game>(<Game>gameReq.data.value);
 const opponent = gameMetadata.players.find(
   (user) => user.username != userStore.username
 );
+const gameStatistics = computed(() => {
+  return getGameStatistics(
+    moves.value,
+    userStore,
+    opponent,
+    gameMetadata,
+    gameStatus.value
+  );
+});
 definePageMeta({
   layout: "lobby",
   middleware: ["auth"],
