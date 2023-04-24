@@ -178,7 +178,7 @@
                 </table>
                 <button
                   class="w-full p-4 bg-primary text-seasalt mt-4 hover:bg-raisin"
-                  @click="$router.push('/')"
+                  @click="closeGame()"
                 >
                   Go Home
                 </button>
@@ -208,8 +208,10 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@headlessui/vue";
+import axios from "axios";
 
 const MAX_SCORE = 10;
+const router = useRouter();
 const auth = useAuth();
 const config = useRuntimeConfig();
 const route = useRoute();
@@ -422,4 +424,24 @@ function closeModal() {
 function openModal() {
   isOpen.value = true;
 }
+
+const closeGame = async () => {
+  const winnerId =
+    gameStatus.value == GameStatus.WIN
+      ? userStore.id
+      : gameStatus.value == GameStatus.LOSS
+      ? opponent?.id
+      : null;
+  try {
+    const response = await axios.put(
+      `${config.public.apiUrl}/api/games/${gameMetadata.id}/game_over`,
+      {
+        winner_id: winnerId,
+      }
+    );
+    router.push("/");
+  } catch (err) {
+    console.error(err);
+  }
+};
 </script>
