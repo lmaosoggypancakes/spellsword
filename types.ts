@@ -31,9 +31,7 @@ export interface PlayerGame {
   winner: {
     username: string;
   };
-  players: {
-    username: string;
-  }[];
+  players: GameUser[];
 }
 
 export interface GameStatistics {
@@ -42,6 +40,9 @@ export interface GameStatistics {
   opponentPoints: number;
   opponentAccuracy: string;
   status: GameStatus;
+  opponentUsername: string;
+  playerUsername: string;
+  characters: string;
 }
 
 export interface AppNavLink {
@@ -65,14 +66,16 @@ export type Game = {
   id: string;
   characters: string;
   status: string;
-  winnerId: string;
+  winner: {
+    username: true;
+  };
   players: GameUser[];
 };
 
 export type Move =
   | {
       id?: string;
-      guess: string; // string if bad quess, Word if correct (has definition)
+      guess: string; // string if bad guess, Word if correct (has definition)
       valid: boolean;
       points: number;
       userId: string;

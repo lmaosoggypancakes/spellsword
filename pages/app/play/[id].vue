@@ -134,7 +134,7 @@
               <DialogTitle
                 as="h3"
                 class="text-2xl font-medium leading-6 text-gray-900 text-center"
-                v-else-if="gameStatus == GameStatus.DRAW"
+                v-else
               >
                 Draw
               </DialogTitle>
@@ -176,12 +176,12 @@
                     </td>
                   </tr>
                 </table>
-                <button
+                <Button
                   class="w-full p-4 bg-primary text-seasalt mt-4 hover:bg-raisin"
                   @click="closeGame()"
                 >
                   Go Home
-                </button>
+                </Button>
               </DialogDescription>
             </DialogPanel>
           </TransitionChild>
@@ -224,15 +224,7 @@ const gameMetadata = reactive<Game>(<Game>gameReq.data.value);
 const opponent = gameMetadata.players.find(
   (user) => user.username != userStore.username
 );
-const gameStatistics = computed(() => {
-  return getGameStatistics(
-    moves.value,
-    userStore,
-    opponent,
-    gameMetadata,
-    gameStatus.value
-  );
-});
+
 definePageMeta({
   layout: "lobby",
   middleware: ["auth"],
@@ -392,7 +384,6 @@ const resetLetters = () => {
 };
 
 const gameStatus = computed<GameStatus>(() => {
-  console.log(moves.value);
   if (
     points.value >= MAX_SCORE &&
     moves.value[moves.value.length - 1].userId != userStore.id
@@ -412,6 +403,10 @@ const gameStatus = computed<GameStatus>(() => {
 
   if (points.value >= MAX_SCORE) {
     return GameStatus.OPPONENT_SUDDEN_DEATH;
+  }
+
+  if (points.value >= MAX_SCORE && opponentPoints.value >= MAX_SCORE) {
+    return GameStatus.DRAW;
   }
   return GameStatus.PLAYING;
 });
@@ -444,4 +439,14 @@ const closeGame = async () => {
     console.error(err);
   }
 };
+const gameStatistics = computed(() => {
+  return getGameStatistics(
+    moves.value,
+    userStore,
+    opponent!,
+    gameMetadata,
+    gameStatus.value
+  );
+});
+watch(gameStatistics, console.log);
 </script>

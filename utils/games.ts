@@ -1,4 +1,12 @@
-import { GameStatistics, User, Move, Game, GameStatus } from "@/types";
+import {
+  GameStatistics,
+  User,
+  Move,
+  Game,
+  GameStatus,
+  GameUser,
+  PlayerGame,
+} from "@/types";
 
 // given a list of moves, the users of a game, and the game itself, return common game statistics, like:
 // the points each user scored
@@ -6,10 +14,11 @@ import { GameStatistics, User, Move, Game, GameStatus } from "@/types";
 export const getGameStatistics = (
   moves: Move[],
   user: User,
-  opponent: User,
-  game: Game,
-  status: GameStatus
+  opponent: GameUser,
+  game: Game | PlayerGame,
+  status?: GameStatus
 ): GameStatistics => {
+  console.log(status);
   const userMoves = moves.filter((move) => move.userId == user.id);
   const opponentMoves = moves.filter((move) => move.userId != user.id); // assume that if the userId of the move is not the current user, then it's the opponent
   const playerPoints = userMoves
@@ -29,6 +38,14 @@ export const getGameStatistics = (
       opponentMoves.length) *
     100
   ).toFixed(2);
+  if (status == null) {
+    status =
+      game.winner === null
+        ? GameStatus.DRAW
+        : game.winner.username === user.username
+        ? GameStatus.WIN
+        : GameStatus.LOSS;
+  }
   return {
     // short for:
     // { opponentAccuracy: opponentAccuracy, ...}
@@ -37,5 +54,8 @@ export const getGameStatistics = (
     opponentPoints,
     playerPoints,
     status,
+    opponentUsername: opponent.username,
+    playerUsername: user.username,
+    characters: game.characters,
   };
 };

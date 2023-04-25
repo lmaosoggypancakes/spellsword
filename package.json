@@ -22,7 +22,7 @@
     "vue": "latest"
   },
   "dependencies": {
-    "@headlessui/vue": "^1.7.12",
+    "@headlessui/vue": "^1.7.13",
     "@heroicons/vue": "^2.0.16",
     "@nuxtjs/tailwindcss": "^6.6.0",
     "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
