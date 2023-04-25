@@ -43,6 +43,7 @@ const login = async () => {
     status.value = "normal";
     router.push("/app/play");
   } catch (error: any) {
+    console.log(error);
     if (error.status != 201) {
       errorText.value = "Username/password combination is invalid";
       status.value = "normal";
