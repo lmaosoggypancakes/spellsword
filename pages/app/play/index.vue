@@ -7,15 +7,16 @@
     </PlayButton> -->
     <PlayButton
       primary
-      class="bg-blue-200 outline-blue-200"
+      class="bg-blue-200 outline-blue-200 flex flex-col justify-center items-center"
       :disabled="disabled"
       @click="matchmake()"
     >
-      Matchmake
+      <MagnifyingGlassIcon class="w-16 h-16" />
+      <span class="text-3xl mt-8">Find Match</span>
     </PlayButton>
-    <PlayButton class="bg-green-300 outline-green-300" :disabled="disabled">
+    <!-- <PlayButton class="bg-green-300 outline-green-300" :disabled="disabled">
       Play Computer
-    </PlayButton>
+    </PlayButton> -->
     <!-- <PlayButton
       primary
       class="bg-yellow-200 outline-yellow-200"
@@ -29,6 +30,7 @@
 
 <script setup lang="ts">
 import { io } from "socket.io-client";
+import { MagnifyingGlassIcon } from "@heroicons/vue/24/outline";
 import PlayButton from "@/components/app/play/playButton.vue";
 import MatchmakingToast from "@/components/toasts/matchmaking.vue";
 import ConnectingToast from "@/components/toasts/connecting.vue";
