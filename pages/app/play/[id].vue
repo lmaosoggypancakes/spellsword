@@ -386,13 +386,15 @@ const resetLetters = () => {
 const gameStatus = computed<GameStatus>(() => {
   if (
     points.value >= MAX_SCORE &&
-    moves.value[moves.value.length - 1].userId != userStore.id
+    moves.value[moves.value.length - 1].userId != userStore.id &&
+    opponentPoints.value < MAX_SCORE
   ) {
     return GameStatus.WIN;
   }
   if (
     opponentPoints.value >= MAX_SCORE &&
-    moves.value[moves.value.length - 1].userId == userStore.id
+    moves.value[moves.value.length - 1].userId == userStore.id &&
+    points.value < MAX_SCORE
   ) {
     return GameStatus.LOSS;
   }
@@ -448,5 +450,4 @@ const gameStatistics = computed(() => {
     gameStatus.value
   );
 });
-watch(gameStatistics, console.log);
 </script>
