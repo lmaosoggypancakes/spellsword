@@ -6,5 +6,5 @@
 
 <script setup>
 import Hero from "@/components/index/hero";
-definePageMeta({ layout: "index", middleware: ["auth"] });
+definePageMeta({ layout: "index" });
 </script>

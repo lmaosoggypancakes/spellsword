@@ -94,6 +94,13 @@ const userGames = <PlayerGame[]>(
   (await useFetch(`${config.public.apiUrl}/api/users/${user.id}/games`)).data
     .value
 );
+const userGameStatistics = userGames.map((game) =>
+  getGameStatistics(
+    game.moves,
+    user,
+    game.players.find((player) => player.username != user.username)!, game, game.winner.username ===
+  )
+);
 const editsMade = computed(() => {
   return (
     edits.email != user.email ||

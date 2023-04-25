@@ -23,14 +23,19 @@ import axios, { AxiosError } from "axios";
 import Button from "@/components/button.vue";
 import Popover from "@/components/popover.vue";
 
+/* Vue composables to gain access to the page's metadata like underlying router and runtime configuration of shared variables */
 const router = useRouter();
 const config = useRuntimeConfig();
+const auth = useAuth();
+
+/* string variables wrapped in a reactivity frame to allow for 2-way data binding between text inputs and the underlying variable */
 const username = ref<string>("");
 const password = ref<string>("");
-const auth = useAuth();
-const errorText = ref("");
+const errorText = ref<string>("");
 type Status = "loading" | "normal";
 const status = ref<Status>("normal");
+
+/* helper function to login and set the authenticated token in the browser's cookie, if the username/password combo is correct. */
 const login = async () => {
   status.value = "loading";
   try {
@@ -39,12 +44,12 @@ const login = async () => {
       password: password.value,
     });
     const jwt = response.data.access_token;
-    await auth.authenticate(jwt);
+    await auth.authenticate(jwt); // decodes the JSON Web Token to extract the user metadata, storing it as well. Cookies are used for storage instead of things like localStorage or SessionStorage, as they are often prone to self-XSS scripts
     status.value = "normal";
     router.push("/app/play");
   } catch (error: any) {
-    console.log(error);
     if (error.status != 201) {
+      // 201 is used instead of 200, because a JWT is created on the server-side. if the username/password combo is incorrect, the server will through either an HTTP 400, 401 or 403, depending on the request data submitted.
       errorText.value = "Username/password combination is invalid";
       status.value = "normal";
     }

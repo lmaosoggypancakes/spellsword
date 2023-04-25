@@ -1,5 +1,3 @@
-import { NuxtLink } from '~~/.nuxt/components';
-
 <template>
   <div
     class="w-full text-seasalt font-bold bg-primary min-h-screen flex flex-col"

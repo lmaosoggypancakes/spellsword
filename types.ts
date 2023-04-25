@@ -1,3 +1,4 @@
+// most commonly represents the current logged-in user
 export interface User {
   id: string;
   email: string;
@@ -8,11 +9,14 @@ export interface User {
   followedBy: string[];
 }
 
+// represents the edits a user can make to their account.
 export interface UserEdit {
   email: string;
   picture: string;
   username: string;
 }
+
+// represents the user metadata of a game (in order to perserve bandwidth and prevent unwanted requests, we only encapsulate the id, picture URL, and username)
 export interface GameUser {
   id: string;
   picture: string;
