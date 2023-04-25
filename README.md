@@ -1,42 +1,12 @@
-# Nuxt 3 Minimal Starter
+# Spellsword
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+<img src="public/logo.png" />
 
-## Setup
+## What is Spellsword?
 
-Make sure to install the dependencies:
+Spellsword is an interactive, multiplayer game that's aimed to enhance our command of the english language. Our philosophy is that through competetive challenges, we can learn new vocabulary at a faster rate.
 
-```bash
-# yarn
-yarn install
+## How to Play
 
-# npm
-npm install
-
-# pnpm
-pnpm install
-```
-
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- To play Spellsword online, visit [https://spellsword.vercel.app](https://spellsword.vercel.app). There is no installation needed to play, although we recommend running Spellsword on a machine with at least 8GB of RAM and a reliable internet connection to avoid disconnects.
+- Native desktop application coming soon!
