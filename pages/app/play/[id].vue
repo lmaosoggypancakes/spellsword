@@ -210,7 +210,7 @@ import {
 } from "@headlessui/vue";
 import axios from "axios";
 
-const MAX_SCORE = 10;
+const MAX_SCORE = 20;
 const router = useRouter();
 const auth = useAuth();
 const config = useRuntimeConfig();
