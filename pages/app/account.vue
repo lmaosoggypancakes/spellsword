@@ -4,7 +4,7 @@
       class="flex flex-col items-center text-accent h-screen"
       v-motion-slide-bottom
     >
-      <Popover class="">
+      <Popover title="Game Over!">
         <PopoverButton class="outline-none">
           <img
             :src="edits.picture"
@@ -31,37 +31,31 @@
       >
         <div
           class="bg-raisin w-5/6 p-2 mx-4 my-2 flex flex-col border-2 rounded-md bg-opacity-30 pl-4"
-          v-for="game in userGames"
+          v-for="stats in userGameStatistics"
           :class="
-            game.winner?.username == user.username
+            stats.status === GameStatus.WIN
               ? 'border-green-400'
-              : 'border-red-400'
+              : stats.status === GameStatus.DRAW
+              ? 'border-red-400'
+              : 'border-gray-400'
           "
         >
           <div class="text-accent">
             <span class="float-left">
-              <p class="text-4xl">34</p>
-              <span>
-                {{
-                  game.players.find(
-                    (player) => player.username == user.username
-                  )?.username
-                }}
-              </span>
+              <p class="text-4xl">
+                {{ stats.playerPoints }}
+              </p>
+              <span> {{ stats.playerUsername }} </span>
             </span>
             <span class="float-right">
-              <p class="text-4xl text-right">46</p>
+              <p class="text-4xl text-right">{{ stats.opponentPoints }}</p>
               <span class="">
-                {{
-                  game.players.find(
-                    (player) => player.username != user.username
-                  )?.username
-                }}
+                {{ stats.opponentUsername }}
               </span>
             </span>
           </div>
           <span class="text-2xl text-center my-4 text-seasalt font-bold">{{
-            game.characters
+            stats.characters
           }}</span>
         </div>
       </div>
@@ -70,7 +64,7 @@
   <SaveChanges v-if="editsMade" :loading="editSaving" @click="save()" />
 </template>
 <script setup lang="ts">
-import { UserEdit, PlayerGame, User } from "@/types";
+import { UserEdit, PlayerGame, User, GameStatus } from "@/types";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import SaveChanges from "@/components/toasts/saveChanges.vue";
 import ImageGallery from "@/components/app/imageGallery.vue";
@@ -93,6 +87,14 @@ const editSaving = ref(false);
 const userGames = <PlayerGame[]>(
   (await useFetch(`${config.public.apiUrl}/api/users/${user.id}/games`)).data
     .value
+);
+const userGameStatistics = userGames.map((game) =>
+  getGameStatistics(
+    game.moves,
+    user,
+    game.players.find((player) => player.username != user.username)!,
+    game
+  )
 );
 const editsMade = computed(() => {
   return (

@@ -3,6 +3,7 @@
     <img
       :src="avatar"
       class="p-1 w-44 h-44 rounded-xl border-2 border-primary hover:border-secondary place"
+      alt="Selected Avatar"
       :class="{
         'border-secondary': modelValue == avatar,
       }"

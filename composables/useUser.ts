@@ -12,13 +12,13 @@ export const useUser = defineStore(
     const followedBy = ref([]);
     const following = ref([]);
     const username = ref("");
+
     const set = (newUser: User) => {
       id.value = newUser.id;
       picture.value = newUser.picture;
       created.value = newUser.created;
       username.value = newUser.username;
       email.value = newUser.email;
-      consol.log(picture.value);
     };
     return {
       id,

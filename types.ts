@@ -1,3 +1,4 @@
+// most commonly represents the current logged-in user
 export interface User {
   id: string;
   email: string;
@@ -8,11 +9,14 @@ export interface User {
   followedBy: string[];
 }
 
+// represents the edits a user can make to their account.
 export interface UserEdit {
   email: string;
   picture: string;
   username: string;
 }
+
+// represents the user metadata of a game (in order to perserve bandwidth and prevent unwanted requests, we only encapsulate the id, picture URL, and username)
 export interface GameUser {
   id: string;
   picture: string;
@@ -27,9 +31,18 @@ export interface PlayerGame {
   winner: {
     username: string;
   };
-  players: {
-    username: string;
-  }[];
+  players: GameUser[];
+}
+
+export interface GameStatistics {
+  playerAccuracy: string;
+  playerPoints: number;
+  opponentPoints: number;
+  opponentAccuracy: string;
+  status: GameStatus;
+  opponentUsername: string;
+  playerUsername: string;
+  characters: string;
 }
 
 export interface AppNavLink {
@@ -53,14 +66,16 @@ export type Game = {
   id: string;
   characters: string;
   status: string;
-  winnerId: string;
+  winner: {
+    username: true;
+  };
   players: GameUser[];
 };
 
 export type Move =
   | {
       id?: string;
-      guess: string; // string if bad quess, Word if correct (has definition)
+      guess: string; // string if bad guess, Word if correct (has definition)
       valid: boolean;
       points: number;
       userId: string;
