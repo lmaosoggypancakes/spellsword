@@ -8,10 +8,10 @@ export const numVowels = 5;
 export const numConsonants = 8;
 export const generateRandomSequence = (): Letter[] => {
   const randomVowels = [...Array(numVowels)].map(
-    (e) => vowels[Math.floor(Math.random() * vowels.length)]
+    () => vowels[Math.floor(Math.random() * vowels.length)]
   );
   const randomConsonants = [...Array(numConsonants)].map(
-    (e) => consonants[Math.floor(Math.random() * consonants.length)]
+    () => consonants[Math.floor(Math.random() * consonants.length)]
   );
   const seq = randomVowels.concat(randomConsonants);
   return seq.map((letter, index) => ({
