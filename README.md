@@ -6,6 +6,30 @@
 
 Spellsword is an interactive, multiplayer game that's aimed to enhance our command of the english language. Our philosophy is that through competetive challenges, we can learn new vocabulary at a faster rate.
 
+## Screenshot Demo
+
+- ![Image 1](/demo/1.png)
+
+<br />
+ 
+- ![Image 5](/demo/5.png)
+ 
+<br />
+ 
+- ![Image 2](/demo/2.png)
+ 
+<br />
+ 
+- ![Image 6](/demo/6.png)
+ 
+<br />
+ 
+- ![Image 4](/demo/4.png)
+ 
+<br />
+ 
+- ![Image 3](/demo/3.png)
+
 ## How to Play
 
 - To play Spellsword online, visit [https://spellsword.vercel.app](https://spellsword.vercel.app). There is no installation needed to play, although we recommend running Spellsword on a machine with at least 8GB of RAM and a reliable internet connection to avoid disconnects.
