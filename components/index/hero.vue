@@ -18,7 +18,6 @@
           </div>
         </div>
       </div>
-      <Book />
     </div>
   </div>
 </template>

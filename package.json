@@ -13,10 +13,8 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",
     "@tauri-apps/cli": "^1.2.3",
-    "@tresjs/cientos": "^2.0.0-beta.0",
     "@types/three": "^0.149.0",
-    "nuxt": "^3.2.3",
-    "three": "^0.150.1"
+    "nuxt": "^3.2.3"
   },
   "overrides": {
     "vue": "latest"
