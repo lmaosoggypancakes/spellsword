@@ -29,6 +29,7 @@
             :letter="letter"
             @toggle="toggleLetter"
             :id="letter.id"
+            :disabled="!isMyTurn"
           />
         </ul>
         <div
@@ -73,6 +74,7 @@
           :letter="letter"
           @toggle="toggleLetter"
           :id="letter.id"
+          :disabled="!isMyTurn"
         />
       </ul>
     </div>
@@ -308,7 +310,8 @@ useKeydownEvent((event) => {
 });
 
 const toggleLetter = (letter: Letter, active = false) => {
-  if (letter.active || active) {
+  if (!isMyTurn.value) return;
+  if ((letter.active || active)) {
     // if the letter is active (in queue), remove it from the queue
     // activate corresponding letter in the global letters
     const l = letters.find((l) => l.id == letter.id);
@@ -337,7 +340,7 @@ const appendMove = async (data: Move | undefined = undefined) => {
     return;
   }
   const move = await getMove();
-  if (move) {
+  if (move && isMyTurn.value) {
     socket.emit("moves", move);
     return;
   }
