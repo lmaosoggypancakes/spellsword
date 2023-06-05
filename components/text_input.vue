@@ -2,7 +2,7 @@
   <div>
     <label class="block">{{ props.name }}</label>
     <input
-      class="block bg-raisin border-b-2 border-secondary focus:p-3 p-2 rounded-md transition-all outline-none"
+      class="block bg-neutral border-b-2 border-secondary focus:p-3 p-2 rounded-md transition-all outline-none"
       :type="props.type"
       :value="props.modelValue"
       @input="

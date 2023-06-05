@@ -1,7 +1,7 @@
 <template>
   <Popover title="Login"
     ><form
-      class="mt-2 bg-raisin border-2 border-secondary p-6 rounded-xl"
+      class="mt-2 bg-neutral border-2 border-secondary p-6 rounded-xl"
       @submit.prevent="login"
     >
       <TextInput name="Username" type="text" v-model="username" />

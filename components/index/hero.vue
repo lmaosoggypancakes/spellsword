@@ -18,6 +18,7 @@
           </div>
         </div>
       </div>
+      <img src="/logo.png" />
     </div>
   </div>
 </template>

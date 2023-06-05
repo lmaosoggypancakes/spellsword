@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="md:h-screen md:border-r-2 border-b-2 md:border-b-0 border-seasalt text-accent flex md:flex-col justify-center font-bold bg-raisin md:col-span-2 overflow-hidden"
+    class="md:h-screen md:border-r-2 border-b-2 md:border-b-0 border-accent text-accent flex md:flex-col justify-center font-bold bg-raisin md:col-span-2 overflow-hidden"
   >
     <NuxtLink
       v-for="link in navLinks"

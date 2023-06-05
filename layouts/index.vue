@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="w-full text-seasalt font-bold bg-primary min-h-screen flex flex-col"
-  >
+  <div class="w-full text-seasalt font-bold min-h-screen flex flex-col">
     <nav
       class="py-4 px-16 border-b-2 border-secondary flex justify-center text-lg"
     >
