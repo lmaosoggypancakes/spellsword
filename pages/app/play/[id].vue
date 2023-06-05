@@ -9,10 +9,11 @@
         : ''
     "
   >
-    <div class="grow grid grid-cols-7 h-full max-h-screen overflow-y-auto">
+    <div class="grow grid lg:grid-cols-7 h-full max-h-screen overflow-y-auto">
       <div
         class="col-span-3 p-8 flex items-center flex-col space-y-4 relative"
         :class="{
+          hidden: !isMyTurn,
           'shadow-[inset_0px_0px_10px_5px_rgba(169,255,203,1)]':
             isMyTurn && gameStatus != GameStatus.PLAYER_SUDDEN_DEATH,
           'shadow-[inset_0px_0px_10px_5px_rgba(219,45,45,1)]':
@@ -27,9 +28,10 @@
           <LetterBlock
             v-for="letter in queue"
             :letter="letter"
-            @toggle="toggleLetter"
+            @toggle="toggleLetter(letter, true)"
             :id="letter.id"
-            :disabled="!isMyTurn"
+            :disabled="false"
+            :queue="true"
           />
         </ul>
         <div
@@ -38,7 +40,7 @@
           +{{ points }} Points
         </div>
       </div>
-      <div class="border-x-2 border-secondary overflow-y-auto">
+      <div class="border-x-2 border-secondary overflow-y-auto hidden lg:block">
         <ul>
           <MoveCard
             :move="move"
@@ -50,6 +52,7 @@
       <div
         class="col-span-3 p-8 flex items-center flex-col space-y-4 relative"
         :class="{
+          hidden: isMyTurn,
           'shadow-[inset_0px_0px_10px_5px_rgba(169,255,203,1)]':
             !isMyTurn && gameStatus != GameStatus.OPPONENT_SUDDEN_DEATH,
           'shadow-[inset_0px_0px_10px_5px_rgba(219,45,45,1)]':
@@ -218,7 +221,7 @@ const auth = useAuth();
 const config = useRuntimeConfig();
 const route = useRoute();
 const userStore = useUser();
-const isMyTurn = ref(false);
+const isMyTurn = ref(true);
 const gameReq = await useFetch(
   `${config.public.apiUrl}/api/games/${route.params.id}`
 );
@@ -234,38 +237,7 @@ definePageMeta({
 });
 const status = ref<GameConnectionStatus>(GameConnectionStatus.CONNECTING);
 let socket: Socket;
-onMounted(() => {
-  socket = io(`${config.public.apiUrl}/play`, {
-    transports: ["websocket"],
-    autoConnect: false,
-    query: {
-      id: route.params.id,
-    },
-    auth: {
-      id: route.params.id,
-      token: auth.token,
-    },
-  });
-  socket.on("connect", console.log);
-  socket.on("welcome", console.log);
-  socket.on("player-joined", console.log);
-  socket.on("ready", () => {
-    status.value = GameConnectionStatus.CONNECTED;
-  });
-  socket.on("new-move", ({ data }) => {
-    if ((data as Move).userId !== userStore.id) {
-      // latest move is from opponent, and so it's our turn
-      isMyTurn.value = true;
-    } else {
-      isMyTurn.value = false;
-    }
-    moves.value.push(data);
-  });
-  socket.on("your-turn", () => {
-    isMyTurn.value = true;
-  });
-  status.value = GameConnectionStatus.WAITING;
-});
+
 const letters = reactive<Letter[]>(convertSequence(gameMetadata.characters));
 const sequence = letters
   .map((letter) => letter.value)
@@ -319,7 +291,7 @@ const toggleLetter = (letter: Letter, active = false) => {
       // set the letter as clickable again
       l.active = false;
     }
-    // queue.splice(queue.indexOf(letter), 1);
+    queue.splice(queue.indexOf(letter), 1);
   }
   if (!letter.active) {
     queue.push({ ...letter, active: true });
@@ -341,7 +313,7 @@ const appendMove = async (data: Move | undefined = undefined) => {
   }
   const move = await getMove();
   if (move && isMyTurn.value) {
-    socket.emit("moves", move);
+    // socket.emit("moves", move);
     return;
   }
 };
