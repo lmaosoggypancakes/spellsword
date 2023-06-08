@@ -1,6 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: false,
+  routeRules: {
+    "/app/learn/basics": { prerender: true },
+    "/app/learn/scoring": { prerender: true },
+    "/app/learn/strategy": {
+      prerender: true,
+    },
+    "/": { prerender: true },
+    "/register": { prerender: true },
+  },
   modules: [
     "@nuxtjs/tailwindcss",
     "@pinia/nuxt",
