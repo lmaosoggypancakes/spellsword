@@ -55,6 +55,7 @@
 </template>
 <script setup lang="ts">
 definePageMeta({
-  layout: "learn",
+    layout: "learn",
+
 });
 </script>
