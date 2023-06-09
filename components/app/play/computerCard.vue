@@ -19,8 +19,16 @@
         Challenge an AI bot! Can you beat the computer?
       </p>
       <div class="card-actions justify-end">
-        <button class="btn w-full">Play</button>
+        <button class="btn w-full" @click="emits('play', Difficulty.COMPUTER)">
+          Play
+        </button>
       </div>
     </div>
   </div>
 </template>
+<script setup lang="ts">
+import { Difficulty } from "~/types";
+
+// define play emit
+const emits = defineEmits(["play"]);
+</script>

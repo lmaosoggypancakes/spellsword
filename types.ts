@@ -102,3 +102,10 @@ export enum GameStatus {
   WIN,
   DRAW,
 }
+
+export enum Difficulty {
+  CASUAL = "CASUAL",
+  ADVENTURE = "ADVENTURE",
+  MASTER = "MASTER",
+  COMPUTER = "COMPUTER",
+}

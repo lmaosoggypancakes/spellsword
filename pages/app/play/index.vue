@@ -5,7 +5,7 @@
     <!-- <PlayButton primary class="outline-red-400 bg-red-400" :disabled="disabled">
       Play a friend
     </PlayButton> -->
-    <PlayModePanel primary :disabled="disabled" @click="matchmake()">
+    <PlayModePanel primary :disabled="disabled" @matchmake="matchmake">
       <MagnifyingGlassIcon class="w-16 h-16" />
       <span class="text-3xl mt-8">Find Match</span>
     </PlayModePanel>
@@ -46,10 +46,11 @@ const status = reactive({
   error: false,
 });
 const disabled = computed(() => Object.values(status).some((a) => !!a));
-const matchmake = () => {
+const matchmake = (difficulty) => {
   status.connecting = true;
   const socket = io(`${config.public.apiUrl}/matchmake`, {
     auth: {
+      difficulty,
       token: auth.token,
     },
   });

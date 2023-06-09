@@ -19,8 +19,18 @@
         6 Consonants, 2 Vowels. Not for the faint of heart!
       </p>
       <div class="card-actions justify-end">
-        <button class="btn w-full border-0">Play</button>
+        <button
+          class="btn w-full border-0"
+          @click="emits('play', Difficulty.MASTER)"
+        >
+          Play
+        </button>
       </div>
     </div>
   </div>
 </template>
+<script setup lang="ts">
+import { Difficulty } from "~/types";
+// define play emit
+const emits = defineEmits(["play"]);
+</script>

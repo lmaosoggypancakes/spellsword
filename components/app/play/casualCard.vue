@@ -21,8 +21,16 @@
       <h2 class="card-title text-3xl">Casual</h2>
       <p class="hidden lg:block">12 Consonants, 6 Vowels</p>
       <div class="card-actions justify-end">
-        <button class="btn w-full">Play</button>
+        <button class="btn w-full" @click="emits('play', Difficulty.CASUAL)">
+          Play
+        </button>
       </div>
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { Difficulty } from "~/types";
+// define play emit
+const emits = defineEmits(["play"]);
+</script>

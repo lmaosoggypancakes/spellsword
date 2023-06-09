@@ -24,8 +24,15 @@
         balance of difficulty and fun!
       </p>
       <div class="card-actions justify-end">
-        <button class="btn w-full">Play</button>
+        <button class="btn w-full" @click="emits('play', Difficulty.ADVENTURE)">
+          Play
+        </button>
       </div>
     </div>
   </div>
 </template>
+<script setup lang="ts">
+import { Difficulty } from "~/types";
+
+const emits = defineEmits(["play"]);
+</script>
