@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="rounded-xl col-span-3 grid gap-y-4 gap-x-8 lg:grid-rows-2 lg:grid-cols-2 h-full"
-  >
+  <div class="rounded-xl col-span-3 space-y-4 lg:h-1/2 lg:w-1/2 w-full">
     <component
       v-for="mode in modes"
       :is="mode"

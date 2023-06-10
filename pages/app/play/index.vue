@@ -1,6 +1,6 @@
 <template>
   <div
-    class="h-full w-full sm:px-8 lg:px-32 py-32 text-seasalt overflow-x-scroll"
+    class="h-screen w-full sm:px-8 lg:px-32 py-32 text-seasalt overflow-y-auto"
   >
     <!-- <PlayButton primary class="outline-red-400 bg-red-400" :disabled="disabled">
       Play a friend
@@ -9,6 +9,7 @@
       <MagnifyingGlassIcon class="w-16 h-16" />
       <span class="text-3xl mt-8">Find Match</span>
     </PlayModePanel>
+    <img :src="user.picture" />
     <!-- <PlayButton class="bg-green-300 outline-green-300" :disabled="disabled">
       Play Computer
     </PlayButton> -->
@@ -26,7 +27,6 @@
 <script setup lang="ts">
 import { io } from "socket.io-client";
 import { MagnifyingGlassIcon } from "@heroicons/vue/24/outline";
-
 definePageMeta({
   layout: "app",
   middleware: "auth",
@@ -35,6 +35,7 @@ definePageMeta({
 const config = useRuntimeConfig();
 const router = useRouter();
 const auth = useAuth();
+const user = useUser();
 const status = reactive({
   matchmaking: false,
   connecting: false,

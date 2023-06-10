@@ -1,10 +1,10 @@
 <template>
-  <BaseCard>
-    <figure>
+  <BaseCard class="bg-green-200">
+    <figure class="w-24 h-24 p-2">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="128"
-        height="128"
+        width="72"
+        height="72"
         viewBox="0 0 24 24"
       >
         <path
@@ -15,14 +15,7 @@
     </figure>
     <div class="card-body">
       <h2 class="card-title text-3xl">Computer</h2>
-      <p class="hidden lg:block">
-        Challenge an AI bot! Can you beat the computer?
-      </p>
-      <div class="card-actions justify-end">
-        <button class="btn w-full" @click="emits('play', Difficulty.COMPUTER)">
-          Play
-        </button>
-      </div>
+      <p>Challenge an AI bot! Can you beat the computer?</p>
     </div>
   </BaseCard>
 </template>

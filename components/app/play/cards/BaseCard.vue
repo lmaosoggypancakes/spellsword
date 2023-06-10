@@ -1,6 +1,6 @@
 <template>
   <div
-    class="lg:card card-side shadow-xl bg-opacity-80 grow-0 bg-accent text-primary"
+    class="card card-side card-compact shadow-xl bg-opacity-80 bg-accent text-primary hover:bg-opacity-60 cursor-pointer"
   >
     <slot />
   </div>

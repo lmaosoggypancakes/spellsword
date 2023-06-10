@@ -8,3 +8,6 @@
     </article>
   </App>
 </template>
+<script setup lang="ts">
+import App from "~/layouts/app.vue";
+</script>
