@@ -27,6 +27,7 @@
 <script setup lang="ts">
 import { io } from "socket.io-client";
 import { MagnifyingGlassIcon } from "@heroicons/vue/24/outline";
+import { Difficulty } from "~/types";
 definePageMeta({
   layout: "app",
   middleware: "auth",
@@ -43,7 +44,7 @@ const status = reactive({
   error: false,
 });
 const disabled = computed(() => Object.values(status).some((a) => !!a));
-const matchmake = (difficulty) => {
+const matchmake = (difficulty: Difficulty) => {
   status.connecting = true;
   const socket = io(`${config.public.apiUrl}/matchmake`, {
     auth: {

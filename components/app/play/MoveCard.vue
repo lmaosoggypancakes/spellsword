@@ -26,7 +26,6 @@
 
 <script setup lang="ts">
 import { Move } from "@/types";
-import MoveCardContent from "@/components/app/play/moveCardContent.vue";
 defineProps<{
   move: Move;
   opponent: boolean;
