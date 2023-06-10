@@ -1,5 +1,5 @@
 <template>
-  <div class="card shadow-xl bg-opacity-80 grow-0 bg-accent text-primary">
+  <BaseCard>
     <figure>
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +26,7 @@
         </button>
       </div>
     </div>
-  </div>
+  </BaseCard>
 </template>
 
 <script setup lang="ts">

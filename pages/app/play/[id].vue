@@ -197,14 +197,9 @@
 </template>
 
 <script setup lang="ts">
-import Avatar from "@/components/app/play/avatar.vue";
-import LetterBlock from "@/components/app/play/letterBlock.vue";
-import MoveCard from "@/components/app/play/moveCard.vue";
 import { Letter, Move } from "@/types";
 import { Game, GameConnectionStatus, GameStatus } from "@/types";
 import { io, Socket } from "socket.io-client";
-import ConnectingToast from "@/components/toasts/connecting.vue";
-import WaitingToast from "@/components/toasts/waiting.vue";
 import {
   TransitionRoot,
   TransitionChild,
@@ -283,7 +278,7 @@ useKeydownEvent((event) => {
 
 const toggleLetter = (letter: Letter, active = false) => {
   if (!isMyTurn.value) return;
-  if ((letter.active || active)) {
+  if (letter.active || active) {
     // if the letter is active (in queue), remove it from the queue
     // activate corresponding letter in the global letters
     const l = letters.find((l) => l.id == letter.id);

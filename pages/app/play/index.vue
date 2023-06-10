@@ -18,18 +18,14 @@
       :disabled="disabled"
     ></PlayButton> -->
   </div>
-  <MatchmakingToast v-if="status.matchmaking" />
-  <ConnectingToast v-if="status.connecting" />
-  <ErrorToast v-if="status.error" />
+  <Matchmaking v-if="status.matchmaking" />
+  <Connecting v-if="status.connecting" />
+  <Error v-if="status.error" />
 </template>
 
 <script setup lang="ts">
 import { io } from "socket.io-client";
 import { MagnifyingGlassIcon } from "@heroicons/vue/24/outline";
-import MatchmakingToast from "@/components/toasts/matchmaking.vue";
-import ConnectingToast from "@/components/toasts/connecting.vue";
-import ErrorToast from "@/components/toasts/error.vue";
-import PlayModePanel from "~/components/app/play/playModePanel.vue";
 
 definePageMeta({
   layout: "app",

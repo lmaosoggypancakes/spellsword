@@ -9,6 +9,12 @@ export default defineNuxtConfig({
     "/": { prerender: true },
     "/register": { prerender: true },
   },
+  components: [
+    {
+      path: "~/components",
+      pathPrefix: false,
+    },
+  ],
   modules: [
     "@nuxtjs/tailwindcss",
     "@pinia/nuxt",

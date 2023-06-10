@@ -6,7 +6,3 @@
     <div class="md:col-span-10 min-h-screen w-full"><slot /></div>
   </div>
 </template>
-
-<script setup lang="ts">
-import Navbar from "@/components/app/navbar.vue";
-</script>

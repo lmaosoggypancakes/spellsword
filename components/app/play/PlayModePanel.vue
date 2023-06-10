@@ -11,10 +11,10 @@
 </template>
 
 <script setup lang="ts">
-import CasualCard from "./casualCard.vue";
-import AdventureCard from "./adventureCard.vue";
-import MasterCard from "./masterCard.vue";
-import ComputerCard from "./computerCard.vue";
+import CasualCard from "./cards/CasualCard.vue";
+import AdventureCard from "./cards/AdventureCard.vue";
+import MasterCard from "./cards/MasterCard.vue";
+import ComputerCard from "./cards/ComputerCard.vue";
 import { Difficulty } from "~/types";
 const props = defineProps<{
   primary?: boolean; // takes up 3 cols instead of 1

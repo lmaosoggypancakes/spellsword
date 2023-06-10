@@ -48,8 +48,6 @@
 
 <script setup lang="ts">
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
-import ErrorToast from "@/components/toasts/error.vue";
-import ImageGallery from "@/components/app/imageGallery.vue";
 import axios from "axios";
 
 const router = useRouter();

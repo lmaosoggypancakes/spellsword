@@ -66,9 +66,6 @@
 <script setup lang="ts">
 import { UserEdit, PlayerGame, User, GameStatus } from "@/types";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
-import SaveChanges from "@/components/toasts/saveChanges.vue";
-import ImageGallery from "@/components/app/imageGallery.vue";
-import TextInput from "@/components/text_input.vue";
 import axios from "axios";
 definePageMeta({
   middleware: ["auth"],

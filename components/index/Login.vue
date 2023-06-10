@@ -20,8 +20,6 @@
 
 <script setup lang="ts">
 import axios, { AxiosError } from "axios";
-import Button from "@/components/button.vue";
-import Popover from "@/components/popover.vue";
 
 /* Vue composables to gain access to the page's metadata like underlying router and runtime configuration of shared variables */
 const router = useRouter();

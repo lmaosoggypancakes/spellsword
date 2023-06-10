@@ -5,6 +5,5 @@
 </template>
 
 <script setup>
-import Hero from "@/components/index/hero";
 definePageMeta({ layout: "index" });
 </script>

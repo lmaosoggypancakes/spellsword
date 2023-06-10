@@ -16,8 +16,3 @@
     <slot />
   </div>
 </template>
-
-<script setup lang="ts">
-import Button from "@/components/button.vue";
-import Login from "@/components/index/login.vue";
-</script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="card shadow-xl bg-opacity-90 grow-0 bg-green-200 text-primary">
+  <BaseCard>
     <figure>
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +24,7 @@
         </button>
       </div>
     </div>
-  </div>
+  </BaseCard>
 </template>
 <script setup lang="ts">
 import { Difficulty } from "~/types";
