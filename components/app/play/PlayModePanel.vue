@@ -1,5 +1,7 @@
 <template>
-  <div class="rounded-xl col-span-3 space-y-4 lg:h-1/2 lg:w-1/2 w-full">
+  <div
+    class="rounded-xl col-span-3 space-y-4 w-full flex flex-col justify-between"
+  >
     <component
       v-for="mode in modes"
       :is="mode"

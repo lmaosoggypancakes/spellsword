@@ -20,6 +20,7 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
     "@vueuse/motion/nuxt",
+    "@nuxt/image",
   ],
   piniaPersistedstate: {
     debug: true,

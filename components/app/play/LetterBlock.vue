@@ -21,7 +21,7 @@ const props = defineProps<{
   disabled: boolean;
   queue?: boolean;
 }>();
-console.log(props.letter.active, props.queue)
+console.log(props.letter.active, props.queue);
 const emits = defineEmits<{
   toggle: Letter;
 }>();

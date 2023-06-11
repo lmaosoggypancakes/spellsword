@@ -1,23 +1,19 @@
 <template>
   <div
-    class="h-screen w-full sm:px-8 lg:px-32 py-32 text-seasalt overflow-y-auto"
+    class="h-screen w-full sm:px-8 lg:px-32 py-32 text-seasalt overflow-y-auto xl:grid xl:grid-cols-2"
   >
-    <!-- <PlayButton primary class="outline-red-400 bg-red-400" :disabled="disabled">
-      Play a friend
-    </PlayButton> -->
-    <PlayModePanel primary :disabled="disabled" @matchmake="matchmake">
-      <MagnifyingGlassIcon class="w-16 h-16" />
-      <span class="text-3xl mt-8">Find Match</span>
-    </PlayModePanel>
-    <img :src="user.picture" />
-    <!-- <PlayButton class="bg-green-300 outline-green-300" :disabled="disabled">
-      Play Computer
-    </PlayButton> -->
-    <!-- <PlayButton
-      secondary
-      class="bg-yellow-200 outline-yellow-200"
+    <PlayModePanel
+      primary
       :disabled="disabled"
-    ></PlayButton> -->
+      @matchmake="matchmake"
+      class="col-span-1"
+    />
+    <nuxt-img
+      :src="user.picture"
+      class="hidden xl:block place-self-center mask mask-squircle ml-8"
+      width="512"
+      height="512"
+    />
   </div>
   <Matchmaking v-if="status.matchmaking" />
   <Connecting v-if="status.connecting" />
