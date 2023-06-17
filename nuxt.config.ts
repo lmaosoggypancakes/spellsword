@@ -15,6 +15,7 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
+  nitro: {},
   modules: [
     "@nuxtjs/tailwindcss",
     "@pinia/nuxt",

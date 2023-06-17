@@ -64,7 +64,7 @@
   <SaveChanges v-if="editsMade" :loading="editSaving" @click="save()" />
 </template>
 <script setup lang="ts">
-import { UserEdit, PlayerGame, User, GameStatus } from "@/types";
+import { UserEdit, PlayerGame, User, GameStatus, Activity } from "@/types";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import axios from "axios";
 definePageMeta({
@@ -72,6 +72,9 @@ definePageMeta({
   layout: "app",
 });
 
+try {
+  await useFetch("/discord/account");
+} catch (err) {}
 const config = useRuntimeConfig();
 const auth = useAuth();
 const user = useUser();

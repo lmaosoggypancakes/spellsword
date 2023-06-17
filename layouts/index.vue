@@ -16,3 +16,9 @@
     <slot />
   </div>
 </template>
+
+<script setup lang="ts">
+try {
+  await useFetch("/discord/mainMenu");
+} catch (err) {}
+</script>

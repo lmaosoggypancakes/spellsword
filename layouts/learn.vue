@@ -10,4 +10,7 @@
 </template>
 <script setup lang="ts">
 import App from "~/layouts/app.vue";
+try {
+  await useFetch("/discord/docs");
+} catch (err) {}
 </script>

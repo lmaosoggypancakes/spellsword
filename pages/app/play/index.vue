@@ -23,7 +23,8 @@
 <script setup lang="ts">
 import { io } from "socket.io-client";
 import { MagnifyingGlassIcon } from "@heroicons/vue/24/outline";
-import { Difficulty } from "~/types";
+import { Activity, Difficulty } from "~/types";
+
 definePageMeta({
   layout: "app",
   middleware: "auth",
@@ -40,7 +41,10 @@ const status = reactive({
   error: false,
 });
 const disabled = computed(() => Object.values(status).some((a) => !!a));
-const matchmake = (difficulty: Difficulty) => {
+const matchmake = async (difficulty: Difficulty) => {
+  try {
+    await useFetch("/discord/matchmaking");
+  } catch (err) {}
   status.connecting = true;
   const socket = io(`${config.public.apiUrl}/matchmake`, {
     auth: {

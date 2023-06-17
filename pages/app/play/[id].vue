@@ -197,7 +197,7 @@
 </template>
 
 <script setup lang="ts">
-import { Letter, Move } from "@/types";
+import { Activity, Letter, Move } from "@/types";
 import { Game, GameConnectionStatus, GameStatus } from "@/types";
 import { io, Socket } from "socket.io-client";
 import {

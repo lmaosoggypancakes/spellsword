@@ -109,3 +109,11 @@ export enum Difficulty {
   MASTER = "MASTER",
   COMPUTER = "COMPUTER",
 }
+
+export enum Activity {
+  docs = "Browsing Documentation",
+  avatar = "Editing Avatar",
+  matchmaking = "In Queue (1 of 2)",
+  index = "In Main Menu",
+  playing = "In Match",
+}
