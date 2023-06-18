@@ -67,9 +67,13 @@
 import { UserEdit, PlayerGame, User, GameStatus, Activity } from "@/types";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
 import axios from "axios";
+
 definePageMeta({
   middleware: ["auth"],
   layout: "app",
+});
+onMounted(() => {
+  setDiscordActivity(Activity.avatar);
 });
 const config = useRuntimeConfig();
 const auth = useAuth();

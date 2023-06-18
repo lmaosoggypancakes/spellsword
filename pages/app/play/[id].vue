@@ -210,6 +210,9 @@ import {
 } from "@headlessui/vue";
 import axios from "axios";
 
+onMounted(() => {
+  setDiscordActivity(Activity.playing);
+});
 const MAX_SCORE = 20;
 const router = useRouter();
 const auth = useAuth();

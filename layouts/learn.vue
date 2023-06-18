@@ -8,3 +8,11 @@
     </article>
   </App>
 </template>
+
+<script setup lang="ts">
+import App from "./app.vue";
+import { Activity } from "~/types";
+onMounted(() => {
+  setDiscordActivity(Activity.docs);
+});
+</script>

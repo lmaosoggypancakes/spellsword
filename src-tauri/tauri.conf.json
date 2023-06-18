@@ -14,7 +14,7 @@
     "allowlist": {
       "shell": {
         "open": true,
-        "sidecar": true,
+        "sidecar": false,
         "scope": []
       }
     },

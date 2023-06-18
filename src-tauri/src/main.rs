@@ -41,56 +41,11 @@ fn main() {
 }
 
 #[tauri::command]
-fn avatar() {
+fn set_discord_activity(details: String) {
   unsafe {
 
     DRPC.set_activity(|a| {
-      a.details("Editing Avatar").assets(|ass| {
-        ass.large_image("logo")
-      })
-      .timestamps(|time| {
-        time.start(time::SystemTime::now().duration_since(time::UNIX_EPOCH).expect("Error").as_secs())
-      })
-    });
-  }
-}
-
-#[tauri::command]
-fn matchmaking() {
-  unsafe {
-
-    DRPC.set_activity(|a| {
-      a.details("In queue (1 of 2)").assets(|ass| {
-        ass.large_image("logo")
-      })
-      .timestamps(|time| {
-        time.start(time::SystemTime::now().duration_since(time::UNIX_EPOCH).expect("Error").as_secs())
-      })
-    });
-  }
-}
-
-#[tauri::command]
-fn docs() {
-  unsafe {
-
-    DRPC.set_activity(|a| {
-      a.details("Browsing Documentation").assets(|ass| {
-        ass.large_image("logo")
-      })
-      .timestamps(|time| {
-        time.start(time::SystemTime::now().duration_since(time::UNIX_EPOCH).expect("Error").as_secs())
-      })
-    });
-  }
-}
-
-#[tauri::command]
-fn playing() {
-  unsafe {
-
-    DRPC.set_activity(|a| {
-      a.details("In Match").assets(|ass| {
+      a.details(details).assets(|ass| {
         ass.large_image("logo")
       })
       .timestamps(|time| {

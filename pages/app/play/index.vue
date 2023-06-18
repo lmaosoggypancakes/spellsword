@@ -42,6 +42,7 @@ const status = reactive({
 });
 const disabled = computed(() => Object.values(status).some((a) => !!a));
 const matchmake = async (difficulty: Difficulty) => {
+  setDiscordActivity(Activity.matchmaking);
   status.connecting = true;
   const socket = io(`${config.public.apiUrl}/matchmake`, {
     auth: {

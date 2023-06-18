@@ -6,4 +6,8 @@
 
 <script setup>
 definePageMeta({ layout: "index" });
+import { Activity } from "~/types";
+onMounted(() => {
+  setDiscordActivity(Activity.index);
+});
 </script>
