@@ -71,10 +71,6 @@ definePageMeta({
   middleware: ["auth"],
   layout: "app",
 });
-
-try {
-  await useFetch("/discord/account");
-} catch (err) {}
 const config = useRuntimeConfig();
 const auth = useAuth();
 const user = useUser();
