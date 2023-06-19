@@ -1,5 +1,5 @@
 <template>
-  <BaseCard>
+  <BaseCard @click="matchmaker.type = Difficulty.ADVENTURE">
     <figure class="h-full p-2">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -24,6 +24,5 @@
 </template>
 <script setup lang="ts">
 import { Difficulty } from "~/types";
-
-const emits = defineEmits(["play"]);
+const matchmaker = useMatchmaker();
 </script>

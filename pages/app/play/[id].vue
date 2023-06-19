@@ -20,9 +20,7 @@
             gameStatus == GameStatus.PLAYER_SUDDEN_DEATH,
         }"
       >
-        <span class="text-4xl block text-seasalt">{{
-          userStore.username
-        }}</span>
+        <span class="text-4xl block">{{ userStore.username }}</span>
         <Avatar :src="userStore.picture" />
         <ul class="space-x-4 my-4">
           <LetterBlock
@@ -35,7 +33,7 @@
           />
         </ul>
         <div
-          class="absolute bottom-4 right-4 bg-apricot p-4 rounded-md text-2xl text-primary"
+          class="absolute bottom-4 right-4 bg-apricot p-4 rounded-md text-2xl"
         >
           +{{ points }} Points
         </div>
@@ -64,7 +62,7 @@
         }}</span>
         <Avatar :src="opponent?.picture || ''" />
         <div
-          class="absolute bottom-4 left-4 bg-apricot p-4 rounded-md text-2xl text-primary"
+          class="absolute bottom-4 left-4 bg-apricot p-4 rounded-md text-2xl"
         >
           +{{ opponentPoints }} Points
         </div>
@@ -82,8 +80,8 @@
       </ul>
     </div>
   </div>
-  <WaitingToast v-if="status == GameConnectionStatus.WAITING" />
-  <ConnectingToast v-if="status == GameConnectionStatus.CONNECTING" />
+  <Waiting v-if="status == GameConnectionStatus.WAITING" />
+  <Connecting v-if="status == GameConnectionStatus.CONNECTING" />
   <TransitionRoot
     appear
     :show="
@@ -274,7 +272,7 @@ useKeydownEvent((event) => {
         !letter.active && letter.value.toLowerCase() == event.key.toLowerCase()
     );
     if (possibleLetter) {
-      toggleLetter(possibleLetter, true);
+      toggleLetter(possibleLetter, false);
     }
   }
 });
@@ -298,7 +296,7 @@ const toggleLetter = (letter: Letter, active = false) => {
 };
 
 const popFromQueue = () => {
-  const lastLetter = queue.pop();
+  const lastLetter = queue[queue.length - 1];
   // assumes lastLetter.active is true
   if (!lastLetter) return;
   toggleLetter(lastLetter);

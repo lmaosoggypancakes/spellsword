@@ -16,10 +16,20 @@ import AdventureCard from "./cards/AdventureCard.vue";
 import MasterCard from "./cards/MasterCard.vue";
 import ComputerCard from "./cards/ComputerCard.vue";
 import { Difficulty } from "~/types";
+
+const router = useRouter();
+const matchmaker = useMatchmaker();
 const props = defineProps<{
   primary?: boolean; // takes up 3 cols instead of 1
   disabled?: boolean;
 }>();
 const modes = [CasualCard, AdventureCard, MasterCard, ComputerCard];
+matchmaker.$subscribe((_, val) => {
+  if (val.type === Difficulty.COMPUTER) {
+    router.push("/app/play/computer");
+  } else {
+    emits("matchmake", val.type);
+  }
+});
 const emits = defineEmits(["matchmake"]);
 </script>
