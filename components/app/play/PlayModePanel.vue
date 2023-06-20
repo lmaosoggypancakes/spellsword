@@ -1,6 +1,6 @@
 <template>
   <div
-    class="rounded-xl col-span-3 space-y-4 w-full flex flex-col justify-between"
+    class="rounded-xl col-span-3 space-y-4 flex flex-col justify-between w-full"
   >
     <component
       v-for="mode in modes"

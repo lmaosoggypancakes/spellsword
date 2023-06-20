@@ -21,5 +21,5 @@
 </template>
 <script setup lang="ts">
 import { Difficulty } from "~/types";
-const matchmaker = useMatchmaker;
+const matchmaker = useMatchmaker();
 </script>

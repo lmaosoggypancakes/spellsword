@@ -48,9 +48,9 @@
         </ul>
       </div>
       <div
-        class="col-span-3 p-8 flex items-center flex-col space-y-4 relative"
+        class="col-span-3 p-8 items-center flex-col space-y-4 relative"
         :class="{
-          hidden: isMyTurn,
+          'hidden lg:flex': isMyTurn,
           'shadow-[inset_0px_0px_10px_5px_rgba(169,255,203,1)]':
             !isMyTurn && gameStatus != GameStatus.OPPONENT_SUDDEN_DEATH,
           'shadow-[inset_0px_0px_10px_5px_rgba(219,45,45,1)]':
@@ -68,8 +68,8 @@
         </div>
       </div>
     </div>
-    <div class="w-full flex justify-center mt-auto border-t-2 border-secondary">
-      <ul class="space-x-4 my-4">
+    <div class="w-full grid mt-auto border-t-2 border-secondary">
+      <ul class="gap-4 my-4">
         <LetterBlock
           v-for="letter in letters"
           :letter="letter"
@@ -208,9 +208,6 @@ import {
 } from "@headlessui/vue";
 import axios from "axios";
 
-onMounted(() => {
-  setDiscordActivity(Activity.playing);
-});
 const MAX_SCORE = 20;
 const router = useRouter();
 const auth = useAuth();
@@ -420,5 +417,39 @@ const gameStatistics = computed(() => {
     gameMetadata,
     gameStatus.value
   );
+});
+
+onMounted(() => {
+  setDiscordActivity(Activity.playing);
+  socket = io(`${config.public.apiUrl}/play`, {
+    transports: ["websocket"],
+    autoConnect: false,
+    query: {
+      id: route.params.id,
+    },
+    auth: {
+      id: route.params.id,
+      token: auth.token,
+    },
+  });
+  socket.on("connect", console.log);
+  socket.on("welcome", console.log);
+  socket.on("player-joined", console.log);
+  socket.on("ready", () => {
+    status.value = GameConnectionStatus.CONNECTED;
+  });
+  socket.on("new-move", ({ data }) => {
+    if ((data as Move).userId !== userStore.id) {
+      // latest move is from opponent, and so it's our turn
+      isMyTurn.value = true;
+    } else {
+      isMyTurn.value = false;
+    }
+    moves.value.push(data);
+  });
+  socket.on("your-turn", () => {
+    isMyTurn.value = true;
+  });
+  status.value = GameConnectionStatus.WAITING;
 });
 </script>

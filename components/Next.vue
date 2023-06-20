@@ -1,6 +1,6 @@
 <template>
   <NuxtLink
-    class="border-2 border-apricot bg-apricot text-primary hover:bg-opacity-90 inline w-64 rounded-md underline-none p-2"
+    class="border-2 border-accent bg-accent text-primary hover:bg-opacity-90 inline w-64 rounded-md underline-none p-2"
     :href="href"
   >
     <div class="flex flex-col w-fit float-left">

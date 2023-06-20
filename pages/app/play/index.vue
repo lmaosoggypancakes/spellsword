@@ -1,6 +1,6 @@
 <template>
   <div
-    class="h-screen w-full sm:px-8 lg:px-32 py-32 text-seasalt overflow-y-auto xl:grid xl:grid-cols-2"
+    class="w-full px-8 py-32 text grid lg:grid-cols-2 lg:grid-flow-col gap-x-8"
   >
     <PlayModePanel
       primary
@@ -10,9 +10,9 @@
     />
     <nuxt-img
       :src="user.picture"
-      class="hidden xl:block place-self-center mask mask-squircle ml-8"
-      width="512"
+      class="hidden xl:block place-self-center mask mask-squircle"
       height="512"
+      width="512"
     />
   </div>
   <Matchmaking v-if="status.matchmaking" />
