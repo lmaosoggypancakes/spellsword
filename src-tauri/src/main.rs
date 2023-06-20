@@ -15,6 +15,15 @@ fn main() {
     
     DRPC.on_ready(|_ctx| {
       println!("Ready!");
+      if let Err(why) = DRPC.set_activity(|a| {
+        a.details("In Main Menu").assets(|ass| {
+          ass.large_image("logo")
+        }).timestamps(|time| {
+          time.start(time::SystemTime::now().duration_since(time::UNIX_EPOCH).expect("Error").as_secs())
+        })
+      }) {
+        println!("Failed to set presence: {}", why);
+      }
     });
     
     DRPC.on_error(|ctx| {
@@ -23,17 +32,7 @@ fn main() {
   
   
   DRPC.start();
-  DRPC.block_until_event(Event::Ready);
-  // thread::sleep(time::Duration::from_secs(5));
-  if let Err(why) = DRPC.set_activity(|a| {
-    a.details("In Main Menu").assets(|ass| {
-      ass.large_image("logo")
-    }).timestamps(|time| {
-      time.start(time::SystemTime::now().duration_since(time::UNIX_EPOCH).expect("Error").as_secs())
-    })
-  }) {
-    println!("Failed to set presence: {}", why);
-  }
+
 }
   tauri::Builder::default()
   .run(tauri::generate_context!())
