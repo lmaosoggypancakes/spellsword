@@ -1,6 +1,7 @@
 <template>
   <Hero />
-  <div class="h-screen"></div>
+  <HeroToDownloadDivider />
+  <Download />
   <div class="h-screen"></div>
 </template>
 

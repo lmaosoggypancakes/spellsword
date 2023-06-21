@@ -16,7 +16,8 @@
     "@types/discord-rpc": "^4.0.4",
     "@types/three": "^0.149.0",
     "daisyui": "^3.0.3",
-    "nuxt": "^3.5.2"
+    "nuxt": "^3.5.2",
+    "nuxt-icon": "^0.4.1"
   },
   "overrides": {
     "vue": "latest"
