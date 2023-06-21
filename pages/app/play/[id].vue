@@ -13,7 +13,7 @@
       <div
         class="col-span-3 p-8 flex items-center flex-col space-y-4 relative"
         :class="{
-          hidden: !isMyTurn,
+          'hidden lg:flex': !isMyTurn,
           'shadow-[inset_0px_0px_10px_5px_rgba(169,255,203,1)]':
             isMyTurn && gameStatus != GameStatus.PLAYER_SUDDEN_DEATH,
           'shadow-[inset_0px_0px_10px_5px_rgba(219,45,45,1)]':
@@ -306,7 +306,7 @@ const appendMove = async (data: Move | undefined = undefined) => {
   }
   const move = await getMove();
   if (move && isMyTurn.value) {
-    // socket.emit("moves", move);
+    socket.emit("moves", move);
     return;
   }
 };
@@ -449,6 +449,9 @@ onMounted(() => {
   });
   socket.on("your-turn", () => {
     isMyTurn.value = true;
+  });
+  socket.on("you're-next", () => {
+    isMyTurn.value = false;
   });
   status.value = GameConnectionStatus.WAITING;
 });

@@ -5,7 +5,7 @@
 
 
 use declarative_discord_rich_presence::DeclarativeDiscordIpcClient;
-use declarative_discord_rich_presence::activity::{Activity, Timestamps};
+use declarative_discord_rich_presence::activity::{Activity, Timestamps, Assets};
 use tauri::{Manager, State};
 use std::{time};
 fn main() {
@@ -16,6 +16,7 @@ fn main() {
     client.enable();
    
     let _ = client.set_activity(Activity::new()
+      .assets(Assets::new().large_image("logo"))
         .details("In Main Menu").timestamps(Timestamps::new().start(time::SystemTime::now().duration_since(time::UNIX_EPOCH).expect("Error").as_secs().try_into().unwrap()))
     );
     app.manage(client);
