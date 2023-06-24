@@ -15,7 +15,7 @@
         initial: { opacity: 0, y: -30 },
         visibleOnce: { opacity: 1, y: 0, transition: { delay: 750 } },
       }"
-      >One app, any platform. Play with people across the world.</span
+      >One app, many platforms. Play with people across the world.</span
     >
     <DownloadIcons />
   </div>

@@ -1,10 +1,17 @@
 <template>
-  <div class="flex justify-center py-18">
-    <Icon
-      v-for="platform in platforms"
-      :name="platform.icon"
-      :key="platform.name"
-    />
+  <div
+    class="grid grid-cols-2 lg:grid-cols-4 place-items-center py-18 mt-16 gap-y-16"
+  >
+    <div v-for="platform in platforms" class="flex flex-col">
+      <NuxtLink :href="platform.url">
+        <Icon
+          :name="platform.icon"
+          :key="platform.name"
+          class="h-32 w-32 hover:text-base-100 transition-colors duration-200 ease-in-out"
+        />
+        <span class="text-center block">{{ platform.name }}</span>
+      </NuxtLink>
+    </div>
   </div>
 </template>
 
@@ -24,6 +31,21 @@ const platforms = ref([
     name: "Linux",
     icon: "uil:linux",
     url: "https://github.com/lmaosoggypancakes/spellsword/releases/download/app-v0.1.0/spellsword_0.1.0_amd64.AppImage",
+  },
+  {
+    name: "Android",
+    icon: "uil:android",
+    url: "https://github.com/lmaosoggypancakes/spellsword/releases/download/app-v0.1.0/spellsword_0.1.0.apk",
+  },
+  {
+    name: "iOS",
+    icon: "uil:apple",
+    url: "https://github.com/lmaosoggypancakes/spellsword/releases/download/app-v0.1.0/spellsword_0.1.0.ipa",
+  },
+  {
+    name: "Web",
+    icon: "uil:globe",
+    url: "https://spellsword.xyz",
   },
 ]);
 </script>
