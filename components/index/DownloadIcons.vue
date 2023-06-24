@@ -2,8 +2,18 @@
   <div
     class="grid grid-cols-2 lg:grid-cols-4 place-items-center py-18 mt-16 gap-y-16"
   >
-    <div v-for="platform in platforms" class="flex flex-col">
-      <NuxtLink :href="platform.url">
+    <div v-for="(platform, index) in platforms" class="flex flex-col">
+      <NuxtLink
+        :href="platform.url"
+        v-motion="{
+          initial: { opacity: 0, x: -30 },
+          visibleOnce: {
+            opacity: 1,
+            x: 0,
+            transition: { delay: index * 250 + 500 },
+          },
+        }"
+      >
         <Icon
           :name="platform.icon"
           :key="platform.name"
