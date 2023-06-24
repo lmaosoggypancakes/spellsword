@@ -24,7 +24,11 @@
 import { io } from "socket.io-client";
 import { MagnifyingGlassIcon } from "@heroicons/vue/24/outline";
 import { Activity, Difficulty } from "~/types";
-
+import matchFoundTone from "~/assets/sounds/match-found.mp3";
+import { Howl } from "howler";
+const matchFoundSound = new Howl({
+  src: [matchFoundTone],
+});
 definePageMeta({
   layout: "app",
   middleware: "auth",
@@ -63,9 +67,12 @@ const matchmake = async (difficulty: Difficulty) => {
   });
 
   socket.on("match", ({ id }) => {
-    if (id) {
-      router.push(`/app/play/${id}`);
-    }
+    matchFoundSound.play();
+    setTimeout(() => {
+      if (id) {
+        router.push(`/app/play/${id}`);
+      }
+    }, 2000);
   });
 };
 </script>

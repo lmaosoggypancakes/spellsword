@@ -198,6 +198,12 @@
 import { Activity, Letter, Move } from "@/types";
 import { Game, GameConnectionStatus, GameStatus } from "@/types";
 import { io, Socket } from "socket.io-client";
+import { Howl } from "howler";
+import letterClick from "@/assets/letter_click.mp3";
+import enterClick from "@/assets/enter_click.mp3";
+import winTone from "@/assets/win_tone.mp3";
+import loseTone from "@/assets/lose_tone.mp3";
+
 import {
   TransitionRoot,
   TransitionChild,
@@ -222,6 +228,10 @@ const gameMetadata = reactive<Game>(<Game>gameReq.data.value);
 const opponent = gameMetadata.players.find(
   (user) => user.username != userStore.username
 );
+const letterClickSound = new Howl({ src: [letterClick] });
+const enterClickSound = new Howl({ src: [enterClick] });
+const winToneSound = new Howl({ src: [winTone] });
+const loseToneSound = new Howl({ src: [loseTone] });
 
 definePageMeta({
   layout: "lobby",
@@ -275,6 +285,7 @@ useKeydownEvent((event) => {
 });
 
 const toggleLetter = (letter: Letter, active = false) => {
+  letterClickSound.play();
   if (!isMyTurn.value) return;
   if (letter.active || active) {
     // if the letter is active (in queue), remove it from the queue
@@ -300,6 +311,7 @@ const popFromQueue = () => {
 };
 
 const appendMove = async (data: Move | undefined = undefined) => {
+  enterClickSound.play();
   if (data) {
     moves.value.push(data);
     return;
@@ -380,7 +392,14 @@ const gameStatus = computed<GameStatus>(() => {
   }
   return GameStatus.PLAYING;
 });
-
+watch(gameStatus, (status) => {
+  if (status == GameStatus.LOSS) {
+    loseToneSound.play();
+  }
+  if (status == GameStatus.WIN) {
+    winToneSound.play();
+  }
+});
 const isOpen = ref(true);
 
 function closeModal() {

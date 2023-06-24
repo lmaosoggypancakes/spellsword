@@ -7,7 +7,7 @@
       'hover:shadow-[inset_0_0_10px_rgba(169,255,203,1)] ': !letter.active,
       // 'bg-blue-400 bg-opacity-30 text-seasalt border-blue-400': letter,
     }"
-    @click="$emit('toggle', letter)"
+    @click="handleClick"
   >
     {{ letter.value }}
   </li>
@@ -22,6 +22,10 @@ const props = defineProps<{
   queue?: boolean;
 }>();
 const emits = defineEmits<{
-  toggle: Letter;
+  (e: "toggle", val: Letter): void;
 }>();
+
+const handleClick = () => {
+  emits("toggle", props.letter);
+};
 </script>
