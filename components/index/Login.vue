@@ -1,7 +1,7 @@
 <template>
-  <Popover title="Login"
+  <Popover title="Login" class="flex flex-row-reverse"
     ><form
-      class="mt-2 bg-neutral border-2 border-secondary p-6 rounded-xl"
+      class="mt-12 bg-neutral border-2 border-secondary p-6 rounded-xl"
       @submit.prevent="login"
     >
       <TextInput name="Username" type="text" v-model="username" />
@@ -11,7 +11,10 @@
         class="text-xs text-red-400"
         v-html="errorText"
       ></span>
-      <Button type="primary" class="w-full mt-4" :loading="status == 'loading'"
+      <Button
+        type="secondary"
+        class="w-full mt-4"
+        :loading="status == 'loading'"
         >Submit
       </Button>
     </form>
