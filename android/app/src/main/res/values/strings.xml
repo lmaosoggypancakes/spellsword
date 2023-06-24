@@ -1,7 +1,7 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0' encoding='utf-8' ?>
 <resources>
     <string name="app_name">Spellsword</string>
     <string name="title_activity_main">Spellsword</string>
-    <string name="package_name">com.spellsword.io</string>
-    <string name="custom_url_scheme">com.spellsword.io</string>
+    <string name="package_name">xyz.spellsword</string>
+    <string name="custom_url_scheme">xyz.spellsword</string>
 </resources>

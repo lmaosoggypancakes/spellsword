@@ -1,8 +1,0 @@
-{
-  "appId": "com.spellsword.io",
-  "appName": "Spellsword",
-  "webDir": ".output/public",
-  "server": {
-    "androidScheme": "https"
-  }
-}

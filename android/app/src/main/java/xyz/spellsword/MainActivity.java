@@ -1,4 +1,4 @@
-package com.spellsword.io;
+package xyz.spellsword;
 
 import com.getcapacitor.BridgeActivity;
 
