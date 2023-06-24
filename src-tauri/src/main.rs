@@ -17,7 +17,8 @@ fn main() {
    
     let _ = client.set_activity(Activity::new()
       .assets(Assets::new().large_image("logo"))
-        .details("In Main Menu").timestamps(Timestamps::new().start(time::SystemTime::now().duration_since(time::UNIX_EPOCH).expect("Error").as_secs().try_into().unwrap()))
+        .details("In Main Menu").timestamps(Timestamps::new().start(time::SystemTime::now().duration_since(time::UNIX_EPOCH)
+        .expect("Error").as_secs().try_into().unwrap()))
     );
     app.manage(client);
   }))

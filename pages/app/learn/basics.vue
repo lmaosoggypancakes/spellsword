@@ -26,7 +26,7 @@
                 <li>However, the word <code>PROBLEM</code> would not be a valid word; there is no <code>B</code> in the provided sequence.</li>
             </ul>
         </li>
-        <li>Each word is given a <i>score</i>; words with more complexity are given more points. The first user to reach <strong>30 points</strong> automatically wins. See the <NuxtLink href="/app/learn/scoring">scoring guidelines</NuxtLink> for more details.</li>
+        <li>Each word is given a <i>score</i>; words with more complexity are given more points. The first user to reach <strong>30 points</strong> automatically wins. See the <Link href="/app/learn/scoring">scoring guidelines</Link> for more details.</li>
         <li>Every invalid guess is given a <i>fault</i> to the user who made the guess. Users who make 3 <i>faults</i> before either player reaches 30 <i>points</i> automatically lose the match.</li>
         <li>
             <p>There are 3 possible states to the game's final result:</p>

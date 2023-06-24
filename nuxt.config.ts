@@ -25,4 +25,14 @@ export default defineNuxtConfig({
       // apiUrl: "http://localhost:8000",
     },
   },
+  sound: {
+    sounds: {
+      click: {
+        src: "/assets/button_click.mp3",
+        options: {
+          volume: 0.5,
+        },
+      },
+    },
+  },
 });

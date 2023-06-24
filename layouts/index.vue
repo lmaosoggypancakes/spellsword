@@ -9,7 +9,7 @@
           <div class="flex justify-end space-x-2">
             <Login />
             <Button type="primary" :loading="false">
-              <NuxtLink href="/register">Register</NuxtLink>
+              <Link href="/register">Register</Link>
             </Button>
           </div>
         </ul>
