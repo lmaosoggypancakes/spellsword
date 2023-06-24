@@ -11,6 +11,7 @@
     "tauri": "tauri"
   },
   "devDependencies": {
+    "@capacitor/cli": "^5.0.5",
     "@nuxt/image": "^1.0.0-rc.1",
     "@tailwindcss/typography": "^0.5.9",
     "@types/discord-rpc": "^4.0.4",
@@ -23,6 +24,8 @@
     "vue": "latest"
   },
   "dependencies": {
+    "@capacitor/android": "^5.0.5",
+    "@capacitor/core": "^5.0.5",
     "@headlessui/vue": "^1.7.13",
     "@heroicons/vue": "^2.0.16",
     "@nuxtjs/tailwindcss": "^6.6.0",
