@@ -9,7 +9,7 @@ import buttonClick from "~/assets/button_click.mp3";
 import { Howl } from "howler";
 const props = defineProps<{
   href: string;
-  class: string;
+  class?: string;
 }>();
 
 const emits = defineEmits<{

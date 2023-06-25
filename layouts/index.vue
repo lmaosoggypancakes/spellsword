@@ -1,5 +1,7 @@
 <template>
-  <div class="w-full text-seasalt font-bold min-h-screen flex flex-col">
+  <div
+    class="w-full text-seasalt font-bold min-h-screen flex flex-col scrollbar-none"
+  >
     <div class="navbar bg-base-100">
       <div class="flex-1">
         <a class="btn btn-ghost normal-case text-3xl">Spellsword</a>
@@ -8,9 +10,9 @@
         <ul class="menu menu-horizontal px-1">
           <div class="flex justify-end space-x-2">
             <Login />
-            <Button type="primary" :loading="false">
-              <Link href="/register">Register</Link>
-            </Button>
+            <LinkWithSound href="/register" class="btn btn-secondary"
+              >Register</LinkWithSound
+            >
           </div>
         </ul>
       </div>

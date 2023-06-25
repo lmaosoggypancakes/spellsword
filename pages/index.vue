@@ -2,8 +2,10 @@
   <Hero />
   <HeroToDownloadDivider />
   <Download />
-  <DownloadToAboutDivider />
-  <div class="h-screen"></div>
+  <Platforms />
+  <PlatformsToAboutDivider />
+  <About />
+  <Footer />
 </template>
 
 <script setup>
