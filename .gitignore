@@ -8,3 +8,4 @@ node_modules
 dist
 .DS_Store
 src-tauri/target
+package-lock.json.backup
