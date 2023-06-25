@@ -2,6 +2,7 @@
   <Hero />
   <HeroToDownloadDivider />
   <Download />
+  <DownloadToAboutDivider />
   <div class="h-screen"></div>
 </template>
 

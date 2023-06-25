@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen bg-accent text-primary">
+  <div class="min-h-screen bg-accent text-primary">
     <h1
       class="text-7xl text-center"
       v-motion="{
@@ -18,5 +18,6 @@
       >One app, many platforms. Play with people across the world.</span
     >
     <DownloadIcons />
+    <Platforms />
   </div>
 </template>

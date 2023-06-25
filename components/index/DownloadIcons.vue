@@ -3,7 +3,7 @@
     class="grid grid-cols-2 lg:grid-cols-4 place-items-center py-18 mt-16 gap-y-16"
   >
     <div v-for="(platform, index) in platforms" class="flex flex-col">
-      <Link
+      <LinkWithSound
         :href="platform.url"
         v-motion="{
           initial: { opacity: 0, x: -30 },
@@ -20,7 +20,7 @@
           class="h-32 w-32 hover:text-base-100 transition-colors duration-200 ease-in-out"
         />
         <span class="text-center block">{{ platform.name }}</span>
-      </Link>
+      </LinkWithSound>
     </div>
   </div>
 </template>
