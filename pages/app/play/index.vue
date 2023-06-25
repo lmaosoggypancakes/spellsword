@@ -24,7 +24,7 @@
 import { io } from "socket.io-client";
 import { MagnifyingGlassIcon } from "@heroicons/vue/24/outline";
 import { Activity, Difficulty } from "~/types";
-import matchFoundTone from "~/assets/sounds/match-found.mp3";
+import matchFoundTone from "~/assets/match_found_tone.mp3";
 import { Howl } from "howler";
 const matchFoundSound = new Howl({
   src: [matchFoundTone],
