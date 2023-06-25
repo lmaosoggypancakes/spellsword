@@ -1,13 +1,13 @@
 <template>
-  <span class="block text-center px-2 py-4 text-2xl">Register</span>
-  <form class="w-4/5 md:w-3/5 rounded-md flex-1 my-8" @submit.prevent="">
+  <span class="block text-center px-2 py-4 text-5xl">Register</span>
+  <form class="w-4/5 md:w-3/5 rounded-md flex-1 my-8" @submit.prevent>
     <div
-      class="grid grid-cols-2 place-items-center justify-items-center flex-1"
+      class="grid md:grid-cols-2 gap-y-16 place-items-center justify-items-center flex-1"
     >
       <div class="space-y-4">
-        <TextInput name="Username" type="text" v-model="username" />
-        <TextInput name="Password" type="password" v-model="password" />
-        <TextInput name="Email" type="text" v-model="email" />
+        <TextInput placeholder="Username" type="text" v-model="username" />
+        <TextInput placeholder="Password" type="password" v-model="password" />
+        <TextInput placeholder="Email" type="text" v-model="email" />
       </div>
       <Popover>
         <PopoverButton class="outline-none">
@@ -26,7 +26,11 @@
     </div>
     <div class="w-full flex flex-col items-center justify-center mt-16">
       <div class="my-4">
-        <input type="checkbox" class="mr-4" />
+        <input
+          type="checkbox"
+          class="mr-4 checkbox checkbox-md checkbox-secondary"
+          v-model="agreedToTerms"
+        />
         <span
           >I agree to use Spellsword in a fair manner that will facilitate the
           learning of both myself and others. I will not use any external tools
@@ -37,21 +41,33 @@
         type="secondary"
         class="w-[80%]"
         :loading="loading"
-        :disabled="ready"
+        :disabled="!ready"
         @click="register()"
         >Register</Button
       >
     </div>
   </form>
-  <ErrorToast v-if="error" />
+  <Toast v-if="error.length > 0">
+    <div
+      class="alert alert-error text-primary bg-opacity-80"
+      v-for="(e, index) in error"
+    >
+      <span>{{ e }}</span>
+      <Icon
+        name="uil:times"
+        class="ml-auto text-primary hover:text-base-100 w-9 h-9 p-2 hover:p-1 transition-all"
+        @click="error = error.filter((_, i) => i !== index)"
+      />
+    </div>
+  </Toast>
 </template>
 
 <script setup lang="ts">
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/vue";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
-const router = useRouter();
 const config = useRuntimeConfig();
+const router = useRouter();
 const username = ref("");
 const password = ref("");
 const email = ref("");
@@ -69,11 +85,11 @@ const ready = computed(() => {
   );
 });
 const loading = ref(false);
-const error = ref<null | string>(null);
+const error = ref<string[]>([]);
 const register = async () => {
-  loading.value = true;
-  loading.value;
   try {
+    console.log("submitting form!!!");
+    loading.value = true;
     const response = await axios.post(`${config.public.apiUrl}/api/users`, {
       username: username.value,
       password: password.value,
@@ -84,9 +100,10 @@ const register = async () => {
       // user was created
       router.push("/");
     }
-  } catch (err: any) {
+  } catch (err: AxiosError | any) {
+    console.log(err);
     loading.value = false;
-    error.value = handleRegistrationError(err);
+    error.value = handleRegistrationError(err.response.data);
   }
 };
 </script>

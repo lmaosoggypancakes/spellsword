@@ -1,11 +1,11 @@
 <template>
   <button
-    class="btn"
+    class="btn disabled:cursor-not-allowed"
     :class="`btn-${type}`"
     @click="($event) => handleClick($event)"
-    :disabled="props.loading"
+    :disabled="loading || disabled"
   >
-    <ArrowPathIcon class="w-6 h-6 animate-spin mx-auto" v-if="props.loading" />
+    <ArrowPathIcon class="w-6 h-6 animate-spin mx-auto" v-if="loading" />
     <slot v-else />
   </button>
 </template>
@@ -14,9 +14,13 @@
 import { ArrowPathIcon } from "@heroicons/vue/24/outline";
 import buttonClick from "../assets/button_click.mp3";
 import { Howl } from "howler";
+const sound = new Howl({
+  src: [buttonClick],
+});
 const props = defineProps<{
   type?: "primary" | "secondary" | "info";
   loading?: boolean;
+  disabled?: boolean;
 }>();
 
 const emits = defineEmits<{
@@ -24,13 +28,7 @@ const emits = defineEmits<{
 }>();
 
 function handleClick(e) {
-  console.log(buttonClick);
-  const sound = new Howl({
-    src: [buttonClick],
-  });
   sound.play();
-  setTimeout(() => {
-    emits("click", e);
-  }, 2000);
+  emits("click", e);
 }
 </script>

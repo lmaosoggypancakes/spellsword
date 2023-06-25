@@ -1,10 +1,11 @@
 <template>
   <div>
-    <label class="block">{{ props.name }}</label>
+    <label class="block" v-if="!placeholder">{{ props.name }}</label>
     <input
-      class="block bg-neutral border-b-2 border-secondary focus:p-3 p-2 rounded-md transition-all outline-none"
+      class="input input-bordered input-secondary w-full max-w-xs focus:p-6 transition-all"
       :type="props.type"
       :value="props.modelValue"
+      :placeholder="placeholder || ''"
       @input="handleInput"
     />
   </div>
@@ -14,9 +15,10 @@
 import buttonClick from "~/assets/button_click.mp3";
 import { Howl } from "howler";
 const props = defineProps<{
-  name: string;
+  name?: string;
   type: "password" | "text";
   modelValue: string;
+  placeholder?: string;
 }>();
 const emits = defineEmits<{
   (e: "update:modelValue", val: string): void;
