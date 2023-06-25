@@ -1,24 +1,36 @@
 <template>
-  <Popover title="Login" class="flex flex-row-reverse"
-    ><form
-      class="mt-12 bg-neutral border-2 border-secondary p-6 rounded-xl"
+  <!-- <Popover class="flex flex-row-reverse"
+
+  </Popover> -->
+  <div class="dropdown dropdown-end">
+    <label tabindex="0">
+      <Button type="secondary" class="btn-outline">Login</Button>
+    </label>
+    <form
+      class="bg-info dropdown-content border-2 border-info p-6 rounded-xl z-[1] w-72 space-y-4 mt-8"
       @submit.prevent="login"
     >
-      <TextInput name="Username" type="text" v-model="username" />
-      <TextInput name="Password" type="password" v-model="password" />
+      <input
+        type="text"
+        placeholder="Username"
+        class="input input-bordered w-full max-w-xs"
+        v-model="username"
+      /><input
+        type="text"
+        placeholder="Password"
+        class="input input-bordered w-full max-w-xs"
+        v-model="password"
+      />
       <span
         v-if="errorText"
         class="text-xs text-red-400"
         v-html="errorText"
       ></span>
-      <Button
-        type="secondary"
-        class="w-full mt-4"
-        :loading="status == 'loading'"
+      <Button type="info" class="w-full" :loading="status == 'loading'"
         >Submit
       </Button>
     </form>
-  </Popover>
+  </div>
 </template>
 
 <script setup lang="ts">

@@ -18,6 +18,5 @@
       >One app, many platforms. Play with people across the world.</span
     >
     <DownloadIcons />
-    <Platforms />
   </div>
 </template>

@@ -1,8 +1,12 @@
 <template>
   <div
-    class="grid grid-cols-2 lg:grid-cols-4 place-items-center py-18 mt-16 gap-y-16"
+    class="grid grid-cols-2 lg:grid-cols-4 place-items-center py-18 mt-16 gap-y-8 max-h-min overflow-hidden"
   >
-    <div v-for="(platform, index) in platforms" class="flex flex-col">
+    <div
+      v-for="(platform, index) in platforms"
+      class="flex flex-col p-4 transform transition ease-in hover:p-2"
+      :class="index % 2 === 0 ? 'hover:rotate-12' : 'hover:-rotate-12'"
+    >
       <LinkWithSound
         :href="platform.url"
         v-motion="{
@@ -10,14 +14,14 @@
           visibleOnce: {
             opacity: 1,
             x: 0,
-            transition: { delay: index * 250 + 500 },
+            transition: { delay: index * 250 + 250 },
           },
         }"
       >
         <Icon
           :name="platform.icon"
           :key="platform.name"
-          class="h-32 w-32 hover:text-base-100 transition-colors duration-200 ease-in-out"
+          class="h-32 w-32 hover:text-base-100 transition duration-200 ease-in-out"
         />
         <span class="text-center block">{{ platform.name }}</span>
       </LinkWithSound>

@@ -11,7 +11,7 @@
             }"
           >
             All power begins with a little bit of
-            <span class="text-secondary">knowledge.</span>
+            <span id="headline">knowledge.</span>
           </span>
           <p
             v-motion="{
@@ -47,4 +47,14 @@
   </div>
 </template>
 
-<script setup></script>
+<style>
+#headline {
+  /** TEXT GRADIENT */
+  color: #2dc7d3;
+  background-image: -webkit-linear-gradient(45deg, #2dc7d3 6%, #fcd0a1 82%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+</style>
