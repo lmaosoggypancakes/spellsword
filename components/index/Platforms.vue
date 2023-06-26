@@ -35,7 +35,7 @@
         },
       }"
     >
-      <p class="text-5xl mb-8 transform">Spellsword goes with you.</p>
+      <p class="text-5xl my-8 transform">Spellsword goes with you.</p>
       Be it on the fly, at home, or on a laptop. With its cross-platform
       compatibility, this immersive game accompanies you anytime, anywhere,
       enabling you to enhance your English language skills effortlessly. Whether

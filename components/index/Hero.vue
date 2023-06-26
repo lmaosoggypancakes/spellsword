@@ -4,7 +4,7 @@
       <div class="flex justify-center mt-36 h-full">
         <div class="md:max-w-md sm:max-w-full space-y-4">
           <span
-            class="lg:text-5xl font-extrabold text-2xl"
+            class="lg:text-6xl font-extrabold text-4xl text-center lg:text-left block"
             v-motion="{
               initial: { opacity: 0, y: -30 },
               enter: { opacity: 1, y: 0 },

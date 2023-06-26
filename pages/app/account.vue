@@ -8,7 +8,7 @@
         <PopoverButton class="outline-none">
           <img
             :src="edits.picture"
-            class="rounded-xl w-52 h-52 border-4 border-seasalt hover:border-secondary"
+            class="rounded-xl w-52 h-52 border-4 hover:border-secondary"
           />
         </PopoverButton>
         <PopoverPanel
@@ -19,10 +19,7 @@
         </PopoverPanel>
       </Popover>
 
-      <form
-        @submit.prevent
-        class="flex justify-around w-full my-8 text-seasalt"
-      >
+      <form @submit.prevent class="flex justify-around w-full my-8">
         <TextInput v-model="edits.username" type="text" :name="'Username'" />
         <TextInput v-model="edits.email" type="text" :name="'Email'" />
       </form>
@@ -54,7 +51,7 @@
               </span>
             </span>
           </div>
-          <span class="text-2xl text-center my-4 text-seasalt font-bold">{{
+          <span class="text-2xl text-center my-4 font-bold">{{
             stats.characters
           }}</span>
         </div>

@@ -13,7 +13,7 @@
         <PopoverButton class="outline-none">
           <img
             :src="picture"
-            class="rounded-xl w-52 h-52 border-4 border-seasalt hover:border-secondary"
+            class="rounded-xl w-52 h-52 border-4 hover:border-secondary"
           />
         </PopoverButton>
         <PopoverPanel

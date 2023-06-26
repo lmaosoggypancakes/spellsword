@@ -32,8 +32,11 @@
             :queue="true"
           />
         </ul>
+        <Button v-if="isMyTurn && queue.length > 0" type="secondary">
+          <Icon name="uil:enter" />
+        </Button>
         <div
-          class="absolute bottom-4 right-4 bg-apricot p-4 rounded-md text-2xl"
+          class="absolute bottom-4 right-4 bg-accent p-4 rounded-md text-2xl"
         >
           +{{ points }} Points
         </div>
@@ -57,13 +60,9 @@
             gameStatus == GameStatus.OPPONENT_SUDDEN_DEATH,
         }"
       >
-        <span class="text-4xl text-center block text-seasalt">{{
-          opponent?.username
-        }}</span>
+        <span class="text-4xl text-center block">{{ opponent?.username }}</span>
         <Avatar :src="opponent?.picture || ''" />
-        <div
-          class="absolute bottom-4 left-4 bg-apricot p-4 rounded-md text-2xl"
-        >
+        <div class="absolute bottom-4 left-4 bg- p-4 rounded-md text-2xl">
           +{{ opponentPoints }} Points
         </div>
       </div>
@@ -118,7 +117,7 @@
             leave-to="opacity-0 scale-95"
           >
             <DialogPanel
-              class="w-full max-w-md transform overflow-hidden bg-apricot text-primary p-6 text-left align-middle shadow-xl transition-all border-4 bg-secondary border-primary rounded-xl"
+              class="w-full max-w-md transform overflow-hidden text-primary p-6 text-left align-middle shadow-xl transition-all border-4 bg-secondary border-primary rounded-xl"
             >
               <DialogTitle
                 as="h3"
@@ -186,7 +185,7 @@
                   </tr>
                 </table>
                 <Button
-                  class="w-full p-4 bg-primary text-seasalt mt-4 hover:bg-raisin"
+                  class="w-full p-4 bg-primary mt-4 hover:bg-raisin"
                   @click="closeGame()"
                 >
                   Go Home
