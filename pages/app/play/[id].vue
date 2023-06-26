@@ -209,7 +209,9 @@ import letterClick from "@/assets/letter_click.mp3";
 import enterClick from "@/assets/enter_click.mp3";
 import winTone from "@/assets/win_tone.mp3";
 import loseTone from "@/assets/lose_tone.mp3";
-import suddenDeathTone from "@/assets/sudden_death.wav";
+import suddenDeathTone from "@/assets/sudden_death.mp3";
+import notAllowedTone from "@/assets/not_allowed.mp3";
+import { useVibrate } from "@vueuse/core";
 
 import {
   TransitionRoot,
@@ -221,6 +223,7 @@ import {
 } from "@headlessui/vue";
 import axios from "axios";
 
+const { vibrate, stop, isSupported } = useVibrate({ pattern: [100, 100, 100] });
 const MAX_SCORE = 20;
 const router = useRouter();
 const auth = useAuth();
@@ -240,6 +243,7 @@ const enterClickSound = new Howl({ src: [enterClick] });
 const winToneSound = new Howl({ src: [winTone] });
 const loseToneSound = new Howl({ src: [loseTone] });
 const suddenDeathSound = new Howl({ src: [suddenDeathTone] });
+const notAllowedSound = new Howl({ src: [notAllowedTone] });
 definePageMeta({
   layout: "lobby",
   middleware: ["auth"],
@@ -292,8 +296,12 @@ useKeydownEvent((event) => {
 });
 
 const toggleLetter = (letter: Letter, active = false) => {
+  if (!isMyTurn.value) {
+    notAllowedSound.play();
+    vibrate();
+    return;
+  }
   letterClickSound.play();
-  if (!isMyTurn.value) return;
   if (letter.active || active) {
     // if the letter is active (in queue), remove it from the queue
     // activate corresponding letter in the global letters
