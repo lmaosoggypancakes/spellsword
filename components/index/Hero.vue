@@ -24,15 +24,16 @@
             command of the english language.
           </p>
           <div class="flex flex-col justify-center">
-            <button
+            <NuxtLink
               class="btn btn-accent text-primary mt-8"
               v-motion="{
                 initial: { opacity: 0 },
                 enter: { opacity: 1, transition: { delay: 200 } },
               }"
+              href="#about"
             >
               Learn More
-            </button>
+            </NuxtLink>
           </div>
         </div>
       </div>
