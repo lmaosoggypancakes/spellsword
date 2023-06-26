@@ -203,6 +203,7 @@ import letterClick from "@/assets/letter_click.mp3";
 import enterClick from "@/assets/enter_click.mp3";
 import winTone from "@/assets/win_tone.mp3";
 import loseTone from "@/assets/lose_tone.mp3";
+import suddenDeathTone from "@/assets/sudden_death_tone.mp3";
 
 import {
   TransitionRoot,
@@ -232,7 +233,7 @@ const letterClickSound = new Howl({ src: [letterClick] });
 const enterClickSound = new Howl({ src: [enterClick] });
 const winToneSound = new Howl({ src: [winTone] });
 const loseToneSound = new Howl({ src: [loseTone] });
-
+const suddenDeathSound = new Howl({ src: [suddenDeathTone] });
 definePageMeta({
   layout: "lobby",
   middleware: ["auth"],
@@ -398,6 +399,12 @@ watch(gameStatus, (status) => {
   }
   if (status == GameStatus.WIN) {
     winToneSound.play();
+  }
+  if (
+    status == GameStatus.PLAYER_SUDDEN_DEATH ||
+    status == GameStatus.OPPONENT_SUDDEN_DEATH
+  ) {
+    suddenDeathSound.play();
   }
 });
 const isOpen = ref(true);
