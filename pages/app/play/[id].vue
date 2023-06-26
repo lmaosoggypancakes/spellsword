@@ -68,8 +68,8 @@
         </div>
       </div>
     </div>
-    <div class="w-full grid mt-auto border-t-2 border-secondary">
-      <ul class="gap-4 my-4">
+    <div class="w-full grid mt-auto border-t-2 border-secondary justify-center">
+      <ul class="my-4">
         <LetterBlock
           v-for="letter in letters"
           :letter="letter"
@@ -203,7 +203,7 @@ import letterClick from "@/assets/letter_click.mp3";
 import enterClick from "@/assets/enter_click.mp3";
 import winTone from "@/assets/win_tone.mp3";
 import loseTone from "@/assets/lose_tone.mp3";
-import suddenDeathTone from "@/assets/sudden_death_tone.mp3";
+import suddenDeathTone from "@/assets/sudden_death.wav";
 
 import {
   TransitionRoot,
