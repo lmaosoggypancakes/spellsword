@@ -7,7 +7,7 @@
       <Button type="secondary" class="btn-outline">Login</Button>
     </label>
     <form
-      class="bg-info dropdown-content border-2 border-info p-6 rounded-xl z-[1] w-72 space-y-4 mt-8"
+      class="bg-accent dropdown-content border-2 border-accent p-6 rounded-xl z-[1] w-72 space-y-4 mt-8"
       @submit.prevent="login"
     >
       <input
@@ -16,7 +16,7 @@
         class="input input-bordered w-full max-w-xs"
         v-model="username"
       /><input
-        type="text"
+        type="password"
         placeholder="Password"
         class="input input-bordered w-full max-w-xs"
         v-model="password"

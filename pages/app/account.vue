@@ -98,9 +98,9 @@ const userGameStatistics = userGames.map((game) =>
 );
 const editsMade = computed(() => {
   return (
-    edits.email != user.email ||
+    (edits.email != user.email && edits.email.length > 0) ||
     edits.picture != user.picture ||
-    edits.username != user.username
+    (edits.username != user.username && edits.username.length > 0)
   );
 });
 
