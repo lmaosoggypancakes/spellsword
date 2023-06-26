@@ -118,7 +118,7 @@
             leave-to="opacity-0 scale-95"
           >
             <DialogPanel
-              class="w-full max-w-md transform overflow-hidden bg-apricot text-primary p-6 text-left align-middle shadow-xl transition-all border-4 border-raisin"
+              class="w-full max-w-md transform overflow-hidden bg-apricot text-primary p-6 text-left align-middle shadow-xl transition-all border-4 bg-secondary border-primary rounded-xl"
             >
               <DialogTitle
                 as="h3"
@@ -139,42 +139,48 @@
                 class="text-2xl font-medium leading-6 text-gray-900 text-center"
                 v-else
               >
-                Draw
+                Draw :/
               </DialogTitle>
               <DialogDescription>
                 <table class="mx-auto mt-8">
                   <thead>
                     <tr>
-                      <th
-                        class="border border-slate-600 p-4 bg-orange-200"
-                      ></th>
-                      <th class="border border-slate-600 p-4 bg-orange-200">
+                      <th class="border border-slate-600 p-4 bg-accent"></th>
+                      <th class="border border-slate-600 p-4 bg-accent">
                         {{ userStore.username }}
                       </th>
-                      <th class="border border-slate-600 p-4 bg-orange-200">
+                      <th class="border border-slate-600 p-4 bg-accent">
                         {{ opponent?.username }}
                       </th>
                     </tr>
                   </thead>
                   <tr>
-                    <td class="border border-slate-700 p-4 bg-orange-200">
+                    <td class="border border-slate-700 p-4 bg-accent">
                       Points
                     </td>
-                    <td class="border border-slate-700 p-4 text-center">
+                    <td
+                      class="border border-slate-700 p-4 text-center bg-accent"
+                    >
                       {{ gameStatistics.playerPoints }}
                     </td>
-                    <td class="border border-slate-700 p-4 text-center">
+                    <td
+                      class="border border-slate-700 p-4 text-center bg-accent"
+                    >
                       {{ gameStatistics.opponentPoints }}
                     </td>
                   </tr>
                   <tr>
-                    <td class="border border-slate-700 p-4 bg-orange-200">
+                    <td class="border border-slate-700 p-4 bg-accent">
                       Word Accuracy
                     </td>
-                    <td class="border border-slate-700 p-4 text-center">
+                    <td
+                      class="border border-slate-700 p-4 text-center bg-accent"
+                    >
                       {{ gameStatistics.playerAccuracy }}%
                     </td>
-                    <td class="border border-slate-700 p-4 text-center">
+                    <td
+                      class="border border-slate-700 p-4 text-center bg-accent"
+                    >
                       {{ gameStatistics.opponentAccuracy }}%
                     </td>
                   </tr>
@@ -367,14 +373,14 @@ const resetLetters = () => {
 const gameStatus = computed<GameStatus>(() => {
   if (
     points.value >= MAX_SCORE &&
-    moves.value[moves.value.length - 1].userId != userStore.id &&
+    isMyTurn.value &&
     opponentPoints.value < MAX_SCORE
   ) {
     return GameStatus.WIN;
   }
   if (
     opponentPoints.value >= MAX_SCORE &&
-    moves.value[moves.value.length - 1].userId == userStore.id &&
+    !isMyTurn.value &&
     points.value < MAX_SCORE
   ) {
     return GameStatus.LOSS;
