@@ -52,11 +52,6 @@ const platforms = ref([
     url: "https://github.com/lmaosoggypancakes/spellsword/releases/download/app-v0.1.0/spellsword_0.1.0.apk",
   },
   {
-    name: "iOS",
-    icon: "uil:apple",
-    url: "https://github.com/lmaosoggypancakes/spellsword/releases/download/app-v0.1.0/spellsword_0.1.0.ipa",
-  },
-  {
     name: "Web",
     icon: "uil:globe",
     url: "https://spellsword.xyz",
