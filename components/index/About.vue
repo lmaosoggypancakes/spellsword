@@ -24,7 +24,9 @@
       to choose from, you can immerse yourself in a futuristic world of magic
       and learning. Compete with other players in real-time and climb the ranks!
     </div>
-    <div class="grid grid-rows-4 grid-cols-4 gap-x-0 gap-y-4 mt-24 xl:mt-0">
+    <div
+      class="grid grid-rows-2 grid-cols-2 lg:grid-rows-4 lg:grid-cols-4 gap-x-0 gap-y-4 mt-24 xl:mt-0"
+    >
       <nuxt-img
         v-for="(image, index) in images"
         :key="index"

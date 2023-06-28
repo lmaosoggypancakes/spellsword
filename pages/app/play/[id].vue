@@ -32,7 +32,11 @@
             :queue="true"
           />
         </ul>
-        <Button v-if="isMyTurn && queue.length > 0" type="secondary">
+        <Button
+          v-if="isMyTurn && queue.length > 0"
+          type="secondary"
+          @click="appendMove()"
+        >
           <Icon name="uil:enter" />
         </Button>
         <div
@@ -68,7 +72,7 @@
       </div>
     </div>
     <div class="w-full grid mt-auto border-t-2 border-secondary justify-center">
-      <ul class="my-4">
+      <ul class="my-4 grid grid-flow-col justify-center">
         <LetterBlock
           v-for="letter in letters"
           :letter="letter"
@@ -378,6 +382,9 @@ const resetLetters = () => {
 };
 
 const gameStatus = computed<GameStatus>(() => {
+  if (points.value >= MAX_SCORE && opponentPoints.value >= MAX_SCORE) {
+    return GameStatus.DRAW;
+  }
   if (
     points.value >= MAX_SCORE &&
     isMyTurn.value &&
@@ -401,9 +408,6 @@ const gameStatus = computed<GameStatus>(() => {
     return GameStatus.OPPONENT_SUDDEN_DEATH;
   }
 
-  if (points.value >= MAX_SCORE && opponentPoints.value >= MAX_SCORE) {
-    return GameStatus.DRAW;
-  }
   return GameStatus.PLAYING;
 });
 watch(gameStatus, (status) => {
