@@ -20,9 +20,14 @@
             gameStatus == GameStatus.PLAYER_SUDDEN_DEATH,
         }"
       >
-        <span class="text-4xl block">{{ userStore.username }}</span>
+        <div class="flex flex-col items-center">
+          <span class="text-4xl">{{ userStore.username }}</span>
+          <div class="inline badge badge-accent" v-if="isMyTurn">
+            Your turn!
+          </div>
+        </div>
         <Avatar :src="userStore.picture" />
-        <ul class="space-x-4 my-4">
+        <ul class="flex flex-row space-x-8 my-4">
           <LetterBlock
             v-for="letter in queue"
             :letter="letter"
@@ -39,9 +44,7 @@
         >
           <Icon name="uil:enter" />
         </Button>
-        <div
-          class="absolute bottom-4 right-4 bg-accent p-4 rounded-md text-2xl"
-        >
+        <div class="absolute bottom-4 right-4 p-4 rounded-md text-2xl">
           +{{ points }} Points
         </div>
       </div>
@@ -72,7 +75,9 @@
       </div>
     </div>
     <div class="w-full grid mt-auto border-t-2 border-secondary justify-center">
-      <ul class="my-4 grid grid-flow-col justify-center">
+      <ul
+        class="my-4 grid grid-flow-col grid-rows-2 w-screen justify-center gap-x-4"
+      >
         <LetterBlock
           v-for="letter in letters"
           :letter="letter"
