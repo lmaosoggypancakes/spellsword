@@ -76,7 +76,7 @@
     </div>
     <div class="w-full grid mt-auto border-t-2 border-secondary justify-center">
       <ul
-        class="my-4 grid grid-flow-col grid-rows-2 w-screen lg:justify-center lg:justify-start gap-x-4 overflow-auto place-self-center"
+        class="my-4 grid grid-flow-col grid-rows-2 w-screen lg:justify-center justify-start gap-x-4 overflow-auto place-self-center"
       >
         <LetterBlock
           v-for="letter in letters"
