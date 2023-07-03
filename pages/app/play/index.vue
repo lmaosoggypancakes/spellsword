@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full px-8 py-32 text grid lg:grid-cols-2 lg:grid-flow-col gap-x-8"
+    class="w-full px-8 py-8 md:py-32 text grid lg:grid-cols-2 lg:grid-flow-col gap-x-8"
   >
     <PlayModePanel
       primary
