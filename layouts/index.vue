@@ -9,7 +9,9 @@
       <div class="flex-none">
         <ul class="menu menu-horizontal px-1">
           <div class="flex justify-end space-x-2">
-            <Login />
+            <LinkWithSound href="/login" class="btn btn-outline btn-secondary"
+              >Login</LinkWithSound
+            >
             <LinkWithSound href="/register" class="btn btn-secondary"
               >Register</LinkWithSound
             >
