@@ -8,7 +8,7 @@
       move.guess.toUpperCase()
     }}</span>
     <span
-      class="inline-flex items-center font-bold text-sm px-2 py-1 bg-raisin rounded-md"
+      class="inline-flex items-center font-bold text-sm px-2 py-1 rounded-md"
       :class="{
         'float-right': opponent,
       }"

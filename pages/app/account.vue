@@ -27,7 +27,7 @@
         class="grid grid-cols-2 bg-primary w-[75vw] h-[70vh] overflow-auto place-items-center rounded-md border-primary border-8"
       >
         <div
-          class="bg-raisin w-5/6 p-2 mx-4 my-2 flex flex-col border-2 rounded-md bg-opacity-30 pl-4"
+          class="w-5/6 p-2 mx-4 my-2 flex flex-col border-2 rounded-md bg-opacity-30 pl-4"
           v-for="stats in userGameStatistics"
           :class="
             stats.status === GameStatus.WIN

@@ -193,10 +193,7 @@
                     </td>
                   </tr>
                 </table>
-                <Button
-                  class="w-full p-4 bg-primary mt-4 hover:bg-raisin"
-                  @click="closeGame()"
-                >
+                <Button class="w-full p-4 bg-primary mt-4" @click="closeGame()">
                   Go Home
                 </Button>
               </DialogDescription>
