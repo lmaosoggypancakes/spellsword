@@ -1,5 +1,5 @@
 <template>
-        <h1>Welcome to Spellsword!</h1>
+        <h1 class="text-center md:text-left">Welcome to Spellsword!</h1>
         <img src="/logo.png" class="w-64 h-64 mx-auto" />
         <p>
             Spellsword is an interactive, multiplayer game that's aimed to enhance our

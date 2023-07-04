@@ -13,12 +13,12 @@
       <span class="hidden md:inline">{{ link.name }}</span>
     </LinkWithSound>
   </nav>
-  <div class="btm-nav mt-5 md:hidden z-[10]">
+  <div class="btm-nav mt-5 md:hidden z-[10] bg-primary">
     <LinkWithSound
       v-for="link in navLinks"
       :href="link.href"
       :key="link.name"
-      active-class="active"
+      active-class="active  "
       class="flex items-center hover:bg-primary text-accent"
     >
       <component :is="link.icon" class="h-8 w-8 md:h-6 md:w-6 mx-4"></component>
@@ -38,7 +38,7 @@ import {
 const auth = useAuth();
 const navLinks = ref<AppNavLink[]>([
   {
-    href: "/app/account",
+    href: "/app/account/games",
     name: "Account",
     icon: UserCircleIcon,
   },

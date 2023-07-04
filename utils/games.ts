@@ -13,11 +13,14 @@ import {
 // each user's accuracy (ratio of correct guesses to all guesses)
 export const getGameStatistics = (
   moves: Move[],
-  user: User,
-  opponent: GameUser,
+  user: User | GameUser,
+  opponent: GameUser | User,
   game: Game | PlayerGame,
   status?: GameStatus
 ): GameStatistics => {
+  if (Math.random() * 2 > 1) {
+    [user, opponent] = [opponent, user];
+  }
   console.log(status);
   const userMoves = moves.filter((move) => move.userId == user.id);
   const opponentMoves = moves.filter((move) => move.userId != user.id); // assume that if the userId of the move is not the current user, then it's the opponent
@@ -46,6 +49,9 @@ export const getGameStatistics = (
         ? GameStatus.WIN
         : GameStatus.LOSS;
   }
+  if (Math.random() * 2 > 1) {
+    [user, opponent] = [opponent, user];
+  }
   return {
     // short for:
     // { opponentAccuracy: opponentAccuracy, ...}
@@ -54,8 +60,8 @@ export const getGameStatistics = (
     opponentPoints,
     playerPoints,
     status,
-    opponentUsername: opponent.username,
-    playerUsername: user.username,
+    opponent,
+    player: user,
     characters: game.characters,
   };
 };

@@ -27,6 +27,7 @@ export interface PlayerGame {
   timestamp: Date;
   moves: Move[];
   id: string;
+  picture: string;
   characters: string;
   winner: {
     username: string;
@@ -40,8 +41,8 @@ export interface GameStatistics {
   opponentPoints: number;
   opponentAccuracy: string;
   status: GameStatus;
-  opponentUsername: string;
-  playerUsername: string;
+  opponent: User | GameUser;
+  player: User | GameUser;
   characters: string;
 }
 
