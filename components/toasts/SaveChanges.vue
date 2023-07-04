@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-accent p-4 fixed bottom-2 right-2 rounded-md flex text-primary items-center"
+    class="bg-secondary p-4 fixed bottom-16 lg:bottom-4 right-2 rounded-md flex text-primary items-center"
     v-motion="{
       initial: {
         y: 100,

@@ -13,7 +13,7 @@
             />
           </PopoverButton>
           <PopoverPanel
-            class="absolute z-10 bg-primary rounded-md w-[30vw] h-[60vh] grid grid-cols-2 overflow-auto place-items-center"
+            class="absolute z-10 bg-primary rounded-md w-[80vw] left-0 lg:w-[30vw] h-[60vh] grid grid-cols-2 overflow-auto place-items-center"
             v-motion-slide-top
           >
             <ImageGallery v-model="edits.picture" />

@@ -2,7 +2,7 @@
   <div v-for="(avatar, index) in avatarUrls">
     <img
       :src="avatar"
-      class="p-1 w-44 h-44 rounded-xl border-2 border-primary hover:border-secondary place"
+      class="p-1 lg:w-44 lg:h-44 w-24 h-24 rounded-xl border-2 border-primary hover:border-secondary place"
       alt="Selected Avatar"
       :class="{
         'border-secondary': modelValue == avatar,
