@@ -225,7 +225,7 @@ import {
 import axios from "axios";
 
 const { vibrate, stop, isSupported } = useVibrate({ pattern: [100, 100, 100] });
-const MAX_SCORE = 20;
+const MAX_SCORE = 30;
 const router = useRouter();
 const auth = useAuth();
 const config = useRuntimeConfig();
@@ -433,6 +433,9 @@ function openModal() {
 }
 
 const closeGame = async () => {
+  useMatchmaker().status = null;
+  useMatchmaker().type = null;
+  status.value = GameConnectionStatus.WAITING;
   const winnerId =
     gameStatus.value == GameStatus.WIN
       ? userStore.id
