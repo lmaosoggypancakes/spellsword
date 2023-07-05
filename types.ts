@@ -118,3 +118,8 @@ export enum Activity {
   index = "In Main Menu",
   playing = "In Match",
 }
+
+export type Message = {
+  message: string;
+  username: string;
+};

@@ -48,15 +48,11 @@
           +{{ points }} Points
         </div>
       </div>
-      <div class="border-x-2 border-secondary overflow-y-auto hidden lg:block">
-        <ul>
-          <MoveCard
-            :move="move"
-            v-for="move in moves"
-            :opponent="move.userId !== userStore.id"
-          />
-        </ul>
-      </div>
+      <MiddleTab
+        :moves="moves"
+        @new_message="sendChatMessage"
+        :messages="chatMessages"
+      />
       <div
         class="col-span-3 p-8 items-center flex-col space-y-4 relative"
         :class="{
@@ -206,7 +202,7 @@
 </template>
 
 <script setup lang="ts">
-import { Activity, Letter, Move } from "@/types";
+import { Activity, Letter, Message, Move } from "@/types";
 import { Game, GameConnectionStatus, GameStatus } from "@/types";
 import { io, Socket } from "socket.io-client";
 import { Howl } from "howler";
@@ -236,6 +232,7 @@ const config = useRuntimeConfig();
 const route = useRoute();
 const userStore = useUser();
 const isMyTurn = ref(true);
+const chatMessages = ref<Message[]>([]);
 const gameReq = await useFetch(
   `${config.public.apiUrl}/api/games/${route.params.id}`
 );
@@ -483,6 +480,10 @@ onMounted(() => {
   socket.on("ready", () => {
     status.value = GameConnectionStatus.CONNECTED;
   });
+  socket.on("chat", (data) => {
+    console.log(data);
+    chatMessages.value.push(data);
+  });
   socket.on("new-move", ({ data }) => {
     if ((data as Move).userId !== userStore.id) {
       // latest move is from opponent, and so it's our turn
@@ -500,4 +501,13 @@ onMounted(() => {
   });
   status.value = GameConnectionStatus.WAITING;
 });
+
+const sendChatMessage = (message: string) => {
+  chatMessages.value.push({ message, username: userStore.username });
+  socket.emit("chat", {
+    gameId: gameMetadata.id,
+    username: userStore.username,
+    message,
+  });
+};
 </script>
