@@ -233,6 +233,7 @@ const route = useRoute();
 const userStore = useUser();
 const isMyTurn = ref(true);
 const chatMessages = ref<Message[]>([]);
+const unreadChatMessages = ref(0);
 const gameReq = await useFetch(
   `${config.public.apiUrl}/api/games/${route.params.id}`
 );
@@ -280,6 +281,9 @@ const opponentPoints = computed(() => {
   return s;
 });
 useKeydownEvent((event) => {
+  if (event?.target?.tagName?.toLowerCase() === "input") {
+    return;
+  }
   if (event.key == "Backspace") {
     popFromQueue();
   }

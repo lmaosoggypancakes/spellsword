@@ -32,7 +32,7 @@
         :key="index"
         :src="image"
         :alt="`image-${index}`"
-        class="rounded-lg shadow-lg mx-auto h-36 w-36 inline-block"
+        class="hover:rounded-lg shadow-lg mx-auto h-36 w-36 inline-block p-2 hover:p-0 rounded-2xl transition-all"
         :class="[
           index % 2 === 1 ? 'mt-0' : 'mt-2',
           index == 0 || index == 15 ? 'opacity-0' : 'opacity-100',
