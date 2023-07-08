@@ -1,6 +1,7 @@
 <template>
   <div
     class="h-screen w-screen flex flex-col max-h-screen"
+    ref="player"
     :class="
       gameStatus == GameStatus.DRAW ||
       gameStatus == GameStatus.LOSS ||
@@ -84,6 +85,7 @@
       </ul>
     </div>
   </div>
+  <MobilePanel :visible="showMobilePanel" @close="showMobilePanel = false" />
   <Waiting v-if="status == GameConnectionStatus.WAITING" />
   <Connecting v-if="status == GameConnectionStatus.CONNECTING" />
   <TransitionRoot
@@ -212,8 +214,7 @@ import winTone from "@/assets/win_tone.mp3";
 import loseTone from "@/assets/lose_tone.mp3";
 import suddenDeathTone from "@/assets/sudden_death.mp3";
 import notAllowedTone from "@/assets/not_allowed.mp3";
-import { useVibrate } from "@vueuse/core";
-
+import { useVibrate, useSwipe } from "@vueuse/core";
 import {
   TransitionRoot,
   TransitionChild,
@@ -234,6 +235,8 @@ const userStore = useUser();
 const isMyTurn = ref(true);
 const chatMessages = ref<Message[]>([]);
 const unreadChatMessages = ref(0);
+const player = ref(null);
+const { isSwiping, direction } = useSwipe(player);
 const gameReq = await useFetch(
   `${config.public.apiUrl}/api/games/${route.params.id}`
 );
@@ -254,6 +257,11 @@ definePageMeta({
 });
 const status = ref<GameConnectionStatus>(GameConnectionStatus.CONNECTING);
 let socket: Socket;
+const showMobilePanel = ref(false);
+watch(isSwiping, (v) => {
+  if (!v && direction.value == "left")
+    showMobilePanel.value = !showMobilePanel.value;
+});
 
 const letters = reactive<Letter[]>(convertSequence(gameMetadata.characters));
 const sequence = letters
