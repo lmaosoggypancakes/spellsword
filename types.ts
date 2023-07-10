@@ -123,3 +123,8 @@ export type Message = {
   message: string;
   username: string;
 };
+
+export type Library = {
+  name: string;
+  link: string;
+};
