@@ -5,7 +5,6 @@
   <Platforms />
   <PlatformsToAboutDivider />
   <About />
-  <Footer />
 </template>
 
 <script setup>

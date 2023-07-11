@@ -1,5 +1,5 @@
 <template>
-  <div class="grid lg:grid-cols-2 h-full">
+  <div class="grid lg:grid-cols-2 min-h-screen">
     <nuxt-img
       class="mx-auto my-auto lg:block hidden"
       src="/logo.png"
@@ -75,7 +75,7 @@
 import axios from "axios";
 
 definePageMeta({
-  layout: "base",
+  layout: "index",
 });
 /* Vue composables to gain access to the page's metadata like underlying router and runtime configuration of shared variables */
 const router = useRouter();
