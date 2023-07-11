@@ -1,5 +1,7 @@
 <template>
-  <div class="w-full font-bold min-h-screen flex flex-col scrollbar-none">
+  <div
+    class="w-full font-bold min-h-screen overflow-scroll flex flex-col scrollbar-none"
+  >
     <div class="navbar bg-base-100">
       <div class="flex-1">
         <NuxtLink href="/" class="btn btn-ghost normal-case text-3xl"

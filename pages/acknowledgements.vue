@@ -1,7 +1,10 @@
 <template>
   <div class="grid lg:grid-cols-2 grow lg:px-20 lg:overflow-y-hidden">
     <div class="flex flex-col items-center justify-center">
-      <div v-motion-slide-visible-left class="text-center lg:text-left">
+      <div
+        v-motion-slide-visible-left
+        class="text-center lg:text-left my-32 md:mt-0"
+      >
         <span class="text-6xl font-bold">
           We
           <Icon name="uil:heart" />
@@ -13,7 +16,7 @@
         </p>
       </div>
     </div>
-    <div class="lg:p-8 overflow-hidden">
+    <div class="lg:p-8 overflow-hidden h-screen lg:h-auto">
       <ul
         class="w-full bg-primary h-full rounded-2xl flex overflow-hidden relative"
       >
@@ -38,7 +41,6 @@
       </ul>
     </div>
   </div>
-  <Licenses />
 </template>
 
 <script setup lang="ts">
