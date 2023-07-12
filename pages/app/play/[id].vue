@@ -55,7 +55,7 @@
         :messages="chatMessages"
       />
       <div
-        class="col-span-3 p-8 items-center flex-col space-y-4 relative"
+        class="col-span-3 p-8 flex items-center flex-col space-y-4 relative"
         :class="{
           'hidden lg:flex': isMyTurn,
           'shadow-[inset_0px_0px_10px_5px_rgba(169,255,203,1)]':
@@ -510,6 +510,9 @@ onMounted(() => {
   });
   socket.on("your-turn", () => {
     isMyTurn.value = true;
+  });
+  socket.onAny((event, ...args) => {
+    console.log(event, args);
   });
   socket.on("you're-next", () => {
     isMyTurn.value = false;

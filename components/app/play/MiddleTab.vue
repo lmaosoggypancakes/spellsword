@@ -1,6 +1,6 @@
 <template>
   <div
-    class="border-x-2 border-secondary h-full hidden lg:flex lg:flex-col col-span-1"
+    class="border-x-2 border-secondary min-h-full hidden lg:flex lg:flex-col col-span-1 bg-primary"
   >
     <div class="tabs flex justify-between">
       <a
@@ -32,13 +32,12 @@
       v-show="!onMoves"
       @new_message="(m) => $emit('new_message', m)"
     />
-    <ul v-show="onMoves">
-      <MoveCard
-        :move="move"
-        v-for="move in moves"
-        :opponent="move.userId !== userStore.id"
-      />
-    </ul>
+    <MoveCard
+      v-show="onMoves"
+      :move="move"
+      v-for="move in moves"
+      :opponent="move.userId !== userStore.id"
+    />
   </div>
 </template>
 

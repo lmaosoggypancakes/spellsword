@@ -88,7 +88,6 @@ const loading = ref(false);
 const error = ref<string[]>([]);
 const register = async () => {
   try {
-    console.log("submitting form!!!");
     loading.value = true;
     const response = await axios.post(`${config.public.apiUrl}/api/users`, {
       username: username.value,
@@ -101,7 +100,7 @@ const register = async () => {
       router.push("/");
     }
   } catch (err: AxiosError | any) {
-    console.log(err);
+    console.error(err);
     loading.value = false;
     error.value = handleRegistrationError(err.response.data);
   }

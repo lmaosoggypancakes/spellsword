@@ -12,7 +12,7 @@
           visibleOnce: {
             opacity: 1,
             x: 0,
-            transition: { delay: 500 },
+            transition: { delay: 250 },
           },
         }"
       >
@@ -57,7 +57,6 @@ import { computed, ref, toRefs } from "vue";
 import { useWindowScroll } from "@vueuse/core";
 const { y } = useWindowScroll();
 const phone = ref<HTMLElement | null>(null);
-watch(phone, console.log);
 const rotate = computed(() => {
   if (!phone.value) return 0;
   return (y.value - phone.value?.offsetTop) / 50;
