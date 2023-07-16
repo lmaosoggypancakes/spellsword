@@ -13,7 +13,6 @@
   },
   "devDependencies": {
     "@capacitor/cli": "^5.0.5",
-    "@nuxt/image": "^1.0.0-rc.1",
     "@tailwindcss/typography": "^0.5.9",
     "@types/howler": "^2.2.7",
     "daisyui": "^3.0.3",
@@ -31,6 +30,7 @@
     "@capacitor/core": "^5.0.5",
     "@headlessui/vue": "^1.7.13",
     "@heroicons/vue": "^2.0.16",
+    "@nuxt/image-edge": "^1.0.0-rc.1-28143901.afe4120",
     "@nuxtjs/tailwindcss": "^6.6.0",
     "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
     "@pinia/nuxt": "^0.4.9",
