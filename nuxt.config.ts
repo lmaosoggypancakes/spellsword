@@ -21,7 +21,7 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
     "@vueuse/motion/nuxt",
-    "@nuxt/image",
+    "@nuxt/image-edge",
     "nuxt-icon",
   ],
   piniaPersistedstate: {
