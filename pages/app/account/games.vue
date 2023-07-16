@@ -45,5 +45,6 @@ const userGameStatistics = userGames.map((game) =>
 );
 definePageMeta({
   layout: "account",
+  middleware: "auth",
 });
 </script>

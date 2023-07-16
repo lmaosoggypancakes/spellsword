@@ -35,9 +35,7 @@
               placeholder="Password"
               v-model="password"
             />
-            <NuxtLink
-              href="/login/forgot"
-              class="text-xs float-right hover:underline"
+            <NuxtLink href="/" class="text-xs float-right hover:underline"
               >Forgot your password?</NuxtLink
             >
           </div>

@@ -4,6 +4,7 @@
 
 <script setup lang="ts">
 definePageMeta({
+  middleware: "auth",
   layout: "account",
 });
 </script>
