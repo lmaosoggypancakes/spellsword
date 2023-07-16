@@ -8,7 +8,7 @@
       @matchmake="matchmake"
       class="col-span-1"
     />
-    <nuxt-img
+    <img
       :src="user.picture"
       class="hidden xl:block place-self-center mask mask-squircle"
       height="512"

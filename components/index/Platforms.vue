@@ -19,7 +19,7 @@
         <div class="camera"></div>
         <div class="display">
           <div class="artboard artboard-demo phone-1">
-            <nuxt-img src="/logo.png" />
+            <img src="/logo.png" />
           </div>
         </div>
       </div>
