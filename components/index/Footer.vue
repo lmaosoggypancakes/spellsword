@@ -1,7 +1,7 @@
 <template>
   <!-- <footer class="footer items-center p-4 bg-base-200 text-neutral-content">
     <div class="items-center grid-flow-col">
-      <nuxt-img src="/logo.png" height="64" width="64" />
+      <img src="/logo.png" height="64" width="64" />
       <p>
         Copyright Spellsword © {{ new Date().getFullYear() }} - All rights
         reserved
@@ -15,7 +15,7 @@
   </footer> -->
   <footer class="footer p-10 bg-base-200 text-base-content">
     <div>
-      <nuxt-img src="/logo.png" height="128" width="128" />
+      <img src="/logo.png" height="128" width="128" />
       <p>
         Copyright Spellsword © {{ new Date().getFullYear() }} - All rights
         reserved

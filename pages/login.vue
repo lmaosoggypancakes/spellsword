@@ -1,6 +1,6 @@
 <template>
   <div class="grid lg:grid-cols-2 min-h-screen">
-    <nuxt-img
+    <img
       class="mx-auto my-auto lg:block hidden"
       src="/logo.png"
       height="512"
@@ -8,12 +8,7 @@
     />
     <div class="h-full flex items-center">
       <div class="h-[80%] w-full flex flex-col items-center space-y-8">
-        <nuxt-img
-          class="block lg:hidden"
-          src="/logo.png"
-          height="128"
-          width="128"
-        />
+        <img class="block lg:hidden" src="/logo.png" height="128" width="128" />
         <span class="text-5xl md:text-7xl text-center" id="name"
           >Spellsword</span
         >
