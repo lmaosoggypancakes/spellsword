@@ -6,6 +6,11 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
+  image: {
+    ipx: {
+      dir: "./public",
+    },
+  },
   nitro: {
     prerender: {
       ignore: [
