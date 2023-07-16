@@ -6,7 +6,16 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
-  nitro: {},
+  nitro: {
+    prerender: {
+      ignore: [
+        "/app/play",
+        "/app/account/friends",
+        "/app/account/settings",
+        "/app/account/games",
+      ],
+    },
+  },
   modules: [
     "@nuxtjs/tailwindcss",
     "@pinia/nuxt",
