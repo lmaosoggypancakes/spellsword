@@ -39,7 +39,7 @@
           <NuxtLink
             active-class="tab-active"
             class="tab tab-sm lg:tab-lg tab-lifted"
-            href="/app/account/friends"
+            href="/app/"
             >Friends</NuxtLink
           >
         </div>
