@@ -1,5 +1,5 @@
 <template>
-  <div class="p-16">
+  <!-- <div class="p-16">
     <div class="h-full md:grid md:grid-cols-2">
       <div class="flex justify-center mt-36 h-full">
         <div class="md:max-w-md sm:max-w-full space-y-4">
@@ -45,6 +45,9 @@
         }"
       />
     </div>
+  </div> -->
+  <div id="hero" class="h-screen grid place-items-center">
+    <img src="/logo.png" class="h-96 w-96" />
   </div>
 </template>
 
@@ -57,5 +60,10 @@
   -webkit-background-clip: text;
   text-fill-color: transparent;
   -webkit-text-fill-color: transparent;
+}
+
+#hero {
+  background-image: url("/banner.png");
+  background-attachment: fixed;
 }
 </style>
