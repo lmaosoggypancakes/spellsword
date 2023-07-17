@@ -1,7 +1,6 @@
 <template>
   <div
     class="h-screen w-screen flex flex-col max-h-screen"
-    ref="player"
     :class="
       gameStatus == GameStatus.DRAW ||
       gameStatus == GameStatus.LOSS ||
@@ -85,7 +84,11 @@
       </ul>
     </div>
   </div>
-  <MobilePanel :visible="showMobilePanel" @close="showMobilePanel = false" />
+  <MobilePanel
+    :visible="showMobilePanel"
+    @close="showMobilePanel = false"
+    ref="player"
+  />
   <Waiting v-if="status == GameConnectionStatus.WAITING" />
   <Connecting v-if="status == GameConnectionStatus.CONNECTING" />
   <TransitionRoot
@@ -259,7 +262,7 @@ const status = ref<GameConnectionStatus>(GameConnectionStatus.CONNECTING);
 let socket: Socket;
 const showMobilePanel = ref(false);
 watch(isSwiping, (v) => {
-  if (!v && direction.value == "left")
+  if (!v && direction.value == "up")
     showMobilePanel.value = !showMobilePanel.value;
 });
 
