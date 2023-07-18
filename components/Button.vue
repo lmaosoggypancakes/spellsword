@@ -1,7 +1,13 @@
 <template>
   <button
-    class="btn disabled:cursor-not-allowed"
-    :class="`btn-${type}`"
+    class="disabled:cursor-not-allowed uppercase tracking-wider font-semibold border-2 transition p-4 rounded-md"
+    :class="
+      type === 'primary'
+        ? 'border-[#4ab5cd] text-[#4ab5cd] hover:bg-[#4ab5cd] hover:text-white'
+        : type === 'secondary'
+        ? 'border-secondary text-secondary hover:bg-secondary hover:text-primary'
+        : 'border-accent text-accent hover:bg-accent hover:text-primary'
+    "
     @click="($event) => handleClick($event)"
     :disabled="loading || disabled"
   >

@@ -1,8 +1,8 @@
 <template>
   <div
-    class="w-full font-bold min-h-screen overflow-scroll flex flex-col scrollbar-none"
+    class="w-full font-bold min-h-screen overflow-scroll flex flex-col scrollbar-none relative"
   >
-    <div class="navbar bg-base-100">
+    <div class="navbar bg-base-100 bg-opacity-0">
       <div class="flex-1">
         <NuxtLink href="/" class="btn btn-ghost normal-case text-3xl"
           >Spellsword</NuxtLink

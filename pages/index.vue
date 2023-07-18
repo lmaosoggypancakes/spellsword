@@ -1,6 +1,5 @@
 <template>
   <Hero />
-  <HeroToDownloadDivider />
   <Download />
   <Platforms />
   <PlatformsToAboutDivider />
