@@ -26,7 +26,7 @@
 <style>
 @font-face {
   font-family: "Roxborough CF";
-  src: url("/assets/fonts/Roxborough CF.ttf");
+  src: url("@/assets/fonts/RoxboroughCF.ttf");
 }
 .brand {
   font-family: "Roxborough CF";
