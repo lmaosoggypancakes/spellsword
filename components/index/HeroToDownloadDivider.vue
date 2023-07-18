@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-hidden bg-base-100 bg-transparent">
+  <div class="bg-transparent">
     <svg
       preserveAspectRatio="none"
       viewBox="0 0 1200 120"

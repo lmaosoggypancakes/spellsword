@@ -1,12 +1,23 @@
 <template>
   <button
-    class="disabled:cursor-not-allowed uppercase tracking-wider font-semibold border-2 transition p-4 rounded-md"
+    class="disabled:cursor-not-allowed uppercase tracking-wider font-semibold border-2 transition ease-in-out p-4 rounded-md hover:shadow-md"
     :class="
-      type === 'primary'
-        ? 'border-[#4ab5cd] text-[#4ab5cd] hover:bg-[#4ab5cd] hover:text-white'
+      // type === 'primary'
+      //   ? 'border-[#4ab5cd] text-[#4ab5cd] hover:bg-[#4ab5cd] hover:text-white'
+      //   : type === 'secondary'
+      //   ? 'border-secondary text-secondary hover:bg-secondary hover:text-primary hover:shadow-secondary'
+      //   : 'border-accent text-accent hover:bg-accent hover:text-primary hover:shadow-accent'
+      fill
+        ? type === 'primary'
+          ? 'bg-[#4ab5cd] text-black border-[#4ab5cd] hover:bg-opacity-80'
+          : type === 'secondary'
+          ? 'bg-secondary text-primary border-secondary hover:bg-opacity-80'
+          : 'bg-accent text-primary border-accent hover:bg-opacity-80'
+        : type === 'primary'
+        ? 'border-[#4ab5cd] text-[#4ab5cd] hover:bg-[#4ab5cd] hover:text-white hover:shadow-md'
         : type === 'secondary'
-        ? 'border-secondary text-secondary hover:bg-secondary hover:text-primary'
-        : 'border-accent text-accent hover:bg-accent hover:text-primary'
+        ? 'border-secondary text-secondary hover:bg-secondary hover:text-primary hover:shadow-md'
+        : 'border-accent text-accent hover:bg-accent hover:text-primary hover:shadow-md'
     "
     @click="($event) => handleClick($event)"
     :disabled="loading || disabled"
@@ -26,6 +37,7 @@ const sound = new Howl({
 const props = defineProps<{
   type?: "primary" | "secondary" | "info";
   loading?: boolean;
+  fill?: boolean;
   disabled?: boolean;
 }>();
 

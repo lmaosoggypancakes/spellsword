@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-definePageMeta({ layout: "index", middleware: "auth" });
+definePageMeta({ layout: "base", middleware: "auth" });
 import { Activity } from "~/types";
 onMounted(() => {
   setDiscordActivity(Activity.index);

@@ -2,25 +2,7 @@
   <div
     class="w-full font-bold min-h-screen overflow-scroll flex flex-col scrollbar-none relative"
   >
-    <div class="navbar bg-base-100 bg-opacity-0">
-      <div class="flex-1">
-        <NuxtLink href="/" class="btn btn-ghost normal-case text-3xl"
-          >Spellsword</NuxtLink
-        >
-      </div>
-      <div class="flex-none">
-        <ul class="menu menu-horizontal px-1">
-          <div class="flex justify-end space-x-2">
-            <LinkWithSound href="/login" class="btn btn-outline btn-secondary"
-              >Login</LinkWithSound
-            >
-            <LinkWithSound href="/register" class="btn btn-secondary"
-              >Register</LinkWithSound
-            >
-          </div>
-        </ul>
-      </div>
-    </div>
+    <LandingNavbar />
     <slot />
     <Footer />
   </div>

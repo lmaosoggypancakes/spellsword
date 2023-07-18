@@ -1,22 +1,20 @@
 <template>
-  <div id="hero" class="h-screen flex flex-col justify-between">
-    <div class="grid grid-cols-2 place-items-center justify-center h-full z-10">
+  <div id="hero" class="min-h-screen flex flex-col justify-between pt-2">
+    <LandingNavbar class="bg-transparent" v-motion-fade />
+    <div
+      class="grid lg:rid-cols-2 place-items-center justify-center z-10 h-screen"
+      v-motion-fade
+    >
       <img src="/logo_transparent.png" class="h-96 w-96" />
       <div class="flex flex-col justify-center space-y-32">
         <div>
-          <p class="block brand text-7xl text-center">
-            <span class="text-[#4ab5cd] text-shadow-lg shadow-[#4ab5cd]"
-              >Spell</span
-            ><span class="text-[#e8746a] text-shadow-lg shadow-[#e8746a]"
-              >sword</span
-            >
-          </p>
-          <p class="mt-4">
+          <BrandLettering />
+          <p class="w-full max-w-lg mt-4 text-center">
             An interactive word-based game designed to improve our command of
             the English language.
           </p>
         </div>
-        <Button>Get Started</Button>
+        <Button type="accent">Play Now</Button>
       </div>
     </div>
     <HeroToDownloadDivider />
@@ -24,13 +22,6 @@
 </template>
 
 <style>
-@font-face {
-  font-family: "Roxborough CF";
-  src: url("@/assets/fonts/RoxboroughCF.ttf");
-}
-.brand {
-  font-family: "Roxborough CF";
-}
 #hero {
   position: relative;
 }

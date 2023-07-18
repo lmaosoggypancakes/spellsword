@@ -7,14 +7,6 @@
       <div
         class="mockup-phone transform transition-none ease-in-out"
         :style="`transform: rotateZ(${rotate}deg)`"
-        v-motion="{
-          initial: { opacity: 0, x: -30 },
-          visibleOnce: {
-            opacity: 1,
-            x: 0,
-            transition: { delay: 250 },
-          },
-        }"
       >
         <div class="camera"></div>
         <div class="display">

@@ -1,5 +1,7 @@
 <template>
-  <div class="w-full font-bold h-screen flex flex-col scrollbar-none">
+  <div
+    class="w-full font-bold min-h-screen overflow-scroll flex flex-col scrollbar-none relative"
+  >
     <slot />
   </div>
 </template>
