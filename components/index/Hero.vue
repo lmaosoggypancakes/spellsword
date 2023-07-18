@@ -1,5 +1,9 @@
 <template>
-  <div id="hero" class="min-h-screen flex flex-col justify-between pt-2">
+  <div
+    id="hero"
+    class="min-h-screen flex flex-col justify-between pt-2"
+    :style="`--zoom: ${zoom}%`"
+  >
     <LandingNavbar class="bg-transparent" v-motion-fade />
     <div
       class="grid lg:rid-cols-2 place-items-center justify-center z-10 h-screen"
@@ -29,6 +33,7 @@
   content: "";
   background-image: url("/banner.png");
   background-attachment: fixed;
+  background-position: 0 var(--zoom);
   top: 0;
   left: 0;
   bottom: 0;
@@ -38,3 +43,13 @@
   opacity: 40%;
 }
 </style>
+
+<script setup lang="ts">
+import { useWindowScroll } from "@vueuse/core";
+
+const scroll = useWindowScroll();
+
+const zoom = computed(() => {
+  return Math.round(scroll.y.value / 5);
+});
+</script>
