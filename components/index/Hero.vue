@@ -6,11 +6,11 @@
   >
     <LandingNavbar class="bg-transparent" v-motion-fade />
     <div
-      class="grid lg:rid-cols-2 place-items-center justify-center z-10 h-screen"
+      class="grid lg:grid-cols-2 place-items-center justify-center z-10 h-screen"
       v-motion-fade
     >
       <img src="/logo_transparent.png" class="h-96 w-96" />
-      <div class="flex flex-col justify-center space-y-32">
+      <div class="flex flex-col justify-center space-y-16">
         <div>
           <BrandLettering />
           <p class="w-full max-w-lg mt-4 text-center">
@@ -18,7 +18,17 @@
             the English language.
           </p>
         </div>
-        <Button type="accent">Play Now</Button>
+        <NuxtLink
+          :href="`/download/${os ? os[0].toLowerCase() : ''}`"
+          class="w-full"
+        >
+          <Button
+            type="accent"
+            class="flex items-center justify-center space-x-4 w-full"
+            ><span>Download for {{ os ? os[0] : "" }}</span>
+            <Icon :name="os ? os[1] : ''" class="place-self-center h-6 w-6"
+          /></Button>
+        </NuxtLink>
       </div>
     </div>
     <HeroToDownloadDivider />
@@ -46,9 +56,14 @@
 
 <script setup lang="ts">
 import { useWindowScroll } from "@vueuse/core";
+import { OperatingSystem } from "types";
 
+const os = ref<[OperatingSystem, string] | null>(null);
 const scroll = useWindowScroll();
 
+onMounted(() => {
+  os.value = getOperatingSystem();
+});
 const zoom = computed(() => {
   return Math.round(scroll.y.value / 5);
 });
