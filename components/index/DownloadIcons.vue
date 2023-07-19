@@ -21,7 +21,7 @@
         <Icon
           :name="platform.icon"
           :key="platform.name"
-          class="h-32 w-32 hover:text-base-100 transition duration-200 ease-in-out"
+          class="h-32 w-32 transition duration-200 ease-in-out"
         />
         <span class="text-center block">{{ platform.name }}</span>
       </LinkWithSound>
@@ -38,7 +38,7 @@ const platforms = ref([
   },
   {
     name: "MacOS",
-    icon: "uil:apple",
+    icon: "uil:apple-alt",
     url: "https://github.com/lmaosoggypancakes/spellsword/releases/download/app-v0.1.0/Spellsword_0.1.0_x64.dmg",
   },
   {
@@ -48,7 +48,7 @@ const platforms = ref([
   },
   {
     name: "Android",
-    icon: "uil:android",
+    icon: "uil:android-alt",
     url: "https://github.com/lmaosoggypancakes/spellsword/releases/download/app-v0.1.0/spellsword_0.1.0.apk",
   },
   {

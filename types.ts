@@ -128,3 +128,5 @@ export type Library = {
   name: string;
   link: string;
 };
+
+export type OperatingSystem = "Windows" | "Mac" | "Linux" | "Android" | "iOS";

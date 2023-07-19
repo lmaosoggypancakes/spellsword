@@ -4,8 +4,12 @@ const plugin = require("tailwindcss/plugin");
 module.exports = {
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Tektur"],
+      },
+
       textShadow: {
-        sm: "0 1px 2px var(--tw-shadow-color)",
+        sm: "0 4px 8px var(--tw-shadow-color)",
         DEFAULT: "0 2px 4px var(--tw-shadow-color)",
         lg: "0 8px 16px var(--tw-shadow-color)",
       },
@@ -50,7 +54,7 @@ module.exports = {
           neutral: "#341D33",
           accent: "#FCD0A1",
           primary: "#271625",
-          info: "#2dc7d3",
+          info: "#78e5ee",
           secondary: "#E2C2FF",
           error: "#942b45",
         },

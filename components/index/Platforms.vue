@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid lg:grid-cols-2 p-4 justify-around overflow-hidden bg-accent text-primary"
+    class="grid lg:grid-cols-2 p-4 justify-around overflow-hidden bg-primary text-primary"
     id="platforms"
   >
     <div class="flex flex-col justify-center" ref="phone">
@@ -45,7 +45,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed, ref, toRefs } from "vue";
+import { computed, ref } from "vue";
 import { useWindowScroll } from "@vueuse/core";
 const { y } = useWindowScroll();
 const phone = ref<HTMLElement | null>(null);

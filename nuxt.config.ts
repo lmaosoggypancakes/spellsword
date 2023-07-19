@@ -29,6 +29,7 @@ export default defineNuxtConfig({
     "@nuxt/image-edge",
     "nuxt-icon",
   ],
+  css: ["@/assets/global.css"],
   piniaPersistedstate: {
     debug: true,
     storage: "cookies",
@@ -47,6 +48,12 @@ export default defineNuxtConfig({
           volume: 0.5,
         },
       },
+    },
+  },
+  googleFonts: {
+    download: true,
+    families: {
+      Tektur: true,
     },
   },
 });
