@@ -25,8 +25,7 @@
     >
       <LetterBlock
         v-for="letter in Object.keys(letters_2)"
-        :letter="{ value: letter, id: index, active: false }"
-        :key="index"
+        :letter="{ value: letter, active: false }"
         :disabled="false"
         :style="`transform: rotate(${letters_2[letter]}deg)`"
       />
