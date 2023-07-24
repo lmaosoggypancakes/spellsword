@@ -1,19 +1,33 @@
 <template>
   <div
-    class="w-full px-8 py-8 md:py-32 text grid lg:grid-cols-2 lg:grid-flow-col gap-x-8"
+    class="w-full px-8 py-8 md:py-32 text grid lg:grid-cols-2 lg:grid-flow-col gap-x-8 relative h-full"
   >
-    <PlayModePanel
+    <PlayModeModal
       primary
+      :open="modal"
       :disabled="disabled"
       @matchmake="matchmake"
       class="col-span-1"
     />
-    <img
-      :src="user.picture"
-      class="hidden xl:block place-self-center mask mask-squircle"
-      height="512"
-      width="512"
-    />
+
+    <img class="rounded-full w-64 h-64" src="@/assets/ranks/radiant.png" />
+    <form
+      class="absolute bottom-0 flex justify-center px-32 py-16 w-full space-x-8"
+      @submit.prevent=""
+    >
+      <label
+        class="p-2 rounded-md border-2 text-info border-info hover:bg-info hover:text-primary transition cursor-pointer grow shadow-sm shadow-info inline-flex items-center justify-between"
+        @click="toggleModal()"
+        for="play_mode_modal"
+      >
+        <span class="text-lg uppercase p-1"> Adventure</span>
+        <Icon
+          name="ic:twotone-keyboard-arrow-up"
+          class="h-8 w-8 p-0 float-right"
+        />
+      </label>
+      <Button>Matchmake {{ modal }}</Button>
+    </form>
   </div>
   <Matchmaking v-if="status.matchmaking" />
   <Connecting v-if="status.connecting" />
@@ -26,6 +40,11 @@ import { MagnifyingGlassIcon } from "@heroicons/vue/24/outline";
 import { Activity, Difficulty } from "~/types";
 import matchFoundTone from "~/assets/match_found_tone.mp3";
 import { Howl } from "howler";
+import { useToggle } from "@vueuse/core";
+
+const [modal, toggleModal] = useToggle(false);
+const selectedDifficulty = ref<Difficulty | null>(null);
+const selectedDifficultyIcon = ref<Component | null>(null);
 const matchFoundSound = new Howl({
   src: [matchFoundTone],
 });
