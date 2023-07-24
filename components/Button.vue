@@ -1,6 +1,6 @@
 <template>
   <button
-    class="disabled:cursor-not-allowed uppercase tracking-wider font-semibold border-2 transition ease-in-out p-4 rounded-md hover:shadow-md"
+    class="disabled:cursor-not-allowed uppercase tracking-wider font-semibold border-2 transition ease-in-out p-2 rounded-md hover:shadow-md"
     :class="
       // type === 'primary'
       //   ? 'border-[#4ab5cd] text-[#4ab5cd] hover:bg-[#4ab5cd] hover:text-white'

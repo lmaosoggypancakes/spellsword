@@ -4,7 +4,7 @@
     class="lg:text-3xl border-2 bg-base-100 rounded-md transition-all cursor-pointer flex items-center justify-center w-16 h-16"
     :class="{
       'grayscale blur-sm': letter.active && !queue,
-      'hover:shadow-[inset_0_0_10px_rgba(169,255,203,1)] ': !letter.active,
+      'hover:shadow-inset-info ': !letter.active,
       // 'bg-blue-400 bg-opacity-30 text-seasalt border-blue-400': letter,
     }"
     @click="handleClick"

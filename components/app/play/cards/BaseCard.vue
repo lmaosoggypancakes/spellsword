@@ -1,7 +1,7 @@
 <template>
-  <div
-    class="card card-side card-compact shadow-xl bg-opacity-80 bg-accent text-primary hover:bg-opacity-60 cursor-pointer py-4 w-full max-w-2xl"
+  <Button
+    class="card card-side card-compact shadow-xl border-2 border-accent text-accent cursor-pointer w-full max-w-2xl transition-shadow hover:shadow-inset-accent rounded-sm text-left p-1"
   >
     <slot />
-  </div>
+  </Button>
 </template>

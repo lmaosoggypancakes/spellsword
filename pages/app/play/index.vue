@@ -4,7 +4,6 @@
   >
     <PlayModeModal
       primary
-      :open="modal"
       :disabled="disabled"
       @matchmake="matchmake"
       class="col-span-1"
@@ -17,16 +16,18 @@
     >
       <label
         class="p-2 rounded-md border-2 text-info border-info hover:bg-info hover:text-primary transition cursor-pointer grow shadow-sm shadow-info inline-flex items-center justify-between"
-        @click="toggleModal()"
+        @click="matchmaker.toggleOpen()"
         for="play_mode_modal"
       >
-        <span class="text-lg uppercase p-1"> Adventure</span>
+        <span class="text-lg uppercase p-1">{{
+          matchmaker.type || "choose difficulty"
+        }}</span>
         <Icon
           name="ic:twotone-keyboard-arrow-up"
           class="h-8 w-8 p-0 float-right"
         />
       </label>
-      <Button>Matchmake {{ modal }}</Button>
+      <Button>Matchmake</Button>
     </form>
   </div>
   <Matchmaking v-if="status.matchmaking" />
@@ -40,11 +41,8 @@ import { MagnifyingGlassIcon } from "@heroicons/vue/24/outline";
 import { Activity, Difficulty } from "~/types";
 import matchFoundTone from "~/assets/match_found_tone.mp3";
 import { Howl } from "howler";
-import { useToggle } from "@vueuse/core";
 
-const [modal, toggleModal] = useToggle(false);
-const selectedDifficulty = ref<Difficulty | null>(null);
-const selectedDifficultyIcon = ref<Component | null>(null);
+const matchmaker = useMatchmaker();
 const matchFoundSound = new Howl({
   src: [matchFoundTone],
 });
@@ -65,33 +63,32 @@ const status = reactive({
 });
 const disabled = computed(() => Object.values(status).some((a) => !!a));
 const matchmake = async (difficulty: Difficulty) => {
-  setDiscordActivity(Activity.matchmaking);
-  status.connecting = true;
-  const socket = io(`${config.public.apiUrl}/matchmake`, {
-    auth: {
-      difficulty,
-      token: auth.token,
-    },
-  });
-  socket.on("error", (error) => {
-    alert(error);
-    status.matchmaking = false;
-    status.connecting = false;
-    status.error = true;
-    socket.disconnect();
-  });
-  socket.on("welcome", ({ message }, ...args) => {
-    status.connecting = false;
-    status.matchmaking = true;
-  });
-
-  socket.on("match", ({ id }) => {
-    matchFoundSound.play();
-    setTimeout(() => {
-      if (id) {
-        router.push(`/app/play/${id}`);
-      }
-    }, 2000);
-  });
+  // setDiscordActivity(Activity.matchmaking);
+  // status.connecting = true;
+  // const socket = io(`${config.public.apiUrl}/matchmake`, {
+  //   auth: {
+  //     difficulty,
+  //     token: auth.token,
+  //   },
+  // });
+  // socket.on("error", (error) => {
+  //   alert(error);
+  //   status.matchmaking = false;
+  //   status.connecting = false;
+  //   status.error = true;
+  //   socket.disconnect();
+  // });
+  // socket.on("welcome", ({ message }, ...args) => {
+  //   status.connecting = false;
+  //   status.matchmaking = true;
+  // });
+  // socket.on("match", ({ id }) => {
+  //   matchFoundSound.play();
+  //   setTimeout(() => {
+  //     if (id) {
+  //       router.push(`/app/play/${id}`);
+  //     }
+  //   }, 2000);
+  // });
 };
 </script>

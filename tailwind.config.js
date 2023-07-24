@@ -7,7 +7,11 @@ module.exports = {
       fontFamily: {
         sans: ["Tektur"],
       },
-
+      boxShadow: {
+        "inset-accent": "inset 0 0 10px #FCD0A1",
+        "inset-info": "inset 0 0 10px #78e5ee",
+        "inset-secondary": "inset 0 0 10px #E2C2FF",
+      },
       textShadow: {
         sm: "4px 8px var(--tw-shadow-color)",
         DEFAULT: "0 2px 4px var(--tw-shadow-color)",
