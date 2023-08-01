@@ -1,12 +1,7 @@
 <template>
   <button
-    class="disabled:cursor-not-allowed uppercase tracking-wider font-semibold border-2 transition ease-in-out p-2 rounded-md hover:shadow-md"
+    class="disabled:cursor-not-allowed disabled:grayscale uppercase tracking-wider font-semibold border-2 transition ease-in-out p-2 rounded-md hover:shadow-md"
     :class="
-      // type === 'primary'
-      //   ? 'border-[#4ab5cd] text-[#4ab5cd] hover:bg-[#4ab5cd] hover:text-white'
-      //   : type === 'secondary'
-      //   ? 'border-secondary text-secondary hover:bg-secondary hover:text-primary hover:shadow-secondary'
-      //   : 'border-accent text-accent hover:bg-accent hover:text-primary hover:shadow-accent'
       fill
         ? type === 'primary'
           ? 'bg-[#4ab5cd] text-black border-[#4ab5cd] hover:bg-opacity-80'

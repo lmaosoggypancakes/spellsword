@@ -50,7 +50,7 @@
   right: 0;
   position: absolute;
   z-index: -1;
-  opacity: 40%;
+  opacity: 20%;
 }
 </style>
 
