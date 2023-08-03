@@ -1,8 +1,8 @@
 <template>
   <AppLayout>
-    <div class="w-full pt-8 lg:pt-20 px-8 lg:px-20 overflow-hidden">
+    <div class="w-full pt-8 lg:pt-20 px-8 lg:px-20 overflow-hidden h-full">
       <div
-        class="flex flex-col items-center text-accent overflow-hidden"
+        class="flex flex-col items-center text-accent overflow-hidden h-full"
         v-motion-slide-bottom
       >
         <Popover title="Game Over!">
@@ -43,44 +43,10 @@
             >Friends</NuxtLink
           >
         </div>
-        <slot />
-        <!-- <form @submit.prevent class="flex justify-around w-full my-8">
-          <TextInput v-model="edits.username" type="text" :name="'Username'" />
-          <TextInput v-model="edits.email" type="text" :name="'Email'" />
-        </form> -->
-        <!-- <div
-        class="grid lg:grid-cols-2 w-[90vw] h-[70vh] overflow-auto place-items-center rounded-md"
-        >
-          <div
-            class="w-5/6 p-2 mx-4 my-2 flex flex-col border-2 rounded-md bg-primary pl-4"
-            v-for="stats in userGameStatistics"
-            :class="
-              stats.status === GameStatus.WIN
-              ? 'border-green-400'
-              : stats.status === GameStatus.DRAW
-              ? 'border-red-400'
-              : 'border-gray-400'
-              "
-          >
-          <div class="text-accent">
-              <span class="float-left">
-                  <p class="text-4xl">
-                      {{ stats.playerPoints }}
-                    </p>
-                    <span> {{ stats.playerUsername }} </span>
-                </span>
-                <span class="float-right">
-                    <p class="text-4xl text-right">{{ stats.opponentPoints }}</p>
-                <span class="">
-                    {{ stats.opponentUsername }}
-                </span>
-            </span>
-        </div>
-            <span class="text-2xl text-center my-4 font-bold">{{
-              stats.characters
-            }}</span>
-          </div>
-        </div> -->
+        <Suspense>
+          <slot />
+          <template #fallback> <Loader /> </template>
+        </Suspense>
       </div>
     </div>
     <SaveChanges v-if="editsMade" :loading="editSaving" @click="save()" />
