@@ -1,5 +1,7 @@
 <template>
+  <Loader v-if="pending" />
   <div
+    v-else
     class="grid lg:w-[90vw] h-[70vh] overflow-y-auto overflow-x-hidden w-full place-items-center lg:p-12 p-2 gap-y-8"
   >
     <ClientOnly>
@@ -30,12 +32,11 @@
 import { UserEdit, PlayerGame, User, GameStatus, Activity } from "@/types";
 const config = useRuntimeConfig();
 const user = useUser();
-const userGames = <PlayerGame[]>(
-  (await useFetch(`${config.public.apiUrl}/api/users/${user.id}/games`)).data
-    .value
-);
-setTimeout(() => {}, 3000);
-const userGameStatistics = userGames.map((game) =>
+const { data, pending }: { data: Ref<PlayerGame[]>; pending: boolean } =
+  await useFetch(`${config.public.apiUrl}/api/users/${user.id}/games`, {
+    lazy: true,
+  });
+const userGameStatistics = data.value.map((game) =>
   getGameStatistics(
     game.moves,
     user,

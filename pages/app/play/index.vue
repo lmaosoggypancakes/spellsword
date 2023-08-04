@@ -1,6 +1,6 @@
 <template>
-  <div class="px-8 py-8 flex flex-col gap-x-8 relative h-full w-full">
-    <h1 class="text-4xl text-info uppercase text-right">
+  <div class="px-8 py-8 flex flex-col gap-x-8 relative h-full w-full uppercase">
+    <h1 class="text-4xl text-info text-center md:text-right">
       Hello, {{ user.username }}
     </h1>
     <div class="divider"></div>
@@ -8,6 +8,17 @@
       <LeftUserStatistics />
       <RankImage rank="diamond" />
       <RightUserStatistics />
+    </div>
+    <div class="flex flex-col w-2/3 mx-auto">
+      <span class="text-2xl flex justify-between mb-2">
+        <span class="inline float-left">progress</span>
+        <span class="inline float-right">3456/10345 SP</span>
+      </span>
+      <progress
+        class="progress progress-info shadow-md shadow-info"
+        value="50"
+        max="100"
+      ></progress>
     </div>
     <MatchmakingForm />
   </div>

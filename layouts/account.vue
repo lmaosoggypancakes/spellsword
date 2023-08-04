@@ -43,10 +43,7 @@
             >Friends</NuxtLink
           >
         </div>
-        <Suspense>
-          <slot />
-          <template #fallback> <Loader /> </template>
-        </Suspense>
+        <slot />
       </div>
     </div>
     <SaveChanges v-if="editsMade" :loading="editSaving" @click="save()" />
@@ -73,18 +70,7 @@ const edits = reactive<UserEdit>({
   picture: user.picture,
 });
 const editSaving = ref(false);
-const userGames = <PlayerGame[]>(
-  (await useFetch(`${config.public.apiUrl}/api/users/${user.id}/games`)).data
-    .value
-);
-const userGameStatistics = userGames.map((game) =>
-  getGameStatistics(
-    game.moves,
-    user,
-    game.players.find((player) => player.username != user.username)!,
-    game
-  )
-);
+
 const editsMade = computed(() => {
   return (
     (edits.email != user.email && edits.email.length > 0) ||
