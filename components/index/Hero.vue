@@ -13,7 +13,7 @@
       <div class="flex flex-col justify-center space-y-16">
         <div>
           <BrandLettering />
-          <p class="w-full max-w-lg mt-4 text-center">
+          <p class="w-full lg:max-w-lg max-w-sm mx-auto mt-4 text-center">
             An interactive word-based game designed to improve our command of
             the English language.
           </p>

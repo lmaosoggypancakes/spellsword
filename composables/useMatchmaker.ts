@@ -7,6 +7,8 @@ export default defineStore("matchmaker", {
       type: null as Difficulty | null,
       status: null as GameConnectionStatus | null,
       open: false,
+      ready: false,
+      matchmaking: false,
     };
   },
   actions: {

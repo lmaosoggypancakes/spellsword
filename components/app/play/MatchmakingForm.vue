@@ -1,7 +1,7 @@
 <template>
   <form
     class="mt-auto flex justify-center px-32 py-16 space-x-8 w-full"
-    @submit.prevent="matchmake(matchmaker.type as Difficulty)"
+    @submit.prevent="matchmaker.ready = true"
   >
     <label
       class="p-2 rounded-md border-2 text-info border-info hover:bg-info hover:text-primary transition cursor-pointer grow shadow-sm shadow-info inline-flex items-center justify-between"
@@ -17,8 +17,8 @@
       />
     </label>
     <Button
-      @click="matchmake(matchmaker.type as Difficulty)"
-      :disabled="!matchmaker.type"
+      @click="matchmaker.ready = true"
+      :disabled="!matchmaker.type || matchmaker.matchmaking"
       >Matchmake</Button
     >
   </form>

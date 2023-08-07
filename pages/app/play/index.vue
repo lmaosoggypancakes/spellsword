@@ -20,12 +20,13 @@
         max="100"
       ></progress>
     </div>
-    <MatchmakingForm />
+    <LazyMatchmakingForm />
   </div>
-  <PlayModeModal primary :disabled="disabled" @matchmake="matchmake" />
+  <LazyPlayModeModal primary :disabled="disabled" />
   <Matchmaking v-if="status.matchmaking" />
-  <Connecting v-if="status.connecting" />
-  <Error v-if="status.error" />
+  <LazyConnecting v-if="status.connecting" />
+  <LazyError v-if="status.error" />
+  <LazyMatchFound v-if="status.matchFound" />
 </template>
 
 <script setup lang="ts">
@@ -45,6 +46,7 @@ definePageMeta({
 
 const config = useRuntimeConfig();
 const router = useRouter();
+const matchmaker = useMatchmaker();
 const auth = useAuth();
 const user = useUser();
 const status = reactive({
@@ -54,9 +56,19 @@ const status = reactive({
   error: false,
 });
 const disabled = computed(() => Object.values(status).some((a) => !!a));
+
+matchmaker.$subscribe((_, matchmaker) => {
+  console.log(matchmaker);
+  if (matchmaker.ready && matchmaker.type) {
+    matchmake(matchmaker.type);
+  }
+  matchmaker.ready = false;
+});
 const matchmake = async (difficulty: Difficulty) => {
   setDiscordActivity(Activity.matchmaking);
   status.connecting = true;
+  matchmaker.matchmaking = true;
+
   const socket = io(`${config.public.apiUrl}/matchmake`, {
     auth: {
       difficulty,
@@ -76,8 +88,11 @@ const matchmake = async (difficulty: Difficulty) => {
   });
   socket.on("match", ({ id }) => {
     matchFoundSound.play();
+    status.matchmaking = false;
+    status.matchFound = true;
     setTimeout(() => {
       if (id) {
+        matchmaker.matchmaking = false;
         router.push(`/app/play/${id}`);
       }
     }, 2000);

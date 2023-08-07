@@ -14,7 +14,7 @@
         },
       }"
     >
-      <p class="text-5xl mb-8 transform">
+      <p class="text-5xl mb-8 transform uppercase">
         Embark on a quest and conquer rivals
       </p>
       With over

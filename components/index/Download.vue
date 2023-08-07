@@ -15,7 +15,7 @@
     </ul>
     <div class="md:col-span-3 col-span-5">
       <h1
-        class="text-info w-full text-center text-shadow-sm shadow-info"
+        class="text-info w-full text-center text-shadow-sm shadow-info uppercase"
         :style="`font-size: ${headerFontSize}rem`"
       >
         The battlefield is yours
