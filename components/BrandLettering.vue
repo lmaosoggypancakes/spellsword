@@ -1,7 +1,7 @@
 <template>
   <p class="block brand text-center" :class="small ? 'text-3xl' : 'text-8xl'">
-    <span class="text-[#4ab5cd] text-shadow-lg shadow-[#4ab5cd]">Spell</span
-    ><span class="text-[#e8746a] text-shadow-lg shadow-[#e8746a]">sword</span>
+    <span class="text-[#4ab5cd] text-shadow-sm shadow-[#4ab5cd]">Spell</span
+    ><span class="text-[#e8746a] text-shadow-sm shadow-[#e8746a]">sword</span>
   </p>
 </template>
 
