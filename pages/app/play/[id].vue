@@ -65,6 +65,24 @@
       >
         <span class="text-4xl text-center block">{{ opponent?.username }}</span>
         <Avatar :src="opponent?.picture || ''" />
+        <ul class="flex flex-row space-x-8 my-4">
+          <LetterBlock
+            v-for="(letter, index) in opponentSubmittedGuesses"
+            :key="index"
+            :letter="letter"
+            :id="letter.id"
+            :disabled="true"
+            :queue="true"
+            v-motion="{
+              initial: { blur: 10, y: 25 },
+              enter: {
+                blur: 0,
+                y: 0,
+                transition: { duration: 250 },
+              },
+            }"
+          />
+        </ul>
         <div class="absolute bottom-4 left-4 bg- p-4 rounded-md text-2xl">
           +{{ opponentPoints }} Points
         </div>
@@ -236,6 +254,7 @@ const config = useRuntimeConfig();
 const route = useRoute();
 const userStore = useUser();
 const isMyTurn = ref(true);
+const opponentSubmittedGuesses = ref<Letter[]>([]);
 const chatMessages = ref<Message[]>([]);
 const unreadChatMessages = ref(0);
 const player = ref(null);
@@ -248,11 +267,13 @@ const opponent = gameMetadata.players.find(
   (user) => user.username != userStore.username
 );
 const letterClickSound = new Howl({ src: [letterClick] });
+const letterClickSoundSoft = new Howl({ src: [letterClick], volume: 0.5 });
 const enterClickSound = new Howl({ src: [enterClick] });
 const winToneSound = new Howl({ src: [winTone] });
 const loseToneSound = new Howl({ src: [loseTone] });
 const suddenDeathSound = new Howl({ src: [suddenDeathTone] });
 const notAllowedSound = new Howl({ src: [notAllowedTone] });
+
 definePageMeta({
   layout: "lobby",
   middleware: ["auth"],
@@ -505,11 +526,29 @@ onMounted(() => {
   socket.on("new-move", ({ data }) => {
     if ((data as Move).userId !== userStore.id) {
       // latest move is from opponent, and so it's our turn
-      isMyTurn.value = true;
+      // opponentSubmittedGuesses.value.push(data);
+      const seq = data.guess.split("");
+      const letters = seq.map((s) => ({
+        active: true,
+        value: s,
+        id: s,
+      }));
+      console.log(seq, letters);
+      letters.forEach((letter: Letter, index: number) => {
+        setTimeout(() => {
+          opponentSubmittedGuesses.value.push(letter);
+          letterClickSoundSoft.play();
+        }, index * 200);
+      });
+      setTimeout(() => {
+        opponentSubmittedGuesses.value.length = 0;
+        moves.value.push(data);
+        isMyTurn.value = true;
+      }, 1400);
     } else {
+      moves.value.push(data);
       isMyTurn.value = false;
     }
-    moves.value.push(data);
   });
   socket.on("your-turn", () => {
     isMyTurn.value = true;

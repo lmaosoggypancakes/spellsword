@@ -87,6 +87,7 @@ const matchmake = async (difficulty: Difficulty) => {
     status.matchmaking = true;
   });
   socket.on("match", ({ id }) => {
+    console.log(id);
     matchFoundSound.play();
     status.matchmaking = false;
     status.matchFound = true;

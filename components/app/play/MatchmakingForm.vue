@@ -16,9 +16,7 @@
         class="h-8 w-8 p-0 float-right"
       />
     </label>
-    <Button
-      @click="matchmaker.ready = true"
-      :disabled="!matchmaker.type || matchmaker.matchmaking"
+    <Button :disabled="!matchmaker.type || matchmaker.matchmaking"
       >Matchmake</Button
     >
   </form>
@@ -28,4 +26,5 @@
 import { Difficulty } from "types";
 
 const matchmaker = useMatchmaker();
+console.log(matchmaker.type);
 </script>
