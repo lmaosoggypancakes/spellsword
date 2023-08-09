@@ -570,4 +570,6 @@ const sendChatMessage = (message: string) => {
     message,
   });
 };
+
+console.log("funny");
 </script>

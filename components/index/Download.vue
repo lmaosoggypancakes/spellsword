@@ -38,6 +38,7 @@
 
 <script setup lang="ts">
 import { useWindowScroll } from "@vueuse/core";
+import { useMotion } from "@vueuse/motion";
 
 const download: Ref<null | HTMLElement> = ref(null);
 const scroll = useWindowScroll();
@@ -74,46 +75,61 @@ const letters_2 = [
   return acc;
 }, {});
 
-const leftMotion = useMotion(left, {
-  initial: { opacity: 0 },
-  enter: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      type: "spring",
-      stiffness: 150,
-      damping: 10,
+// const props = defineProps<{
+//   rank: "silver" | "gold" | "radiant" | "diamond";
+// }>();
+// const getImageUrl = () => {
+//   const url = new URL(`/assets/ranks/${props.rank}.png`, import.meta.url);
+//   return url;
+// };
+(() => {
+  const leftMotion = useMotion(left, {
+    initial: { opacity: 0 },
+    enter: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 150,
+        damping: 10,
+        onComplete: () => {
+          leftMotion.variant.value = "levitate";
+        },
+      },
     },
-  },
-  levitate: {
-    y: 15,
-    transition: {
-      duration: 2000,
-      repeat: Infinity,
-      ease: "easeInOut",
-      repeatType: "mirror",
+    levitate: {
+      y: 15,
+      transition: {
+        duration: 2000,
+        repeat: Infinity,
+        ease: "easeInOut",
+        repeatType: "mirror",
+      },
     },
-  },
-});
-const rightMotion = useMotion(right, {
-  initial: { opacity: 0 },
-  enter: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      type: "spring",
-      stiffness: 150,
-      damping: 10,
+  });
+  const rightMotion = useMotion(right, {
+    initial: { opacity: 0 },
+    enter: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 150,
+        damping: 10,
+        onComplete: () => {
+          rightMotion.variant.value = "levitate";
+        },
+      },
     },
-  },
-  levitate: {
-    y: 15,
-    transition: {
-      duration: 2000,
-      repeat: Infinity,
-      ease: "easeInOut",
-      repeatType: "mirror",
+    levitate: {
+      y: 15,
+      transition: {
+        duration: 2000,
+        repeat: Infinity,
+        ease: "easeInOut",
+        repeatType: "mirror",
+      },
     },
-  },
-});
+  });
+})();
 </script>
