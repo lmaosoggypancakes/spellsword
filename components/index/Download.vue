@@ -74,13 +74,6 @@ const letters_2 = [
   return acc;
 }, {});
 
-// const props = defineProps<{
-//   rank: "silver" | "gold" | "radiant" | "diamond";
-// }>();
-// const getImageUrl = () => {
-//   const url = new URL(`/assets/ranks/${props.rank}.png`, import.meta.url);
-//   return url;
-// };
 const leftMotion = useMotion(left, {
   initial: { opacity: 0 },
   enter: {
@@ -90,9 +83,6 @@ const leftMotion = useMotion(left, {
       type: "spring",
       stiffness: 150,
       damping: 10,
-      onComplete: () => {
-        leftMotion.variant.value = "levitate";
-      },
     },
   },
   levitate: {
@@ -114,9 +104,6 @@ const rightMotion = useMotion(right, {
       type: "spring",
       stiffness: 150,
       damping: 10,
-      onComplete: () => {
-        rightMotion.variant.value = "levitate";
-      },
     },
   },
   levitate: {
