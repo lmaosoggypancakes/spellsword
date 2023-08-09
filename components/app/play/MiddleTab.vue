@@ -32,12 +32,13 @@
       v-show="!onMoves"
       @new_message="(m) => $emit('new_message', m)"
     />
-    <MoveCard
-      v-show="onMoves"
-      :move="move"
-      v-for="move in moves"
-      :opponent="move.userId !== userStore.id"
-    />
+    <div class="overflow-y-auto" v-show="onMoves">
+      <MoveCard
+        :move="move"
+        v-for="move in moves"
+        :opponent="move.userId !== userStore.id"
+      />
+    </div>
   </div>
 </template>
 

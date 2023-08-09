@@ -1,5 +1,7 @@
 <template>
-  <div class="flex flex-col h-screen w-screen items-center fixed top-0">
+  <div
+    class="flex flex-col h-screen w-screen items-center fixed top-0 md:hidden"
+  >
     <Transition @leave="(el, done) => motion.pop.leave(done)">
       <div
         class="h-[90vh] w-[90vw] bg-secondary backdrop-blur-md mt-[10vh] rounded-2xl"
