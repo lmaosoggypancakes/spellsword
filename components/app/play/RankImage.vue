@@ -27,7 +27,11 @@ const { variant } = useMotion(rank, {
       stiffness: 150,
       damping: 10,
       onComplete: () => {
-        variant.value = "levitate";
+        try {
+          variant.value = "levitate";
+        } catch (error) {
+          console.log(error);
+        }
       },
     },
   },

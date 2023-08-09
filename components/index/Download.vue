@@ -82,54 +82,60 @@ const letters_2 = [
 //   const url = new URL(`/assets/ranks/${props.rank}.png`, import.meta.url);
 //   return url;
 // };
-(() => {
-  const leftMotion = useMotion(left, {
-    initial: { opacity: 0 },
-    enter: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 150,
-        damping: 10,
-        onComplete: () => {
-          leftMotion.variant.value = "levitate";
-        },
+const leftMotion = useMotion(left, {
+  initial: { opacity: 0 },
+  enter: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 150,
+      damping: 10,
+      onComplete: () => {
+        try {
+          leftMotion.value = "levitate";
+        } catch (error) {
+          console.log(error);
+        }
       },
     },
-    levitate: {
-      y: 15,
-      transition: {
-        duration: 2000,
-        repeat: Infinity,
-        ease: "easeInOut",
-        repeatType: "mirror",
+  },
+  levitate: {
+    y: 15,
+    transition: {
+      duration: 2000,
+      repeat: Infinity,
+      ease: "easeInOut",
+      repeatType: "mirror",
+    },
+  },
+});
+const rightMotion = useMotion(right, {
+  initial: { opacity: 0 },
+  enter: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 150,
+      damping: 10,
+      onComplete: () => {
+        try {
+          rightMotion.value = "levitate";
+        } catch (error) {
+          console.log(error);
+        }
       },
     },
-  });
-  const rightMotion = useMotion(right, {
-    initial: { opacity: 0 },
-    enter: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 150,
-        damping: 10,
-        onComplete: () => {
-          rightMotion.variant.value = "levitate";
-        },
-      },
+  },
+  levitate: {
+    y: 15,
+    transition: {
+      duration: 2000,
+      repeat: Infinity,
+      ease: "easeInOut",
+      repeatType: "mirror",
     },
-    levitate: {
-      y: 15,
-      transition: {
-        duration: 2000,
-        repeat: Infinity,
-        ease: "easeInOut",
-        repeatType: "mirror",
-      },
-    },
-  });
-})();
+  },
+});
 </script>
