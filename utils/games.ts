@@ -21,7 +21,6 @@ export const getGameStatistics = (
   if (Math.random() * 2 > 1) {
     [user, opponent] = [opponent, user];
   }
-  console.log(status);
   const userMoves = moves.filter((move) => move.userId == user.id);
   const opponentMoves = moves.filter((move) => move.userId != user.id); // assume that if the userId of the move is not the current user, then it's the opponent
   const playerPoints = userMoves

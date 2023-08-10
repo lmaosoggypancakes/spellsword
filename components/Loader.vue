@@ -9,8 +9,8 @@
 
 <style>
 .loader path {
-  stroke-dasharray: 300;
-  stroke-dashoffset: 450;
+  stroke-dasharray: 50;
+  stroke-dashoffset: 200;
   animation: draw 3s ease-in alternate;
   animation-iteration-count: infinite;
   -webkit-animation-iteration-count: infinite;
