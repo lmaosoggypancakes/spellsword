@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { UserEdit, PlayerGame, User, GameStatus, Activity } from "@/types";
+import { UserEdit, PlayerGame, User, GameStatus, Activity, GameStatistics } from "@/types";
 const config = useRuntimeConfig();
 const user = useUser();
 const { data, pending } = await useLazyFetch(
@@ -29,7 +29,7 @@ const { data, pending } = await useLazyFetch(
   { server: false }
 );
 
-const userGameStatistics = ref([]);
+const userGameStatistics = ref<GameStatistics[]>([]);
 
 watch(data, (newData) => {
   userGameStatistics.value = newData.map((game) =>

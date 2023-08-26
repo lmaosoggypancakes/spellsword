@@ -485,9 +485,9 @@ const closeGame = async () => {
         winner_id: winnerId,
       }
     );
-    router.push("/");
+    window.location.href = "/"
   } catch (err) {
-    console.error(err);
+    alert(err);
   }
 };
 const gameStatistics = computed(() => {
