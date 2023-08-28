@@ -21,7 +21,14 @@
 </template>
 
 <script setup lang="ts">
-import { UserEdit, PlayerGame, User, GameStatus, Activity, GameStatistics } from "@/types";
+import {
+  UserEdit,
+  PlayerGame,
+  User,
+  GameStatus,
+  Activity,
+  GameStatistics,
+} from "@/types";
 const config = useRuntimeConfig();
 const user = useUser();
 const { data, pending } = await useLazyFetch(
@@ -32,14 +39,17 @@ const { data, pending } = await useLazyFetch(
 const userGameStatistics = ref<GameStatistics[]>([]);
 
 watch(data, (newData) => {
-  userGameStatistics.value = newData.map((game) =>
-    getGameStatistics(
-      game.moves,
-      user,
-      game.players.find((player) => player.username != user.username)!,
-      game
-    )
-  )
+  console.log(data);
+  userGameStatistics.value = newData
+    .sort((a, b) => new Date(b.timestamp) > new Date(a.timestamp))
+    .map((game) =>
+      getGameStatistics(
+        game.moves,
+        user,
+        game.players.find((player) => player.username != user.username)!,
+        game
+      )
+    );
 });
 
 definePageMeta({
