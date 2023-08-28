@@ -225,7 +225,7 @@
 </template>
 
 <script setup lang="ts">
-import { Activity, Letter, Message, Move } from "@/types";
+import { Activity, Difficulty, Letter, MAX_SCORES, Message, Move } from "@/types";
 import { Game, GameConnectionStatus, GameStatus } from "@/types";
 import { io, Socket } from "socket.io-client";
 import { Howl } from "howler";
@@ -247,7 +247,9 @@ import {
 import axios from "axios";
 
 const { vibrate, stop, isSupported } = useVibrate({ pattern: [100, 100, 100] });
-const MAX_SCORE = 30;
+
+
+
 const router = useRouter();
 const auth = useAuth();
 const config = useRuntimeConfig();
@@ -273,6 +275,7 @@ const winToneSound = new Howl({ src: [winTone] });
 const loseToneSound = new Howl({ src: [loseTone] });
 const suddenDeathSound = new Howl({ src: [suddenDeathTone] });
 const notAllowedSound = new Howl({ src: [notAllowedTone] });
+const MAX_SCORE = MAX_SCORES[gameMetadata.difficulty]
 
 definePageMeta({
   layout: "lobby",

@@ -71,6 +71,7 @@ export type Game = {
     username: true;
   };
   players: GameUser[];
+  difficulty: Difficulty;
 };
 
 export type Move =
@@ -130,3 +131,10 @@ export type Library = {
 };
 
 export type OperatingSystem = "Windows" | "Mac" | "Linux" | "Android" | "iOS";
+
+export const MAX_SCORES: Record<Difficulty, number> = {
+  [Difficulty.CASUAL]: 50,
+  [Difficulty.ADVENTURE]: 40,
+  [Difficulty.MASTER]: 30,
+  [Difficulty.COMPUTER]: 30,
+} as const;

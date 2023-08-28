@@ -39,7 +39,7 @@ watch(data, (newData) => {
       game.players.find((player) => player.username != user.username)!,
       game
     )
-  );
+  )
 });
 
 definePageMeta({
