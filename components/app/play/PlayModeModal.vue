@@ -22,11 +22,9 @@ import CasualCard from "./cards/CasualCard.vue";
 import AdventureCard from "./cards/AdventureCard.vue";
 import MasterCard from "./cards/MasterCard.vue";
 import ComputerCard from "./cards/ComputerCard.vue";
-import { Difficulty } from "~/types";
 
-const router = useRouter();
 const matchmaker = useMatchmaker();
-const props = defineProps<{
+defineProps<{
   disabled?: boolean;
 }>();
 const modes = [CasualCard, AdventureCard, MasterCard, ComputerCard];

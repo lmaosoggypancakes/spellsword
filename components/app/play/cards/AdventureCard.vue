@@ -4,8 +4,9 @@
     <div class="card-body max-w-xs">
       <h2 class="card-title lg:text-3xl text-xl">Adventure</h2>
       <p class="text-xs">
-        9 Consonants, 4 Vowels. Practice your Spellsword abilities in a fun and
-        playful way!
+        9 Consonants, 4 Vowels. 
+        <br />
+        40 Points.
       </p>
     </div>
   </BaseCard>

@@ -31,7 +31,7 @@ export const getGameStatistics = (
     .reduce((partialSum, a) => partialSum + a, 0);
 
   const playerAccuracy = (
-    (userMoves.filter((move) => move.points != 0).length / userMoves.length) *
+    (userMoves.filter((move) => move.points !== 0).length / userMoves.length) *
     100
   ) // convert to percent by multiplying by 100
     .toFixed(2);

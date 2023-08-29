@@ -44,8 +44,9 @@
         >
           <Icon name="uil:enter" />
         </Button>
-        <div class="absolute bottom-4 right-4 p-4 rounded-md text-2xl">
-          +{{ points }} Points
+        <div class="absolute bottom-4 right-4 p-4 w-full max-w-md text-right space-y-reverse">
+          <span class="block text-2xl">+{{ points }} Points</span>
+          <progress class="progress progress-accent w-full rotate-180" :value="points" :max="MAX_SCORE"></progress>
         </div>
       </div>
       <MiddleTab
@@ -83,8 +84,9 @@
             }"
           />
         </ul>
-        <div class="absolute bottom-4 left-4 bg- p-4 rounded-md text-2xl">
-          +{{ opponentPoints }} Points
+        <div class="absolute bottom-4 left-4 p-4 w-full max-w-md">
+          <span class="block text-2xl">+{{ opponentPoints }} Points</span>
+          <progress class="progress progress-accent w-full" :value="opponentPoints" :max="MAX_SCORE"></progress>
         </div>
       </div>
     </div>

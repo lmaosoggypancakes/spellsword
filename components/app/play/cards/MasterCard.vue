@@ -8,6 +8,8 @@
       <h2 class="card-title lg:text-3xl text-xl">Master</h2>
       <p class="w-full text-xs">
         6 Consonants, 2 Vowels. Not for the faint of heart!
+        <br />
+        30 points.
       </p>
     </div>
   </BaseCard>
