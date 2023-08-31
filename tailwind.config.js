@@ -61,7 +61,7 @@ module.exports = {
           primary: "#271625",
           info: "#78e5ee",
           secondary: "#E2C2FF",
-          error: "#942b45",
+          error: "#dc4762",
         },
       },
     ],

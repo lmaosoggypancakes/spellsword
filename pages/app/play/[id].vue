@@ -46,7 +46,6 @@
         </Button>
         <div class="absolute bottom-4 right-4 p-4 w-full max-w-md text-right space-y-reverse">
           <span class="block text-2xl">+{{ points }} Points</span>
-          <progress class="progress progress-accent w-full rotate-180" :value="points" :max="MAX_SCORE"></progress>
         </div>
       </div>
       <MiddleTab
@@ -59,16 +58,16 @@
         :class="{
           'hidden lg:flex': isMyTurn,
           'shadow-[inset_0px_0px_10px_5px_rgba(169,255,203,1)]':
-            !isMyTurn && gameStatus != GameStatus.OPPONENT_SUDDEN_DEATH,
+          !isMyTurn && gameStatus != GameStatus.OPPONENT_SUDDEN_DEATH,
           'shadow-[inset_0px_0px_10px_5px_rgba(219,45,45,1)]':
-            gameStatus == GameStatus.OPPONENT_SUDDEN_DEATH,
+          gameStatus == GameStatus.OPPONENT_SUDDEN_DEATH,
         }"
       >
         <span class="text-4xl text-center block">{{ opponent?.username }}</span>
         <Avatar :src="opponent?.picture || ''" />
         <ul class="flex flex-row space-x-8 my-4">
           <LetterBlock
-            v-for="(letter, index) in opponentSubmittedGuesses"
+          v-for="(letter, index) in opponentSubmittedGuesses"
             :key="index"
             :letter="letter"
             :id="letter.id"
@@ -86,13 +85,18 @@
         </ul>
         <div class="absolute bottom-4 left-4 p-4 w-full max-w-md">
           <span class="block text-2xl">+{{ opponentPoints }} Points</span>
-          <progress class="progress progress-accent w-full" :value="opponentPoints" :max="MAX_SCORE"></progress>
         </div>
       </div>
     </div>
     <div class="w-full grid mt-auto border-t-2 border-secondary justify-center">
+      
+      <div class="w-full flex justify-center items-center space-x-4 my-4">
+        <progress class="h-6 bg-primary rounded-md progress progress-info transition-all w-full max-w-md border-2 border-white" :value="points" :max="MAX_SCORE"></progress>
+        <Icon name="uil:trophy" class="h-12 w-12 p-0 text-accent" />
+        <progress class="h-6 bg-primary rounded-md progress progress-error w-full transition-all max-w-md rotate-180 border-2 border-white" :value="opponentPoints" :max="MAX_SCORE"></progress>
+      </div>
       <ul
-        class="my-4 grid grid-flow-col grid-rows-2 w-screen lg:justify-center justify-start gap-4 overflow-auto place-self-center"
+      class="my-4 grid grid-flow-col grid-rows-2 w-screen lg:justify-center justify-start gap-4 overflow-auto place-self-center"
       >
         <LetterBlock
           v-for="letter in letters"
