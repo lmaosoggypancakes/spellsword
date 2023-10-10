@@ -15,7 +15,7 @@
       v-motion-fade
     >
       <div
-        class="border border-accent border-opacity-80 overflow-hidden animate-spin-super-slow-backwards"
+        class="border border-accent border-opacity-80 overflow-hidden animate-spin-super-slow-backwards group/letter"
       >
         <img
           src="~/assets/letter_hero.png"
@@ -27,7 +27,7 @@
         :letter="{ value: letter, id: letter, active: false }"
         :key="letter"
         :disabled="false"
-        class="bg-primary border-info circle absolute shadow-info ease-in-out duration-300"
+        class="bg-primary border-info circle absolute shadow-info ease-in-out duration-300 hover:duration-500 group-hover/letter:duration-1000"
       />
     </div>
   </div>

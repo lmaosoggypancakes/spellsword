@@ -24,6 +24,8 @@ module.exports = {
         "spin-slow": "spin 3s linear infinite",
         "spin-super-slow-backwards": "spin 60s linear infinite reverse",
         "spin-super-slow": "spin 60s linear infinite",
+        "spin-even-slower": "spin 90s linear infinite",
+        "spin-even-slower-backwards": "spin 90s linear infinite reverse",
         "bounce-slow": "bounce 3s linear infinite",
       },
       keyframes: {
