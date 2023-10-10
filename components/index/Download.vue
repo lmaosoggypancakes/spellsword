@@ -50,21 +50,26 @@ console.log(letters);
 const angle = ref(0);
 const computeLetterCircles = (angle: number) => {
   if (!document) return; // stfu build error
-  const circles = <HTMLUListElement[]>document.querySelectorAll(".circle");
-  let dangle = 360 / circles.length;
-  circles.forEach((circle, index) => {
-    angle += dangle;
-    circle.style.transform = `rotate(${angle}deg) translateX(${
-      window.innerWidth / 5
-    }px) rotate(-${angle}deg)`;
-    if (Math.round(Math.random() * 100) == 1) {
-      if (circle.classList.contains("shadow-2xl")) {
-        circle.classList.remove("shadow-2xl", "shadow-accent");
-      } else {
-        circle.classList.add("shadow-2xl", "shadow-accent");
+  try {
+    const circles = <HTMLUListElement[]>document.querySelectorAll(".circle");
+    let dangle = 360 / circles.length;
+    circles.forEach((circle, index) => {
+      angle += dangle;
+      circle.style.transform = `rotate(${angle}deg) translateX(${
+        window.innerWidth / 5
+      }px) rotate(-${angle}deg)`;
+      if (Math.round(Math.random() * 100) == 1) {
+        if (circle.classList.contains("shadow-2xl")) {
+          circle.classList.remove("shadow-2xl", "shadow-accent");
+        } else {
+          circle.classList.add("shadow-2xl", "shadow-accent");
+        }
       }
-    }
-  });
+    });
+  } catch (err) {
+    console.error(err);
+    return;
+  }
 };
 
 onMounted(() => computeLetterCircles(0));
