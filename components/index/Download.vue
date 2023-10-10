@@ -48,7 +48,8 @@ const headerFontSize = computed(() => {
 const letters = generateRandomSequence().map((letter) => letter.value);
 console.log(letters);
 const angle = ref(0);
-const computeLetterCircles = (angle) => {
+const computeLetterCircles = (angle: number) => {
+  if (!document) return; // stfu build error
   const circles = <HTMLUListElement[]>document.querySelectorAll(".circle");
   let dangle = 360 / circles.length;
   circles.forEach((circle, index) => {
