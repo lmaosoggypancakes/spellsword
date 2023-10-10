@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full font-bold min-h-screen overflow-scroll flex flex-col scrollbar-none relative"
+    class="w-full font-bold min-h-screen overflow-x-hidden flex flex-col scrollbar-none relative"
   >
     <slot />
     <Footer />

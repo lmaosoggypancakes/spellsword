@@ -1,7 +1,7 @@
 <template>
   <li
     :id="String(letter.id)"
-    class="lg:text-3xl border-2 bg-base-100 rounded-md transition-all cursor-pointer flex items-center justify-center w-16 h-16"
+    class="lg:text-3xl border-2 bg-base-100 rounded-xl transition-all cursor-pointer flex items-center justify-center w-16 h-16 hover:rounded-none"
     :class="{
       'grayscale blur-sm': letter.active && !queue,
       'hover:shadow-inset-info ': !letter.active,

@@ -1,19 +1,8 @@
 <template>
-  <div class="min-h-screen bg-base-100 text-info grid grid-cols-5 font-sans">
-    <ul
-      class="text-secondary font-normal md:grid grid-rows-5 grid-cols-2 justify-end place-items-center pl-4 hidden"
-      v-motion-fade
-      ref="left"
-    >
-      <LetterBlock
-        v-for="letter in Object.keys(letters_1)"
-        :letter="{ value: letter, id: letter, active: false }"
-        :key="letter"
-        :disabled="false"
-        :style="`transform: rotate(${letters_1[letter]}deg)`"
-      />
-    </ul>
-    <div class="md:col-span-3 col-span-5">
+  <div
+    class="min-h-screen bg-base-100 text-info font-sans py-9 overflow-x-hidden"
+  >
+    <div class="md:col-span-5 col-span-7">
       <h1
         class="text-info w-full text-center text-shadow-sm shadow-info uppercase"
         :style="`font-size: ${headerFontSize}rem`"
@@ -21,29 +10,34 @@
         The battlefield is yours
       </h1>
     </div>
-    <ul
-      class="text-secondary font-normal md:grid grid-rows-5 grid-cols-2 justify-start place-items-center pr-4 text-3xl hidden"
+    <div
+      class="text-info font-normal md:flex flex-col space-y-8 items-center justify-center pl-4 hidden relative h-screen"
       v-motion-fade
-      ref="right"
     >
+      <div
+        class="border border-accent border-opacity-80 overflow-hidden animate-spin-super-slow-backwards"
+      >
+        <img
+          src="~/assets/letter_hero.png"
+          class="w-[30vw] to-70% -z-10 animate-spin-super-slow p-10"
+        />
+      </div>
       <LetterBlock
-        v-for="letter in Object.keys(letters_2)"
-        :letter="{ value: letter, active: false }"
+        v-for="letter in letters"
+        :letter="{ value: letter, id: letter, active: false }"
+        :key="letter"
         :disabled="false"
-        :style="`transform: rotate(${letters_2[letter]}deg)`"
+        class="bg-primary border-info circle absolute shadow-info ease-in-out duration-300"
       />
-    </ul>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useWindowScroll } from "@vueuse/core";
-import { useMotion } from "@vueuse/motion";
 
 const download: Ref<null | HTMLElement> = ref(null);
 const scroll = useWindowScroll();
-const left = ref<HTMLElement>();
-const right = ref<HTMLElement>();
 
 const headerFontSize = computed(() => {
   if (scroll.y.value < 800) return 4;
@@ -51,91 +45,30 @@ const headerFontSize = computed(() => {
   return 5 - (scroll.y.value - 600) / 200;
 });
 // create an object with letter_1 as the keys and randomly generated numbers as each valuer
-const letters_1 = ["A", "O", "C", "P", "L", "K", "R", "F", "I", "Q"].reduce(
-  (acc, curr) => {
-    acc[curr] = Math.round(Math.random() * -45);
-    return acc;
-  },
-  {}
-);
-const letters_2 = [
-  "K",
-  "T",
-  "V",
-  "N",
-  "I",
-  "A",
-  "R",
-  "V",
-  "E",
-  "U",
-  "B",
-].reduce((acc, curr) => {
-  acc[curr] = Math.round(Math.random() * 45);
-  return acc;
-}, {});
+const letters = generateRandomSequence().map((letter) => letter.value);
+console.log(letters);
+const angle = ref(0);
+const computeLetterCircles = (angle) => {
+  const circles = <HTMLUListElement[]>document.querySelectorAll(".circle");
+  let dangle = 360 / circles.length;
+  circles.forEach((circle, index) => {
+    angle += dangle;
+    circle.style.transform = `rotate(${angle}deg) translateX(${
+      window.innerWidth / 5
+    }px) rotate(-${angle}deg)`;
+    if (Math.round(Math.random() * 100) == 1) {
+      if (circle.classList.contains("shadow-2xl")) {
+        circle.classList.remove("shadow-2xl", "shadow-accent");
+      } else {
+        circle.classList.add("shadow-2xl", "shadow-accent");
+      }
+    }
+  });
+};
 
-// const props = defineProps<{
-//   rank: "silver" | "gold" | "radiant" | "diamond";
-// }>();
-// const getImageUrl = () => {
-//   const url = new URL(`/assets/ranks/${props.rank}.png`, import.meta.url);
-//   return url;
-// };
-const leftMotion = useMotion(left, {
-  initial: { opacity: 0 },
-  enter: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      type: "spring",
-      stiffness: 150,
-      damping: 10,
-      onComplete: () => {
-        try {
-          leftMotion.value = "levitate";
-        } catch (error) {
-          console.log(error);
-        }
-      },
-    },
-  },
-  levitate: {
-    y: 15,
-    transition: {
-      duration: 2000,
-      repeat: Infinity,
-      ease: "easeInOut",
-      repeatType: "mirror",
-    },
-  },
-});
-const rightMotion = useMotion(right, {
-  initial: { opacity: 0 },
-  enter: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      type: "spring",
-      stiffness: 150,
-      damping: 10,
-      onComplete: () => {
-        try {
-          rightMotion.value = "levitate";
-        } catch (error) {
-          console.log(error);
-        }
-      },
-    },
-  },
-  levitate: {
-    y: 15,
-    transition: {
-      duration: 2000,
-      repeat: Infinity,
-      ease: "easeInOut",
-      repeatType: "mirror",
-    },
-  },
-});
+onMounted(() => computeLetterCircles(0));
+setInterval(() => {
+  angle.value += 1;
+  computeLetterCircles(angle.value);
+}, 100);
 </script>

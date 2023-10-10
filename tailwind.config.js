@@ -11,6 +11,7 @@ module.exports = {
         "inset-accent": "inset 0 0 10px #FCD0A1",
         "inset-info": "inset 0 0 10px #78e5ee",
         "inset-secondary": "inset 0 0 10px #E2C2FF",
+        "inset-left-info": "inset 15px 0 15px 15px #75e5ee",
       },
       textShadow: {
         sm: "0 4px 8px var(--tw-shadow-color)",
@@ -21,6 +22,9 @@ module.exports = {
         marquee: "marquee 30s linear infinite",
         marquee2: "marquee2 30s linear infinite",
         "spin-slow": "spin 3s linear infinite",
+        "spin-super-slow-backwards": "spin 60s linear infinite reverse",
+        "spin-super-slow": "spin 60s linear infinite",
+        "bounce-slow": "bounce 3s linear infinite",
       },
       keyframes: {
         marquee: {

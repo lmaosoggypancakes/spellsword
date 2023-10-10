@@ -1,6 +1,6 @@
 <template>
   <button
-    class="disabled:cursor-not-allowed disabled:grayscale uppercase tracking-wider font-semibold border-2 transition ease-in-out p-2 rounded-md hover:shadow-md"
+    class="disabled:cursor-not-allowed disabled:grayscale uppercase tracking-wider font-semibold border-2 transition ease-in-out p-2 rounded-md hover:shadow-md hover:rounded-none"
     :class="
       fill
         ? type === 'primary'

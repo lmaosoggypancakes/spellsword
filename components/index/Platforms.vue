@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid lg:grid-cols-2 p-4 justify-around overflow-hidden bg-primary text-primary"
+    class="grid lg:grid-cols-2 p-4 justify-around overflow-hidden bg-primary text-secondary"
     id="platforms"
   >
     <div class="flex flex-col justify-center" ref="phone">
@@ -33,13 +33,9 @@
       enabling you to enhance your English language skills effortlessly. Whether
       you have a few minutes or an extended gaming session, Spellsword ensures a
       seamless experience that
-      <span class="underline font-extrabold text-[#111e27]"
-        >fits your lifestyle</span
-      >
+      <span class="underline font-extrabold">fits your lifestyle</span>
       and
-      <span class="underline font-extrabold text-[#111e27]"
-        >boosts your English</span
-      >
+      <span class="underline font-extrabold">boosts your English</span>
       proficiency on the go.
     </div>
   </div>
