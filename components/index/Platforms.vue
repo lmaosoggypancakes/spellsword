@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid lg:grid-cols-2 p-4 justify-around overflow-hidden bg-primary text-secondary"
+    class="grid lg:grid-cols-2 p-4 justify-around overflow-hidden bg-secondary text-primary"
     id="platforms"
   >
     <div class="flex flex-col justify-center" ref="phone">
