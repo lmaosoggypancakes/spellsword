@@ -17,7 +17,7 @@
         method="dialog"
         class="modal-box lg:h-auto flex flex-col items-stretch bg-primary-200 text-secondary border-2 border-secondary"
       >
-        <h3 class="font-bold text-4xl text-center mb-8">
+        <h3 class="font-bold md:text-4xl text-center mb-8 text-3xl">
           {{ shownGame.characters }}
         </h3>
         <section class="flex justify-between">
@@ -41,7 +41,7 @@
           </div>
         </section>
         <section
-          class="overflow-x-auto scrollbar-none h-full mt-4 flex flex-col"
+          class="overflow-x-auto scrollbar-none h-full mt-4 flex flex-col overflow-y-hidden"
         >
           <div class="grid grid-cols-2 bg-primary text-accent rounded-md p-8">
             <ul>
@@ -69,33 +69,35 @@
               </li>
             </ul>
           </div>
-          <div class="stats shadow rounded-b-none mt-4">
-            <div class="stat place-items-start overflow-hidden">
-              <div class="stat-title">Avg Word Length</div>
-              <div class="stat-value text-secondary">
-                {{ shownGame.userAverageLength }}
+          <div class="overflow-auto mt-4">
+            <div class="stats shadow rounded-b-none w-full">
+              <div class="stat place-items-start overflow-hidden">
+                <div class="stat-title">Avg Word Length</div>
+                <div class="stat-value text-secondary">
+                  {{ shownGame.userAverageLength }}
+                </div>
               </div>
-            </div>
 
-            <div class="stat place-items-end overflow-hidden">
-              <div class="stat-title">Avg Word Length</div>
-              <div class="stat-value text-secondary">
-                {{ shownGame.opponentAverageLength }}
+              <div class="stat place-items-end overflow-hidden">
+                <div class="stat-title">Avg Word Length</div>
+                <div class="stat-value text-secondary">
+                  {{ shownGame.opponentAverageLength }}
+                </div>
               </div>
             </div>
-          </div>
-          <div class="stats shadow rounded-t-none">
-            <div class="stat place-items-start overflow-hidden">
-              <div class="stat-title">Accuracy</div>
-              <div class="stat-value text-secondary">
-                {{ (+shownGame.opponentAccuracy).toFixed(1) }}%
+            <div class="stats shadow rounded-t-none w-full">
+              <div class="stat place-items-start overflow-hidden">
+                <div class="stat-title">Accuracy</div>
+                <div class="stat-value text-secondary">
+                  {{ (+shownGame.opponentAccuracy).toFixed(1) }}%
+                </div>
               </div>
-            </div>
 
-            <div class="stat place-items-end overflow-hidden">
-              <div class="stat-title">Accuracy</div>
-              <div class="stat-value text-secondary">
-                {{ (+shownGame.playerAccuracy).toFixed(1) }}%
+              <div class="stat place-items-end overflow-hidden">
+                <div class="stat-title">Accuracy</div>
+                <div class="stat-value text-secondary">
+                  {{ (+shownGame.playerAccuracy).toFixed(1) }}%
+                </div>
               </div>
             </div>
           </div>

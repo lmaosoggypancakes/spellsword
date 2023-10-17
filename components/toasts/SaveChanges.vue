@@ -14,7 +14,7 @@
   >
     <span> Careful - you have unsaved changes! </span>
     <Button
-      class="ml-2 bg-base-100 hover:px-8 hover:py-4 text-white rounded-md py-2 px-6 transition-all"
+      class="ml-2 bg-base-100 hover:py-4 border-none text-white rounded-md py-2 px-6 transition-all"
       @click="handleClick()"
     >
       <span v-if="!loading">Save</span>
