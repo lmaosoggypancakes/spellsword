@@ -4,6 +4,25 @@ const plugin = require("tailwindcss/plugin");
 module.exports = {
   theme: {
     extend: {
+      colors: {
+        secondary: {
+          DEFAULT: "#E2C2FF",
+          100: "#F7EDFF",
+          200: "#E2C2FF",
+          300: "#CD8BFF",
+          400: "#BA5FFF",
+          500: "#A937FF",
+          600: "#9A13FF",
+        },
+        primary: {
+          DEFAULT: "#271625",
+          100: "#2E232D",
+          200: "#2B1E2A",
+          300: "#291A27",
+          400: "#271625",
+          500: "#221520",
+        },
+      },
       fontFamily: {
         sans: ["Tektur"],
       },

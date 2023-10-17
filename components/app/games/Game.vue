@@ -1,6 +1,6 @@
 <template>
   <div
-    class="lg:w-5/6 w-full p-2 flex flex-col border-2 rounded-2xl bg-primary lg:pl-4 last:mt-36"
+    class="lg:w-5/6 w-full p-2 flex flex-col border border-secondary border- rounded-2xl bg-primary lg:pl-4 last:mt-36 hover:bg-primary-100 hover:cursor-pointer"
     onclick="modal.showModal()"
   >
     <div class="text-white flex justify-between w-full">

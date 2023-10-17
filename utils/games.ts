@@ -51,14 +51,28 @@ export const getGameStatistics = (
   if (Math.random() * 2 > 1) {
     [user, opponent] = [opponent, user];
   }
+
+  const opponentAverageLength = (
+    opponentMoves.reduce((prev, curr) => prev + curr.guess.length, 0) /
+    opponentMoves.length
+  ).toFixed(1);
+
+  const userAverageLength = (
+    userMoves.reduce((prev, curr) => prev + curr.guess.length, 0) /
+    userMoves.length
+  ).toFixed(1);
   return {
+    id: game.id,
     // short for:
     // { opponentAccuracy: opponentAccuracy, ...}
     opponentAccuracy,
     playerAccuracy,
     opponentPoints,
+    userAverageLength,
+    opponentAverageLength,
     playerPoints,
     status,
+    moves,
     opponent,
     player: user,
     characters: game.characters,

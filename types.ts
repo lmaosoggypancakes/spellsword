@@ -36,6 +36,7 @@ export interface PlayerGame {
 }
 
 export interface GameStatistics {
+  id: string;
   playerAccuracy: string;
   playerPoints: number;
   opponentPoints: number;
@@ -44,6 +45,9 @@ export interface GameStatistics {
   opponent: User | GameUser;
   player: User | GameUser;
   characters: string;
+  opponentAverageLength: number;
+  userAverageLength: number;
+  moves: Move[];
 }
 
 export interface AppNavLink {
