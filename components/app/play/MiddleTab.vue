@@ -1,6 +1,6 @@
 <template>
   <div
-    class="border-x-2 border-secondary min-h-full hidden lg:flex lg:flex-col col-span-1 bg-primary"
+    class="border-x-2 border-l-info border-r-error border-b-0 min-h-full hidden lg:flex lg:flex-col col-span-1 bg-primary"
   >
     <div class="tabs flex justify-between">
       <a
