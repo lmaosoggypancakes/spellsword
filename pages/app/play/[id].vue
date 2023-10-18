@@ -40,6 +40,8 @@
         <Button
           v-if="isMyTurn && queue.length > 0"
           type="secondary"
+          fill=""
+          class="w-36 absolute bottom-4 left-4 z-50"
           @click="appendMove()"
         >
           <Icon name="uil:enter" />
@@ -117,11 +119,12 @@
       </ul>
     </div>
   </div>
-  <MobilePanel
+  <!-- <MobilePanel
     :visible="showMobilePanel"
+    v-show="showMobilePanel"
     @close="showMobilePanel = false"
     ref="player"
-  />
+  /> -->
   <Waiting v-if="status == GameConnectionStatus.WAITING" />
   <Connecting v-if="status == GameConnectionStatus.CONNECTING" />
   <TransitionRoot
@@ -268,7 +271,7 @@ import {
 } from "@headlessui/vue";
 import axios from "axios";
 
-const { vibrate, stop, isSupported } = useVibrate({ pattern: [100, 100, 100] });
+const { vibrate } = useVibrate({ pattern: [100, 100, 100] });
 
 const router = useRouter();
 const auth = useAuth();
