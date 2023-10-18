@@ -6,7 +6,9 @@
   <DownloadToPlatformsDivider />
   <Platforms />
   <PlatformsToAboutDivider />
-  <About />
+  <ClientOnly>
+    <About />
+  </ClientOnly>
 </template>
 
 <script setup>
