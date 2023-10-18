@@ -5,11 +5,11 @@
   >
     <div class="h-screen z-10 absolute grid justify-between">
       <div
-        class="h-4 w-12 opacity-20 flex items-center space-x-1 transition-transform -z-10"
-        v-for="letter in travellingLetters"
+        class="h-4 w-12 opacity-20 flex items-center space-x-1 transition-transform z-20 -translate-x-24"
+        v-for="(letter, idx) in travellingLetters"
+        :id="`star-${idx}`"
         :style="{
           opacity: letter.start ? 100 : 0,
-          transform: `translateX(${letter.x}px)`,
         }"
       >
         <span class="w-8 h-1 border-b border-opacity-20 border-white"></span
@@ -76,33 +76,44 @@ const letters = [...generateRandomSequence(), ...generateRandomSequence()].map(
   (letter) => letter.value
 );
 const travellingLetters = ref<
-  { start: boolean; ended: boolean; x: number; value: string }[]
+  { start: boolean; ended: boolean; value: string }[]
 >([]);
 letters.forEach((letter) => [
   travellingLetters.value.push({
     start: false,
     ended: false,
-    x: 0,
     value: letter,
   }),
 ]);
 
-setInterval(() => {
-  if (Math.round(Math.random() * 100) == 1) {
-    travellingLetters.value[
-      Math.round(Math.random() * travellingLetters.value.length)
-    ].start = true;
-  }
-  travellingLetters.value.forEach((letter) => {
-    if (letter.x > window.outerWidth) {
-      letter.start = false;
-      letter.x = 0;
-    }
-    if (letter.start) {
-      letter.x += 1;
-    }
-  });
-}, 10);
+onMounted(() => {
+  setInterval(() => {
+    travellingLetters.value.forEach((letter, idx) => {
+      const star = document.getElementById(`star-${idx}`);
+      if (!star) return;
+      if (!star.classList.contains("star")) {
+        if (Math.round(Math.random() * 1000) == 1) {
+          // animate it
+          star.classList.add("star");
+          // make it visible
+          letter.start = true;
+        }
+      }
+    });
+  }, 10);
+});
 // from the images, create another list of 8 random images
 // this is to avoid having the same image twice
 </script>
+
+<style>
+@keyframes fly {
+  to {
+    transform: translateX(100vw);
+  }
+}
+
+.star {
+  animation: fly forwards 10s infinite ease-in;
+}
+</style>
