@@ -19,12 +19,7 @@
             v-motion="'pop'"
           >
             <li>
-              <NuxtLink
-                href="/login"
-                class="link link-info"
-                @click="alert('jsoef')"
-                >Login</NuxtLink
-              >
+              <NuxtLink href="/login" class="link link-info">Login</NuxtLink>
             </li>
 
             <li>

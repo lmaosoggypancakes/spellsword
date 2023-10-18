@@ -1,8 +1,21 @@
 <template>
   <div
-    class="grid xl:grid-cols-2 p-4 items-center overflow-hidden min-h-screen"
+    class="grid xl:grid-cols-2 p-4 items-center overflow-hidden min-h-screen relative"
     id="about"
   >
+    <div class="h-screen z-10 absolute grid justify-between">
+      <div
+        class="h-4 w-12 opacity-20 flex items-center space-x-1 transition-transform -z-10"
+        v-for="letter in travellingLetters"
+        :style="{
+          opacity: letter.start ? 100 : 0,
+          transform: `translateX(${letter.x}px)`,
+        }"
+      >
+        <span class="w-8 h-1 border-b border-opacity-20 border-white"></span
+        ><span class="animate-spin-slow">{{ letter.value }}</span>
+      </div>
+    </div>
     <div
       class="text-2xl p-4"
       v-motion="{
@@ -32,7 +45,7 @@
         :key="index"
         :src="image"
         :alt="`image-${index}`"
-        class="hover:rounded-lg shadow-lg mx-auto h-36 w-36 inline-block p-2 hover:p-0 rounded-2xl transition-all"
+        class="hover:rounded-lg shadow-lg mx-auto h-36 w-36 inline-block p-2 hover:p-0 rounded-2xl transition-all z-10"
         :class="[
           index % 2 === 1 ? 'mt-0' : 'mt-2',
           index == 0 || index == 15 ? 'opacity-0' : 'opacity-100',
@@ -59,6 +72,37 @@ const images = Array(16)
       `https://spellsword.up.railway.app/static/images/avatars/${i + 1}.png`
   );
 
+const letters = [...generateRandomSequence(), ...generateRandomSequence()].map(
+  (letter) => letter.value
+);
+const travellingLetters = ref<
+  { start: boolean; ended: boolean; x: number; value: string }[]
+>([]);
+letters.forEach((letter) => [
+  travellingLetters.value.push({
+    start: false,
+    ended: false,
+    x: 0,
+    value: letter,
+  }),
+]);
+
+setInterval(() => {
+  if (Math.round(Math.random() * 100) == 1) {
+    travellingLetters.value[
+      Math.round(Math.random() * travellingLetters.value.length)
+    ].start = true;
+  }
+  travellingLetters.value.forEach((letter) => {
+    if (letter.x > window.outerWidth) {
+      letter.start = false;
+      letter.x = 0;
+    }
+    if (letter.start) {
+      letter.x += 1;
+    }
+  });
+}, 10);
 // from the images, create another list of 8 random images
 // this is to avoid having the same image twice
 </script>

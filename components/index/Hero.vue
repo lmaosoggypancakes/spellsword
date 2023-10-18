@@ -6,10 +6,10 @@
   >
     <LandingNavbar class="bg-transparent" v-motion-fade />
     <div
-      class="grid lg:grid-cols-2 place-items-center justify-center z-10 h-screen"
+      class="grid lg:grid-cols-2 place-items-center justify-center z-10 h-screen w-4/5 md:w-full place-self-center"
       v-motion-fade
     >
-      <img src="/logo_transparent.png" class="h-96 w-96" />
+      <img src="/logo_transparent.png" class="w-4/5 md:h-1/2 md:w-1/2" />
       <div class="flex flex-col justify-center space-y-16">
         <div>
           <BrandLettering />

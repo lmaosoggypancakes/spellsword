@@ -1,23 +1,24 @@
 <template>
   <div
-    class="md:min-h-screen bg-base-100 text-info font-sans py-9 overflow-x-hidden bg-gradient-to-b from-base-100 to-primary from-50% px-8 md:h-screen py-36"
+    class="md:min-h-screen bg-base-100 text-info font-sans overflow-x-hidden bg-gradient-to-b from-base-100 to-primary from-50% px-8 md:h-screen py-36 bg-transparent"
   >
     <div
-      class="grid md:grid-cols-2 md:border-secondary md:border rounded-tl-2xl rounded-br-2xl md:border-opacity-30 h-full"
+      class="grid md:grid-cols-2 md:border-secondary md:border rounded-tl-2xl rounded-br-2xl md:border-opacity-30 h-full relative z-10"
     >
       <div
-        class="place-self-center space-y-8 md:place-items-start flex flex-col items-center"
+        class="place-self-center space-y-8 md:place-items-start flex flex-col items-center relative"
       >
-        <h1 class="text-info uppercase md:text-3xl text-5xl">
+        <div class="h-[50vh] w-[30vw] bubble-accent -bottom-52"></div>
+        <h1 class="text-info uppercase md:text-3xl text-5xl z-10">
           The battlefield is yours
         </h1>
-        <p class="text-white text-lg font-normal max-w-lg">
+        <p class="text-white text-lg font-normal max-w-lg z-10">
           Spellsword is played between two players who race against the clock to
           construct words from a given seqeunce of letters. The player to
           out-score their opponent by creating more complex words wins!
         </p>
         <div
-          class="stats shadow md:inline-grid grid md:grid-flow-col grid-flow-row md:space-y-0 space-y-8 md:w-min max-w-md w-full"
+          class="stats shadow md:inline-grid grid md:grid-flow-col grid-flow-row md:space-y-0 space-y-8 md:w-min max-w-md w-full z-10"
         >
           <div
             class="stat md:w-full max-w-md place-self-center md:border border-none bg-primary rounded-sm"
@@ -54,7 +55,7 @@
             <div class="stat-value">4,200</div>
           </div>
         </div>
-        <LinkWithSound href="/register" class="w-full max-w-md inline"
+        <LinkWithSound href="/register" class="w-full max-w-md inline z-10"
           ><Button type="accent" class="w-full mt-8"
             >Join the Fight</Button
           ></LinkWithSound
@@ -64,6 +65,8 @@
         class="text-info font-normal md:flex flex-col items-center justify-center pl-4 hidden relative"
         v-motion-fade
       >
+        <div class="h-[80vh] w-[80vh] bubble-info place-self-center"></div>
+
         <div
           class="overflow-hidden group/letter bg-transparent outline-info outline-dashed outline-4 rounded-full animate-spin-super-slow-backwards p-16"
         >
