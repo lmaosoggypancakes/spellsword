@@ -9,7 +9,16 @@
       class="grid lg:grid-cols-2 place-items-center justify-center z-10 h-screen w-4/5 md:w-full place-self-center"
       v-motion-fade
     >
-      <img src="/logo_transparent.png" class="w-4/5 md:h-1/2 md:w-1/2" />
+      <img
+        src="/logo_transparent.png"
+        class="w-4/5 md:h-1/2 md:w-1/2 hover:shadow-2xl transition-all"
+        ref="image"
+        :style="{
+          transform: `rotateY(${rotateY}deg) rotateZ(${rotateZ}deg) rotateX(${rotateX}deg)`,
+        }"
+        @mousemove="(e) => rotate(e)"
+        @mouseleave="resetRotate"
+      />
       <div class="flex flex-col justify-center space-y-16">
         <div>
           <BrandLettering />
@@ -58,12 +67,27 @@
 import { useWindowScroll } from "@vueuse/core";
 import { OperatingSystem } from "types";
 
+const rotateX = ref(0);
+const rotateY = ref(0);
+const rotateZ = ref(0);
 const os = ref<[OperatingSystem, string] | null>(null);
 const scroll = useWindowScroll();
 
+const rotate = (e: MouseEvent) => {
+  rotateZ.value = -45 * Math.sin((Math.PI * 10) / e.offsetY);
+  rotateX.value = -45 * Math.sin((Math.PI * 20) / e.offsetX);
+};
+const resetRotate = () => {
+  rotateX.value = rotateY.value = rotateZ.value = 0;
+};
 onMounted(() => {
   os.value = getOperatingSystem();
 });
+
+// setInterval(() => {
+//   rotateZ.value++;
+//   rotateX.value++;
+// });
 const zoom = computed(() => {
   return Math.round(scroll.y.value / 5);
 });
